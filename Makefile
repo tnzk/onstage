@@ -1,13 +1,14 @@
 CPPFLAGS = -std=c++0x
-OBJS = thestage.o stage_command.o
+OBJS = thestage.o stage_command.o onstage.o
 
 onstage: $(OBJS)
+	g++ onstage.cpp -c $(CPPFLAGS)
 	g++ -o onstage $(OBJS)
 
 thestage: thestage.cpp
 	g++ thestage.cpp -c $(CPPFLAGS)
 
-stage_command: thestage.cpp
+stage_command: stage_command.cpp
 	g++ stage_command.cpp -c $(CPPFLAGS)
 
 # `pkg-config --libs --cflags librsvg-2.0`

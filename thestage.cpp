@@ -1,17 +1,18 @@
-#include "stage_command.hpp"
 #include "thestage.hpp"
-#include <iostream>
-#include <cinttypes>
 
-int main()
+bool TheStage::Execute(IStageCommand& command) const
 {
-  auto a = 10;
-
-  std::cout << a << std::endl;
-
-  MoveStageCommand moving;
-  IStageCommand* command = &moving;
-  command->Execute();
-
-  return 0;
+  command.Execute();
+  return true;
 }
+
+bool TheStage::Render(unsigned char*)
+{
+  return true;
+}
+
+bool TheStage::Skip()
+{
+  return true;
+}
+

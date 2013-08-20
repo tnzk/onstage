@@ -7,7 +7,7 @@ class IStageCommand
 private:
   
 public:
-  virtual bool Execute();
+  virtual bool Execute() = 0;
 };
 
 class MoveStageCommand : public IStageCommand
