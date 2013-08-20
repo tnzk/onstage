@@ -1,0 +1,10 @@
+{
+  "actors": ["momo", "hitomi"],
+  "commands": [
+     ["sync", 0],
+     ["enter", "momo"],
+     ["enter", "hitomi"],
+     ["speak", "momo"]
+   ]
+}
+
