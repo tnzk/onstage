@@ -16,6 +16,9 @@ public:
   bool Render(unsigned char*);
   bool Skip();
 private:
+  int width;
+  int height;
+  int frame;
 };
 
 #endif
