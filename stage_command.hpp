@@ -1,3 +1,5 @@
+#include "picojson.h"
+
 #ifndef COMMAND_HEADER
 
 #define COMMAND_HEADER
@@ -18,5 +20,12 @@ public:
   ~MoveStageCommand();
   virtual bool Execute();
 };
+
+class StageCommandFactory
+{
+public:
+  static IStageCommand& Create(picojson::value&);
+};
+// 
 
 #endif

@@ -12,7 +12,10 @@ int main()
   std::cin >> json;
   picojson::object& obj = json.get<picojson::object>();
   picojson::array& commands = obj["commands"].get<picojson::array>();
-  std::cout << commands[2] << std::endl;
+
+  for (picojson::array::iterator it = commands.begin(); it != commands.end(); it++) {
+    StageCommandFactory::Create(*it);
+  }
 
   MoveStageCommand moving;
   IStageCommand& command = moving;

@@ -6,14 +6,14 @@
 
 enum StageState
 {
-  StateRendering
+  Rendering
 };
 
 class TheStage
 {
 public:
-  bool Execute(IStageCommand&) const;
-  bool Render(unsigned char*);
+  bool Execute(IStageCommand& command) const;
+  bool Render(unsigned char* buf);
   bool Skip();
 private:
   int width;
