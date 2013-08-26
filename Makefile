@@ -1,18 +1,21 @@
 CPPFLAGS = -std=c++0x
 OBJS = thestage.o stage_command.o onstage.o actor.o
+GCC48 = /opt/bin/g++
 
 onstage: $(OBJS)
-	g++ onstage.cpp -c $(CPPFLAGS)
-	g++ -o onstage $(OBJS)
+	$(GCC48) -o onstage $(OBJS)
 
-thestage: thestage.cpp
-	g++ thestage.cpp -c $(CPPFLAGS)
+onstage.o: onstage.cpp
+	$(GCC48) onstage.cpp -c $(CPPFLAGS)
 
-actor: actor.cpp
-	g++ actor.cpp -c $(CPPFLAGS)
+thestage.o: thestage.cpp
+	$(GCC48) -c thestage.cpp $(CPPFLAGS)
 
-stage_command: stage_command.cpp
-	g++ stage_command.cpp -c $(CPPFLAGS)
+actor.o: actor.cpp
+	$(GCC48) -c actor.cpp $(CPPFLAGS)
+
+stage_command.o: stage_command.cpp
+	$(GCC48) -c stage_command.cpp $(CPPFLAGS)
 
 # `pkg-config --libs --cflags librsvg-2.0`
 
