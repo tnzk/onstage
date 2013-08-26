@@ -8,20 +8,17 @@
 int main()
 {
 
+  TheStage stage;
+
   picojson::value json;
   std::cin >> json;
   picojson::object& obj = json.get<picojson::object>();
   picojson::array& commands = obj["commands"].get<picojson::array>();
 
   for (picojson::array::iterator it = commands.begin(); it != commands.end(); it++) {
-    StageCommandFactory::Create(*it);
+    IStageCommand& command = StageCommandFactory::Create(*it);
+    stage.Execute(command);
   }
-
-  MoveStageCommand moving;
-  IStageCommand& command = moving;
-
-  TheStage stage;
-  stage.Execute(command);
 
   return 0;
 }

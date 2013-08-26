@@ -21,6 +21,25 @@ public:
   virtual bool Execute();
 };
 
+class NullStageCommand : public IStageCommand
+{
+private:
+public:
+  NullStageCommand();
+  ~NullStageCommand();
+  virtual bool Execute();
+};
+
+class SyncStageCommand : public IStageCommand
+{
+private:
+  int sync_at;
+public:
+  SyncStageCommand(int frame);
+  ~SyncStageCommand();
+  virtual bool Execute();
+};
+
 class StageCommandFactory
 {
 public:
