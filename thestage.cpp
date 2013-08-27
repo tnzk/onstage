@@ -2,7 +2,8 @@
 
 bool TheStage::Execute(IStageCommand& command) const
 {
-  command.Execute();
+  TheStage stage = *this;
+  command.Execute(stage);
   return true;
 }
 

@@ -12,7 +12,7 @@ MoveStageCommand::~MoveStageCommand()
 {
 }
 
-bool MoveStageCommand::Execute()
+bool MoveStageCommand::Execute(TheStage& stage)
 {
   std::cout << "I'm here" << std::endl;
 }
@@ -25,7 +25,7 @@ NullStageCommand::~NullStageCommand()
 {
 }
 
-bool NullStageCommand::Execute()
+bool NullStageCommand::Execute(TheStage& stage)
 {
 }
 
@@ -38,7 +38,7 @@ SyncStageCommand::~SyncStageCommand()
 {
 }
 
-bool SyncStageCommand::Execute()
+bool SyncStageCommand::Execute(TheStage& stage)
 {
   std::cout << "Sync at " << this->sync_at << std::endl;
 }
@@ -56,6 +56,7 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
   picojson::array& command = jsonCommand.get<picojson::array>();
   std::string commandName = command[0].get<std::string>();
 
+  // Return NullStageCommand if the unknown command requested
   if(stageCommandFactoryMap.find(commandName) != stageCommandFactoryMap.end()) {
     auto f = stageCommandFactoryMap[commandName];
     return f(command);

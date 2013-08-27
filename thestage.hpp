@@ -1,8 +1,8 @@
-#include "stage_command.hpp"
-
 #ifndef THESTAGE_HEADER
 
 #define THESTAGE_HEADER
+
+#include "stage_command.hpp"
 
 enum StageState
 {

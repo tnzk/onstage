@@ -1,15 +1,16 @@
-#include "picojson.h"
-
 #ifndef COMMAND_HEADER
 
 #define COMMAND_HEADER
+
+#include "picojson.h"
+class TheStage;
 
 class IStageCommand
 {
 private:
   
 public:
-  virtual bool Execute() = 0;
+  virtual bool Execute(TheStage&) = 0;
 };
 
 class MoveStageCommand : public IStageCommand
@@ -18,7 +19,7 @@ private:
 public:
   MoveStageCommand();
   ~MoveStageCommand();
-  virtual bool Execute();
+  virtual bool Execute(TheStage&);
 };
 
 class NullStageCommand : public IStageCommand
@@ -27,7 +28,7 @@ private:
 public:
   NullStageCommand();
   ~NullStageCommand();
-  virtual bool Execute();
+  virtual bool Execute(TheStage&);
 };
 
 class SyncStageCommand : public IStageCommand
@@ -37,7 +38,7 @@ private:
 public:
   SyncStageCommand(int frame);
   ~SyncStageCommand();
-  virtual bool Execute();
+  virtual bool Execute(TheStage&);
 };
 
 class StageCommandFactory
