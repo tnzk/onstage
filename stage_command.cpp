@@ -17,8 +17,9 @@ bool MoveStageCommand::Execute(TheStage& stage)
   std::cout << "I'm here" << std::endl;
 }
 
-NullStageCommand::NullStageCommand()
+NullStageCommand::NullStageCommand(std::string commandName)
 {
+  this->originalName = commandName;
 }
 
 NullStageCommand::~NullStageCommand()
@@ -27,6 +28,7 @@ NullStageCommand::~NullStageCommand()
 
 bool NullStageCommand::Execute(TheStage& stage)
 {
+  std::cout << "Unknown command issued: " << this->originalName << std::endl;
 }
 
 SyncStageCommand::SyncStageCommand(int frame)
@@ -48,6 +50,7 @@ bool SyncStageCommand::Execute(TheStage& stage)
 IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
 {
   static std::map<std::string, std::function<IStageCommand&(picojson::array&)> > stageCommandFactoryMap;
+
   stageCommandFactoryMap.insert(std::make_pair("sync", [](picojson::array& command) -> IStageCommand& {
     IStageCommand* cmd = new SyncStageCommand(command[1].get<double>());
     return *cmd;
@@ -61,7 +64,7 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
     auto f = stageCommandFactoryMap[commandName];
     return f(command);
   } else {
-    IStageCommand* cmd = new NullStageCommand();
+    IStageCommand* cmd = new NullStageCommand(commandName);
     return *cmd;
   }
 }

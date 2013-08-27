@@ -25,8 +25,9 @@ public:
 class NullStageCommand : public IStageCommand
 {
 private:
+  std::string originalName;
 public:
-  NullStageCommand();
+  NullStageCommand(std::string);
   ~NullStageCommand();
   virtual bool Execute(TheStage&);
 };
