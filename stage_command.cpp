@@ -45,16 +45,37 @@ bool SyncStageCommand::Execute(TheStage& stage)
   std::cout << "Sync at " << this->sync_at << std::endl;
 }
 
+EnterStageCommand::EnterStageCommand(std::string name)
+{
+  this->actorName = name;
+}
 
+EnterStageCommand::~EnterStageCommand()
+{
+}
+
+bool EnterStageCommand::Execute(TheStage& stage)
+{
+  std::cout << this->actorName << " enters." << std::endl;
+}
 
 IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
 {
+  static bool initialized = false;
   static std::map<std::string, std::function<IStageCommand&(picojson::array&)> > stageCommandFactoryMap;
 
-  stageCommandFactoryMap.insert(std::make_pair("sync", [](picojson::array& command) -> IStageCommand& {
-    IStageCommand* cmd = new SyncStageCommand(command[1].get<double>());
-    return *cmd;
-  }));
+  if(!initialized) {
+    initialized = true;
+    stageCommandFactoryMap.insert(std::make_pair("sync", [](picojson::array& command) -> IStageCommand& {
+          IStageCommand* cmd = new SyncStageCommand(command[1].get<double>());
+          return *cmd;
+    }));
+
+    stageCommandFactoryMap.insert(std::make_pair("enter", [](picojson::array& command) -> IStageCommand& {
+          IStageCommand* cmd = new EnterStageCommand(command[1].get<std::string>());
+          return *cmd;
+    }));
+  }
     
   picojson::array& command = jsonCommand.get<picojson::array>();
   std::string commandName = command[0].get<std::string>();

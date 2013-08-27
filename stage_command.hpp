@@ -42,11 +42,20 @@ public:
   virtual bool Execute(TheStage&);
 };
 
+class EnterStageCommand : public IStageCommand
+{
+private:
+  std::string actorName;
+public:
+  EnterStageCommand(std::string);
+  ~EnterStageCommand();
+  virtual bool Execute(TheStage&);
+};
+
 class StageCommandFactory
 {
 public:
   static IStageCommand& Create(picojson::value&);
 };
-// 
 
 #endif
