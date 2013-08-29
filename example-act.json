@@ -1,4 +1,10 @@
 {
+  "video": {
+    "fps": 30,
+    "duration": 300,
+    "width": 640,
+    "height": 480
+  },
   "actors": ["momo", "hitomi"],
   "commands": [
      ["sync", 0],

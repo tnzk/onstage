@@ -12,13 +12,20 @@ enum StageState
 class TheStage
 {
 public:
+  TheStage();
+  void SetResolution(int, int);
+  void SetFps(int);
+  void SetDuration(int);
   bool Execute(IStageCommand& command) const;
   bool Render(unsigned char* buf);
   bool Skip();
+  void ShowVideoSetting();
 private:
   int width;
   int height;
-  int frame;
+  int currentFrame;
+  int fps;
+  int duration; // in frame
 };
 
 #endif
