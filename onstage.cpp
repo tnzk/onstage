@@ -21,9 +21,14 @@ int main()
   stage.SetResolution((int)videoSetting["width"].get<double>(), (int)videoSetting["height"].get<double>());
   stage.ShowVideoSetting();
 
-  for (picojson::array::iterator it = commands.begin(); it != commands.end(); it++) {
-    IStageCommand& command = StageCommandFactory::Create(*it);
-    stage.Execute(command);
+  int skipAt = 0;
+  picojson::array::iterator it = commands.begin();
+  for(int i = 0; i < stage.GetDuration(); i++) {
+    for (; stage.GetCurrentFrame() >= stage.skipUntil && it != commands.end(); it++) {
+      IStageCommand& command = StageCommandFactory::Create(*it);
+      stage.Execute(command);
+    }
+    stage.Render(NULL);
   }
 
   return 0;

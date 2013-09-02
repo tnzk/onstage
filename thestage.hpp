@@ -16,10 +16,13 @@ public:
   void SetResolution(int, int);
   void SetFps(int);
   void SetDuration(int);
-  bool Execute(IStageCommand& command) const;
+  int GetDuration();
+  int GetCurrentFrame();
+  bool Execute(IStageCommand& command);
   bool Render(unsigned char* buf);
   bool Skip();
   void ShowVideoSetting();
+  int skipUntil;
 private:
   int width;
   int height;

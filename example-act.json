@@ -1,7 +1,7 @@
 {
   "video": {
     "fps": 30,
-    "duration": 300,
+    "duration": 30,
     "width": 640,
     "height": 480
   },
@@ -10,6 +10,7 @@
      ["sync", 0],
      ["enter", "momo"],
      ["enter", "hitomi"],
+     ["sync", 3],
      ["speak", "momo"]
    ]
 }

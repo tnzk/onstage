@@ -35,20 +35,27 @@ void TheStage::SetDuration(int duration)
   this->duration = duration;
 }
 
-bool TheStage::Execute(IStageCommand& command) const
+int TheStage::GetDuration() { return this->duration; }
+
+bool TheStage::Execute(IStageCommand& command) 
 {
-  TheStage stage = *this;
-  command.Execute(stage);
+  command.Execute(*this);
   return true;
 }
 
+int TheStage::GetCurrentFrame() { return this->currentFrame; }
+
 bool TheStage::Render(unsigned char*)
 {
+  std::cout << this->currentFrame << "th frame rendered." << std::endl;
+  this->currentFrame++;
   return true;
 }
 
 bool TheStage::Skip()
 {
+  std::cout << this->currentFrame << "th frame skipped." << std::endl;
+  this->currentFrame++;
   return true;
 }
 
