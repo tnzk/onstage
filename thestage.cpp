@@ -1,4 +1,5 @@
 #include "thestage.hpp"
+#include <stdlib.h>
 
 TheStage::TheStage()
 {
@@ -45,9 +46,11 @@ bool TheStage::Execute(IStageCommand& command)
 
 int TheStage::GetCurrentFrame() { return this->currentFrame; }
 
-bool TheStage::Render(unsigned char*)
+bool TheStage::Render(unsigned char* buffer, int size)
 {
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
+  for(int i = 0; i < size; i++)
+    buffer[i] = i;
   this->currentFrame++;
   return true;
 }
@@ -59,3 +62,13 @@ bool TheStage::Skip()
   return true;
 }
 
+unsigned char* TheStage::AllocateBuffer(int* frameSize)
+{
+  *frameSize = this->width * this->height * 4;
+  return (unsigned char*)malloc(*frameSize);
+}
+
+void TheStage::FreeBuffer(unsigned char* buffer)
+{
+  if(buffer) free(buffer);
+}

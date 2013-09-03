@@ -19,9 +19,11 @@ public:
   int GetDuration();
   int GetCurrentFrame();
   bool Execute(IStageCommand& command);
-  bool Render(unsigned char* buf);
+  bool Render(unsigned char*, int);
   bool Skip();
   void ShowVideoSetting();
+  unsigned char* AllocateBuffer(int* frameSize);
+  void FreeBuffer(unsigned char*);
   int skipUntil;
 private:
   int width;
