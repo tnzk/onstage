@@ -8,6 +8,7 @@ TheStage::TheStage()
   this->currentFrame = 0;
   this->fps = 30;
   this->duration = 150;
+  this->skipUntil = 0;
 }
 
 void TheStage::ShowVideoSetting()
@@ -46,12 +47,17 @@ bool TheStage::Execute(IStageCommand& command)
 
 int TheStage::GetCurrentFrame() { return this->currentFrame; }
 
-bool TheStage::Render(unsigned char* buffer, int size)
+bool TheStage::Render(cairo_t* cr)
 {
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
-  for(int i = 0; i < size; i++)
-    buffer[i] = i;
   this->currentFrame++;
+  
+  cairo_select_font_face (cr, "serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+  cairo_set_font_size (cr, 32.0);
+  cairo_set_source_rgb (cr, 0.0, 0.0, 1.0);
+  cairo_move_to (cr, 10.0, 50.0);
+  cairo_show_text (cr, "Hello, world");
+
   return true;
 }
 
@@ -62,13 +68,3 @@ bool TheStage::Skip()
   return true;
 }
 
-unsigned char* TheStage::AllocateBuffer(int* frameSize)
-{
-  *frameSize = this->width * this->height * 4;
-  return (unsigned char*)malloc(*frameSize);
-}
-
-void TheStage::FreeBuffer(unsigned char* buffer)
-{
-  if(buffer) free(buffer);
-}

@@ -2,6 +2,7 @@
 
 #define THESTAGE_HEADER
 
+#include <cairo.h>
 #include "stage_command.hpp"
 
 enum StageState
@@ -19,11 +20,9 @@ public:
   int GetDuration();
   int GetCurrentFrame();
   bool Execute(IStageCommand& command);
-  bool Render(unsigned char*, int);
+  bool Render(cairo_t*);
   bool Skip();
   void ShowVideoSetting();
-  unsigned char* AllocateBuffer(int* frameSize);
-  void FreeBuffer(unsigned char*);
   int skipUntil;
 private:
   int width;

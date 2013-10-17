@@ -3,7 +3,10 @@
 #include "picojson.h"
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <sstream>
 #include <cinttypes>
+#include <cairo.h>
 
 int main()
 {
@@ -21,8 +24,8 @@ int main()
   stage.SetResolution((int)videoSetting["width"].get<double>(), (int)videoSetting["height"].get<double>());
   stage.ShowVideoSetting();
 
-  int frameSize = 0;
-  unsigned char* frame = stage.AllocateBuffer(&frameSize);
+  cairo_surface_t* surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 240, 80);
+  cairo_t* cr = cairo_create (surface);
 
   int skipAt = 0;
   picojson::array::iterator it = commands.begin();
@@ -31,10 +34,12 @@ int main()
       IStageCommand& command = StageCommandFactory::Create(*it);
       stage.Execute(command);
     }
-    stage.Render(frame, frameSize);
+    stage.Render(cr);
+    std::stringstream filename;
+    filename << "hello" << std::setw(3) << std::setfill('0') << i << ".png";
+    cairo_surface_write_to_png (surface, filename.str().c_str());
   }
-
-  free(frame);
 
   return 0;
 }
+
