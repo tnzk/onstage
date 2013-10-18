@@ -15,12 +15,14 @@ class TheStage
 public:
   TheStage();
   void SetResolution(int, int);
+  int GetResolutionWidth();
+  int GetResolutionHeight();
   void SetFps(int);
   void SetDuration(int);
   int GetDuration();
   int GetCurrentFrame();
   bool Execute(IStageCommand& command);
-  bool Render(cairo_t*);
+  bool Render(cairo_surface_t*);
   bool Skip();
   void ShowVideoSetting();
   int skipUntil;

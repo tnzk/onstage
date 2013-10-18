@@ -47,15 +47,17 @@ bool TheStage::Execute(IStageCommand& command)
 
 int TheStage::GetCurrentFrame() { return this->currentFrame; }
 
-bool TheStage::Render(cairo_t* cr)
+bool TheStage::Render(cairo_surface_t* surface)
 {
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
   this->currentFrame++;
   
+  cairo_t* cr = cairo_create(surface);
+
   cairo_select_font_face (cr, "serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
   cairo_set_font_size (cr, 32.0);
   cairo_set_source_rgb (cr, 0.0, 0.0, 1.0);
-  cairo_move_to (cr, 10.0, 50.0);
+  cairo_move_to (cr, (float)this->currentFrame, 50.0);
   cairo_show_text (cr, "Hello, world");
 
   return true;
@@ -68,3 +70,5 @@ bool TheStage::Skip()
   return true;
 }
 
+int TheStage::GetResolutionWidth() { return this->width; }
+int TheStage::GetResolutionHeight() { return this->height; }
