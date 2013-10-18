@@ -54,6 +54,10 @@ bool TheStage::Render(cairo_surface_t* surface)
   
   cairo_t* cr = cairo_create(surface);
 
+  // Clear the surface
+  cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
+  cairo_paint(cr);
+
   cairo_select_font_face (cr, "serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
   cairo_set_font_size (cr, 32.0);
   cairo_set_source_rgb (cr, 0.0, 0.0, 1.0);

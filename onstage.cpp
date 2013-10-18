@@ -19,6 +19,7 @@ int main()
   picojson::array& commands = obj["commands"].get<picojson::array>();
 
   picojson::object& videoSetting = obj["video"].get<picojson::object>();
+  std::string outputDirectory = videoSetting["output"].get<std::string>();
   stage.SetFps((int)videoSetting["fps"].get<double>());
   stage.SetDuration((int)videoSetting["duration"].get<double>());
   stage.SetResolution((int)videoSetting["width"].get<double>(), (int)videoSetting["height"].get<double>());
@@ -35,7 +36,7 @@ int main()
     }
     stage.Render(surface);
     std::stringstream filename;
-    filename << "hello" << std::setw(3) << std::setfill('0') << i << ".png";
+    filename << outputDirectory << "hello" << std::setw(3) << std::setfill('0') << i << ".png";
     cairo_surface_write_to_png(surface, filename.str().c_str());
   }
 

@@ -3,7 +3,8 @@
     "fps": 30,
     "duration": 30,
     "width": 640,
-    "height": 480
+    "height": 480,
+    "output": "/home/tnzk/www/playground/onstage/"
   },
   "actors": ["momo", "hitomi"],
   "commands": [
