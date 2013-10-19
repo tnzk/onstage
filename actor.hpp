@@ -1,3 +1,4 @@
+#include <cairo.h>
 #include <string>
 
 enum ActorFace 
@@ -12,7 +13,7 @@ class Actor
 public:
   Actor(std::string);
   ~Actor();
-  bool Render(unsigned char* buf);
+  bool Render(cairo_t*);
   bool Walk(double x, double y);
   bool LookAt(double r, double distance);
   bool Eyeblows(double r);
@@ -22,6 +23,7 @@ public:
   bool Shut();
 private:
   int id;
+  std::string name;
   int x;
   int y;
   int innerCount;

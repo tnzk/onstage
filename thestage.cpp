@@ -52,19 +52,23 @@ bool TheStage::Render(cairo_surface_t* surface)
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
   this->currentFrame++;
   
-  cairo_t* cr = cairo_create(surface);
+  cairo_t* cairo = cairo_create(surface);
 
   // Clear the surface
-  cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
-  cairo_paint(cr);
+  cairo_set_source_rgb(cairo, 1.0, 1.0, 1.0);
+  cairo_paint(cairo);
 
-  cairo_select_font_face (cr, "serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
-  cairo_set_font_size (cr, 32.0);
-  cairo_set_source_rgb (cr, 0.0, 0.0, 1.0);
-  cairo_move_to (cr, (float)this->currentFrame, 50.0);
-  cairo_show_text (cr, "Hello, world");
+  cairo_select_font_face(cairo, "serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+  cairo_set_font_size(cairo, 32.0);
+  cairo_set_source_rgb(cairo, 0.0, 0.0, 1.0);
+  cairo_move_to(cairo, (float)this->currentFrame, 50.0);
+  cairo_show_text(cairo, "Hello, world");
 
-  
+  std::map<std::string, Actor>::iterator it = this->actors.begin();
+  for(; it != this->actors.end(); ++it) {
+    Actor actor = it->second;
+    actor.Render(cairo);
+  }
 
   return true;
 }
