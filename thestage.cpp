@@ -64,10 +64,15 @@ bool TheStage::Render(cairo_surface_t* surface)
   cairo_move_to(cairo, (float)this->currentFrame, 50.0);
   cairo_show_text(cairo, "Hello, world");
 
-  std::map<std::string, Actor>::iterator it = this->actors.begin();
-  for(; it != this->actors.end(); ++it) {
+  
+  for(std::map<std::string, Actor>::iterator it = this->actors.begin(); it != this->actors.end(); ++it) { // TODO: looks too wide
     Actor actor = it->second;
     actor.Render(cairo);
+  }
+
+  for(std::map<std::string, Item>::iterator it = this->items.begin(); it != this->items.end(); ++it) { // TODO: looks too wide
+    Item item = it->second;
+    item.Render(cairo);
   }
 
   return true;

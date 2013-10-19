@@ -2,6 +2,8 @@
 
 #define ITEM_HEADER
 
+#include <librsvg/rsvg.h>
+#include <librsvg/rsvg-cairo.h>
 #include <cairo.h>
 #include <string>
 #include "actable.hpp"
@@ -13,6 +15,7 @@ public:
   ~Item();
   virtual bool Render(cairo_t*);
 private:
+  RsvgHandle* rsvg;
   std::string name;
 };
 
