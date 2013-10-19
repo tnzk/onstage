@@ -3,3 +3,7 @@
 Actor::Actor(std::string)
 {
 }
+
+Actor::~Actor()
+{
+}

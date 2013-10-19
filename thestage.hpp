@@ -3,6 +3,9 @@
 #define THESTAGE_HEADER
 
 #include <cairo.h>
+#include <map>
+#include <string>
+#include "actor.hpp"
 #include "stage_command.hpp"
 
 enum StageState
@@ -25,6 +28,7 @@ public:
   bool Render(cairo_surface_t*);
   bool Skip();
   void ShowVideoSetting();
+  void RegisterActor(std::string, Actor&);
   int skipUntil;
 private:
   int width;
@@ -32,6 +36,7 @@ private:
   int currentFrame;
   int fps;
   int duration; // in frame
+  std::map<std::string, Actor> actors;
 };
 
 #endif

@@ -12,4 +12,6 @@ EnterStageCommand::~EnterStageCommand()
 bool EnterStageCommand::Execute(TheStage& stage)
 {
   std::cout << this->actorName << " enters." << std::endl;
+  Actor actor(this->actorName);
+  stage.RegisterActor(this->actorName, actor);
 }

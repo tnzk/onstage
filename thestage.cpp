@@ -64,6 +64,8 @@ bool TheStage::Render(cairo_surface_t* surface)
   cairo_move_to (cr, (float)this->currentFrame, 50.0);
   cairo_show_text (cr, "Hello, world");
 
+  
+
   return true;
 }
 
@@ -76,3 +78,8 @@ bool TheStage::Skip()
 
 int TheStage::GetResolutionWidth() { return this->width; }
 int TheStage::GetResolutionHeight() { return this->height; }
+
+void TheStage::RegisterActor(std::string name, Actor& actor)
+{
+  this->actors.insert(std::pair<std::string, Actor>(name, actor));
+}
