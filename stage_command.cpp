@@ -3,6 +3,7 @@
 #include "stage_command_null.hpp"
 #include "stage_command_move.hpp"
 #include "stage_command_enter.hpp"
+#include "stage_command_item.hpp"
 #include <map>
 #include <algorithm>
 #include <functional>
@@ -22,6 +23,10 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
     }));
     stageCommandFactoryMap.insert(std::make_pair("enter", [](picojson::array& command) -> IStageCommand& {
       IStageCommand* cmd = new EnterStageCommand(command[1].get<std::string>());
+      return *cmd;
+    }));
+    stageCommandFactoryMap.insert(std::make_pair("item", [](picojson::array& command) -> IStageCommand& {
+      IStageCommand* cmd = new ItemStageCommand(command[1].get<std::string>());
       return *cmd;
     }));
   }

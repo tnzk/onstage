@@ -9,8 +9,11 @@
 class Item : public IActable
 {
 public:
-  Item();
+  Item(std::string name);
   ~Item();
+  virtual bool Render(cairo_t*);
+private:
+  std::string name;
 };
 
 #endif

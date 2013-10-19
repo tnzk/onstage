@@ -87,3 +87,8 @@ void TheStage::RegisterActor(std::string name, Actor& actor)
 {
   this->actors.insert(std::pair<std::string, Actor>(name, actor));
 }
+
+void TheStage::RegisterItem(std::string name, Item& item)
+{
+  this->items.insert(std::pair<std::string, Item>(name, item));
+}

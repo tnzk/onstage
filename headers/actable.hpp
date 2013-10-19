@@ -1,3 +1,7 @@
+#ifndef ACTABLE_HEADER
+
+#define ACTABLE_HEADER
+
 #include <cairo.h>
 
 class IActable
@@ -10,3 +14,5 @@ protected:
   int y;
   int innerCount;  
 };
+
+#endif
