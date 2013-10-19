@@ -1,5 +1,10 @@
+#ifndef ACTOR_HEADER
+
+#define ACTOR_HEADER
+
 #include <cairo.h>
 #include <string>
+#include "actable.hpp"
 
 enum ActorFace 
 {
@@ -8,12 +13,12 @@ enum ActorFace
   Sad
 };
 
-class Actor
+class Actor : public IActable
 {
 public:
   Actor(std::string);
   ~Actor();
-  bool Render(cairo_t*);
+  virtual bool Render(cairo_t*);
   bool Walk(double x, double y);
   bool LookAt(double r, double distance);
   bool Eyeblows(double r);
@@ -22,11 +27,9 @@ public:
   bool Speak();
   bool Shut();
 private:
-  int id;
   std::string name;
-  int x;
-  int y;
-  int innerCount;
   bool isSpeaking;
   bool isWalking;
 };
+
+#endif

@@ -1,5 +1,5 @@
 CPPFLAGS = -std=c++0x `pkg-config --cflags cairo`
-OBJS = thestage.o stage_command.o stage_command_sync.o stage_command_null.o stage_command_move.o stage_command_enter.o onstage.o actor.o
+OBJS = thestage.o stage_command.o stage_command_sync.o stage_command_null.o stage_command_move.o stage_command_enter.o onstage.o actor.o item.o
 GCC48 = /opt/bin/g++
 
 onstage: $(OBJS)
@@ -11,8 +11,11 @@ onstage.o: onstage.cpp
 thestage.o: thestage.cpp
 	$(GCC48) -c thestage.cpp $(CPPFLAGS) 
 
-actor.o: actor.cpp
+actor.o: actor.cpp actable.hpp
 	$(GCC48) -c actor.cpp $(CPPFLAGS)
+
+item.o: item.cpp actable.hpp
+	$(GCC48) -c item.cpp $(CPPFLAGS)
 
 stage_command.o: stage_command.cpp
 	$(GCC48) -c stage_command.cpp $(CPPFLAGS)
