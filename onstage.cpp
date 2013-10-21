@@ -25,6 +25,7 @@ int main()
   stage.SetResolution((int)videoSetting["width"].get<double>(), (int)videoSetting["height"].get<double>());
   stage.ShowVideoSetting();
 
+  rsvg_init();
   cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, stage.GetResolutionWidth(), stage.GetResolutionHeight());
 
   int skipAt = 0;
@@ -40,6 +41,7 @@ int main()
     cairo_surface_write_to_png(surface, filename.str().c_str());
   }
 
+  rsvg_term();
   return 0;
 }
 
