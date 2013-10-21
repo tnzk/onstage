@@ -65,14 +65,14 @@ bool TheStage::Render(cairo_surface_t* surface)
   cairo_show_text(cairo, "Hello, world");
 
   
-  for(std::map<std::string, Actor>::iterator it = this->actors.begin(); it != this->actors.end(); ++it) { // TODO: looks too wide
-    Actor actor = it->second;
-    actor.Render(cairo);
+  for(std::map<std::string, Actor*>::iterator it = this->actors.begin(); it != this->actors.end(); ++it) { // TODO: looks too wide
+    Actor* actor = it->second;
+    actor->Render(cairo);
   }
 
-  for(std::map<std::string, Item>::iterator it = this->items.begin(); it != this->items.end(); ++it) { // TODO: looks too wide
-    Item item = it->second;
-    item.Render(cairo);
+  for(std::map<std::string, Item*>::iterator it = this->items.begin(); it != this->items.end(); ++it) { // TODO: looks too wide
+    Item* item = it->second;
+    item->Render(cairo);
   }
 
   return true;
@@ -88,12 +88,12 @@ bool TheStage::Skip()
 int TheStage::GetResolutionWidth() { return this->width; }
 int TheStage::GetResolutionHeight() { return this->height; }
 
-void TheStage::RegisterActor(std::string name, Actor& actor)
+void TheStage::RegisterActor(std::string name, Actor* actor)
 {
-  this->actors.insert(std::pair<std::string, Actor>(name, actor));
+  this->actors.insert(std::pair<std::string, Actor*>(name, actor));
 }
 
-void TheStage::RegisterItem(std::string name, Item& item)
+void TheStage::RegisterItem(std::string name, Item* item)
 {
-  this->items.insert(std::pair<std::string, Item>(name, item));
+  this->items.insert(std::pair<std::string, Item*>(name, item));
 }

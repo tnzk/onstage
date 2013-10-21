@@ -29,8 +29,8 @@ public:
   bool Render(cairo_surface_t*);
   bool Skip();
   void ShowVideoSetting();
-  void RegisterActor(std::string, Actor&);
-  void RegisterItem(std::string, Item&);
+  void RegisterActor(std::string, Actor*);
+  void RegisterItem(std::string, Item*);
   int skipUntil;
 private:
   int width;
@@ -38,8 +38,8 @@ private:
   int currentFrame;
   int fps;
   int duration; // in frame
-  std::map<std::string, Actor> actors;
-  std::map<std::string, Item> items;
+  std::map<std::string, Actor*> actors;
+  std::map<std::string, Item*> items;
 };
 
 #endif

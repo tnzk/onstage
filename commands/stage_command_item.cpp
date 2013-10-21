@@ -13,6 +13,6 @@ ItemStageCommand::~ItemStageCommand()
 bool ItemStageCommand::Execute(TheStage& stage)
 {
   std::cout << this->itemName << " appeared on the stage." << std::endl;
-  Item item(this->itemName); // TODO: Do new
+  Item* item = new Item(this->itemName);
   stage.RegisterItem(this->itemName, item);
 }
