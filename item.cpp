@@ -42,3 +42,6 @@ bool Item::Render(cairo_t* cairo)
 
   return true;
 }
+
+void Item::SetScale(double scale) { this->scale = scale;}
+double Item::GetScale() { return this->scale;}

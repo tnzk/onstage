@@ -5,6 +5,7 @@
 #include <cairo.h>
 #include <map>
 #include <string>
+#include "actable.hpp"
 #include "actor.hpp"
 #include "item.hpp"
 #include "stage_command.hpp"
@@ -31,6 +32,7 @@ public:
   void ShowVideoSetting();
   void RegisterActor(std::string, Actor*);
   void RegisterItem(std::string, Item*);
+  IActable* GetActable(std::string name);
   int skipUntil;
 private:
   int width;

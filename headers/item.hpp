@@ -14,14 +14,11 @@ public:
   Item(std::string name);
   ~Item();
   virtual bool Render(cairo_t*);
+  virtual void SetScale(double) ;
+  virtual double GetScale();
 private:
   RsvgHandle* rsvg;
   std::string name;
-  int width;
-  int height;
-  double scale;
-  double x;
-  double y;
 };
 
 #endif

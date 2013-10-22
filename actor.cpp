@@ -19,3 +19,6 @@ bool Actor::Render(cairo_t* cairo)
 
   return true;
 }
+
+void Actor::SetScale(double scale) { this->scale = scale;}
+double Actor::GetScale() { return this->scale;}

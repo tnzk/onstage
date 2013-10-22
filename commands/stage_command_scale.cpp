@@ -14,5 +14,6 @@ ScaleStageCommand::~ScaleStageCommand()
 
 bool ScaleStageCommand::Execute(TheStage& stage)
 {
-  std::cout << "Scale command" << std::endl;
+  IActable* actable = stage.GetActable(this->targetName);
+  actable->SetScale(this->scale);
 }

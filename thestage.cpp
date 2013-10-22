@@ -97,3 +97,15 @@ void TheStage::RegisterItem(std::string name, Item* item)
 {
   this->items.insert(std::pair<std::string, Item*>(name, item));
 }
+
+IActable* TheStage::GetActable(std::string name)
+{
+  // TODO: Unify the actors and items
+  if (this->actors.find(name) != this->actors.end()) {
+    return this->actors[name];
+  }
+  if (this->items.find(name) != this->items.end()) {
+    return this->items[name];
+  }
+  return NULL;
+}
