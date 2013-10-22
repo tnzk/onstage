@@ -19,6 +19,9 @@ private:
   std::string name;
   int width;
   int height;
+  double scale;
+  double x;
+  double y;
 };
 
 #endif
