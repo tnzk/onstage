@@ -17,6 +17,8 @@ public:
 private:
   RsvgHandle* rsvg;
   std::string name;
+  int width;
+  int height;
 };
 
 #endif
