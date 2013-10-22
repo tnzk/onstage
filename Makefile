@@ -1,5 +1,5 @@
 CPPFLAGS = -std=c++0x `pkg-config --cflags cairo librsvg-2.0` -I./headers
-OBJS = thestage.o stage_command.o stage_command_sync.o stage_command_null.o stage_command_move.o stage_command_enter.o stage_command_item.o onstage.o actor.o item.o
+OBJS = thestage.o stage_command.o stage_command_sync.o stage_command_null.o stage_command_move.o stage_command_enter.o stage_command_item.o onstage.o actor.o item.o stage_command_scale.o
 GCC48 = /opt/bin/g++
 
 onstage: $(OBJS)
@@ -23,6 +23,7 @@ stage_command.o: stage_command.cpp
 	$(GCC48) -c commands/stage_command_null.cpp $(CPPFLAGS)
 	$(GCC48) -c commands/stage_command_move.cpp $(CPPFLAGS)
 	$(GCC48) -c commands/stage_command_enter.cpp $(CPPFLAGS)
+	$(GCC48) -c commands/stage_command_scale.cpp $(CPPFLAGS)
 	$(GCC48) -c commands/stage_command_item.cpp $(CPPFLAGS)
 
 clean:
