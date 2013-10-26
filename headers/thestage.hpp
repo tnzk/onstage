@@ -8,6 +8,7 @@
 #include "actable.hpp"
 #include "actor.hpp"
 #include "item.hpp"
+#include "camera.hpp"
 #include "stage_command.hpp"
 
 enum StageState
@@ -42,6 +43,8 @@ private:
   int duration; // in frame
   std::map<std::string, Actor*> actors;
   std::map<std::string, Item*> items;
+  int primaryCameraId;
+  std::vector<Camera*> cameras;
 };
 
 #endif

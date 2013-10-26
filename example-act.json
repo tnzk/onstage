@@ -12,7 +12,7 @@
      ["enter", "momo"],
      ["enter", "hitomi"],
      ["item", "bg-s02-b1-momoroom.svg"],
-     ["scale", "bg-s02-b1-momoroom.svg", 3],
+     ["scale", "bg-s02-b1-momoroom.svg", 1],
      ["sync", 3],
      ["speak", "momo"]
    ]
