@@ -34,6 +34,8 @@ public:
   void RegisterActor(std::string, Actor*);
   void RegisterItem(std::string, Item*);
   IActable* GetActable(std::string name);
+  Camera* GetPrimaryCamera();
+  int AddCamera(double x, double y, double zoom);
   int skipUntil;
 private:
   int width;

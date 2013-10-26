@@ -9,6 +9,7 @@ TheStage::TheStage()
   this->fps = 30;
   this->duration = 150;
   this->skipUntil = 0;
+  this->primaryCameraId = this->AddCamera(this->width / 2, this->height / 2, 1);
 }
 
 void TheStage::ShowVideoSetting()
@@ -108,4 +109,18 @@ IActable* TheStage::GetActable(std::string name)
     return this->items[name];
   }
   return NULL;
+}
+
+int TheStage::AddCamera(double x, double y, double zoom)
+{
+  Camera* camera = new Camera();
+  camera->SetPosition(x, y);
+  camera->SetZoom(zoom);
+  this->cameras.push_back(camera);
+  return this->cameras.size() - 1;
+}
+
+Camera* TheStage::GetPrimaryCamera()
+{
+  return this->cameras[this->primaryCameraId];
 }
