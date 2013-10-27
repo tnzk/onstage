@@ -13,7 +13,16 @@
      ["enter", "hitomi"],
      ["item", "bg-s02-b1-momoroom.svg"],
      ["scale", "bg-s02-b1-momoroom.svg", 1],
+     ["camera_zoom", 2],
+     ["sync", 1],
+     ["camera_move", 0, 0],
+     ["sync", 2],
+     ["camera_move", 1280, 0],
      ["sync", 3],
+     ["camera_move", 1280, 720],
+     ["sync", 4],
+     ["camera_move", 0, 720],
+     ["sync", 5],
      ["speak", "momo"]
    ]
 }
