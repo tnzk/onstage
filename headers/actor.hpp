@@ -5,6 +5,7 @@
 #include <cairo.h>
 #include <string>
 #include "actable.hpp"
+#include "camera.hpp"
 
 enum ActorFace 
 {
@@ -18,7 +19,7 @@ class Actor : public IActable
 public:
   Actor(std::string);
   ~Actor();
-  virtual bool Render(cairo_t*);
+  virtual bool Render(cairo_t*, Camera*);
   virtual void SetScale(double);
   virtual double GetScale();
   bool Walk(double x, double y);

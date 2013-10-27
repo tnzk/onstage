@@ -3,8 +3,8 @@
 
 TheStage::TheStage()
 {
-  this->width = 854;
-  this->height = 480;
+  this->width = 1280;
+  this->height = 720;
   this->currentFrame = 0;
   this->fps = 30;
   this->duration = 150;
@@ -68,12 +68,12 @@ bool TheStage::Render(cairo_surface_t* surface)
   
   for(std::map<std::string, Actor*>::iterator it = this->actors.begin(); it != this->actors.end(); ++it) { // TODO: looks too wide
     Actor* actor = it->second;
-    actor->Render(cairo);
+    actor->Render(cairo, this->GetPrimaryCamera());
   }
 
   for(std::map<std::string, Item*>::iterator it = this->items.begin(); it != this->items.end(); ++it) { // TODO: looks too wide
     Item* item = it->second;
-    item->Render(cairo);
+    item->Render(cairo, this->GetPrimaryCamera());
   }
 
   return true;
@@ -116,6 +116,7 @@ int TheStage::AddCamera(double x, double y, double zoom)
   Camera* camera = new Camera();
   camera->SetPosition(x, y);
   camera->SetZoom(zoom);
+  camera->SetResolution(this->width, this->height);
   this->cameras.push_back(camera);
   return this->cameras.size() - 1;
 }

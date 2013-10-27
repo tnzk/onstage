@@ -24,17 +24,20 @@ Item::~Item()
   rsvg_handle_free(this->rsvg);
 }
 
-bool Item::Render(cairo_t* cairo)
+bool Item::Render(cairo_t* cairo, Camera* camera)
 {
+  double rscale = this->scale * camera->GetZoom();
   cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
-                                                        this->width * this->scale,
-                                                        this->height *  this->scale);
+                                                        this->width * rscale,
+                                                        this->height * rscale);
   cairo_t* cairoInternal = cairo_create(surface);
-
-  cairo_scale(cairoInternal, this->scale, this->scale);
+  cairo_scale(cairoInternal, rscale, rscale);
   rsvg_handle_render_cairo(this->rsvg, cairoInternal);
 
-  cairo_set_source_surface(cairo, surface, this->x, this->y);
+  double rx;
+  double ry;
+  camera->Translate(this->x, this->y, rx, ry);
+  cairo_set_source_surface(cairo, surface, rx, ry);
   cairo_paint(cairo);
 
   cairo_destroy(cairoInternal);

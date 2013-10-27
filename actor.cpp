@@ -9,7 +9,7 @@ Actor::~Actor()
 {
 }
 
-bool Actor::Render(cairo_t* cairo)
+bool Actor::Render(cairo_t* cairo, Camera* camera)
 {
   cairo_select_font_face(cairo, "serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
   cairo_set_font_size(cairo, 32.0);

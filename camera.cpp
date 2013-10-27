@@ -28,3 +28,15 @@ double Camera::GetZoom()
 {
   return this->zoom;
 }
+
+void Camera::Translate(double sx, double sy, double& dx, double& dy)
+{
+  dx = (sx - (this->x - this->width  / 2)) * this->zoom;
+  dy = (sy - (this->y - this->height / 2)) * this->zoom;
+}
+
+void Camera::SetResolution(double width, double height)
+{
+  this->width = width;
+  this->height = height;
+}
