@@ -37,7 +37,7 @@ int main()
     }
     stage.Render(surface);
     std::stringstream filename;
-    filename << outputDirectory << "hello" << std::setw(3) << std::setfill('0') << i << ".png";
+    filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
     cairo_surface_write_to_png(surface, filename.str().c_str());
   }
 

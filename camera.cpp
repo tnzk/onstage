@@ -18,7 +18,7 @@ void Camera::SetZoom(double z)
   this->zoom = z;
 }
 
-void Camera::GetPosiotion(double& x, double& y)
+void Camera::GetPosition(double& x, double& y)
 {
   x = this->x;
   y = this->y;
@@ -32,15 +32,8 @@ double Camera::GetZoom()
 #include <iostream>
 void Camera::Translate(double sx, double sy, double& dx, double& dy)
 {
-  dx = (sx + (this->x - this->width  / 2 * this->zoom)) ;
-  dy = (sy + (this->y - this->height / 2 * this->zoom));
-/*
-  std::cout << this->zoom << std::endl;
-  std::cout << sx << ", " << sy << std::endl;
-  std::cout << this->x << ", " << this->y << std::endl;
-  std::cout << this->width << ", " << this->height << std::endl;
-  std::cout << dx << ", " << dy << std::endl;
-// */
+  dx = (sx - this->x) * this->zoom + (this->width  / 2);
+  dy = (sy - this->y) * this->zoom + (this->height / 2);
 }
 
 void Camera::SetResolution(double width, double height)

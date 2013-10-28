@@ -6,6 +6,7 @@
 #include "stage_command_item.hpp"
 #include "stage_command_scale.hpp"
 #include "stage_command_camera_zoom.hpp"
+#include "stage_command_camera_move.hpp"
 #include <map>
 #include <algorithm>
 #include <functional>
@@ -37,6 +38,10 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
     }));
     stageCommandFactoryMap.insert(std::make_pair("camera_zoom", [](picojson::array& command) -> IStageCommand& {
       IStageCommand* cmd = new CameraZoomStageCommand(command[1].get<double>());
+      return *cmd;
+    }));
+    stageCommandFactoryMap.insert(std::make_pair("camera_move", [](picojson::array& command) -> IStageCommand& {
+          IStageCommand* cmd = new CameraMoveStageCommand(command[1].get<double>(), command[2].get<double>());
       return *cmd;
     }));
   }

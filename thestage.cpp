@@ -50,7 +50,6 @@ int TheStage::GetCurrentFrame() { return this->currentFrame; }
 
 bool TheStage::Render(cairo_surface_t* surface)
 {
-  std::cout << this->currentFrame << "th frame rendered." << std::endl;
   this->currentFrame++;
   
   cairo_t* cairo = cairo_create(surface);
@@ -76,6 +75,7 @@ bool TheStage::Render(cairo_surface_t* surface)
     item->Render(cairo, this->GetPrimaryCamera());
   }
 
+  std::cout << this->currentFrame << "th frame rendered." << std::endl;
   return true;
 }
 
