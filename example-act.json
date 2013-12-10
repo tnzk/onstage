@@ -14,16 +14,20 @@
      ["item", "bg-s02-b1-momoroom.svg"],
      ["scale", "bg-s02-b1-momoroom.svg", 1],
      ["camera_zoom", 2],
+     ["camera_move", 640, 360],
      ["sync", 1],
-     ["camera_move", 0, 0],
+     ["camera_move", 650, 360],
      ["sync", 2],
-     ["camera_move", 1280, 0],
+     ["camera_move", 660, 360],
      ["sync", 3],
-     ["camera_move", 1280, 720],
+     ["camera_move", 670, 370],
      ["sync", 4],
-     ["camera_move", 0, 720],
+     ["camera_move", 680, 370],
      ["sync", 5],
-     ["speak", "momo"]
+     ["camera_move", 690, 370],
+     ["speak", "momo"],
+     ["sync", 6],
+     ["camera_move", 700, 370]
    ]
 }
 
