@@ -1,20 +1,35 @@
 #include "stage_command.hpp"
 #include "thestage.hpp"
 #include "picojson.h"
+#include "cmdline.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <iomanip>
 #include <sstream>
 #include <cinttypes>
 #include <cairo.h>
 
-int main()
+int main(int argc, char** argv)
 {
 
   TheStage stage;
 
+  cmdline::parser opt;
+  opt.add<std::string>("file", 'f', "script file.", true);
+  opt.parse_check(argc, argv);
+
+  std::string scriptFileName = opt.get<std::string>("file");
+  std::ifstream scriptFile(scriptFileName);
+
+  if (!scriptFile.is_open()) {
+    std::cout << "No such file: " << scriptFileName << std::endl;
+    exit(1);
+  }
+
   picojson::value json;
-  std::cin >> json;
+  scriptFile >> json;
+  scriptFile.close();
   picojson::object& obj = json.get<picojson::object>();
   picojson::array& commands = obj["commands"].get<picojson::array>();
 
