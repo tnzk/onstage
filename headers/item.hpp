@@ -14,12 +14,12 @@ class Item : public IActable
 public:
   Item(std::string name);
   ~Item();
+  virtual std::string GetName();
   virtual bool Render(cairo_t*, Camera*);
-  virtual void SetScale(double) ;
+  virtual void SetScale(double);
   virtual double GetScale();
 private:
   RsvgHandle* rsvg;
-  std::string name;
 };
 
 #endif

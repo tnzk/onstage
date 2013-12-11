@@ -22,6 +22,7 @@ public:
   virtual bool Render(cairo_t*, Camera*);
   virtual void SetScale(double);
   virtual double GetScale();
+  virtual std::string GetName();
   bool Walk(double x, double y);
   bool LookAt(double r, double distance);
   bool Eyeblows(double r);
@@ -30,7 +31,6 @@ public:
   bool Speak();
   bool Shut();
 private:
-  std::string name;
   bool isSpeaking;
   bool isWalking;
 };

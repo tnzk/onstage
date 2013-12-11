@@ -4,6 +4,7 @@
 
 #include <cairo.h>
 #include <map>
+#include <list>
 #include <string>
 #include "actable.hpp"
 #include "actor.hpp"
@@ -43,10 +44,10 @@ private:
   int currentFrame;
   int fps;
   int duration; // in frame
-  std::map<std::string, Actor*> actors;
-  std::map<std::string, Item*> items;
+  std::list<IActable*> actables;
   int primaryCameraId;
   std::vector<Camera*> cameras;
+  void RegisterActable(std::string, IActable*);
 };
 
 #endif

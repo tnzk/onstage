@@ -22,3 +22,4 @@ bool Actor::Render(cairo_t* cairo, Camera* camera)
 
 void Actor::SetScale(double scale) { this->scale = scale;}
 double Actor::GetScale() { return this->scale;}
+std::string Actor::GetName() { return this->name; }

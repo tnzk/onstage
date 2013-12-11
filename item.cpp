@@ -48,3 +48,4 @@ bool Item::Render(cairo_t* cairo, Camera* camera)
 
 void Item::SetScale(double scale) { this->scale = scale;}
 double Item::GetScale() { return this->scale;}
+std::string Item::GetName() { return this->name; }

@@ -1,5 +1,6 @@
 #include "thestage.hpp"
 #include <stdlib.h>
+#include <algorithm>
 
 TheStage::TheStage()
 {
@@ -64,17 +65,12 @@ bool TheStage::Render(cairo_surface_t* surface)
   cairo_move_to(cairo, (float)this->currentFrame, 50.0);
   cairo_show_text(cairo, "Hello, world");
 
+
+  for(std::list<IActable*>::reverse_iterator it = this->actables.rbegin(); it != this->actables.rend(); ++it) {
+    IActable* actable = *it;
+    actable->Render(cairo, this->GetPrimaryCamera());
+  }
   
-  for(std::map<std::string, Actor*>::iterator it = this->actors.begin(); it != this->actors.end(); ++it) { // TODO: looks too wide
-    Actor* actor = it->second;
-    actor->Render(cairo, this->GetPrimaryCamera());
-  }
-
-  for(std::map<std::string, Item*>::iterator it = this->items.begin(); it != this->items.end(); ++it) { // TODO: looks too wide
-    Item* item = it->second;
-    item->Render(cairo, this->GetPrimaryCamera());
-  }
-
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
   return true;
 }
@@ -89,26 +85,26 @@ bool TheStage::Skip()
 int TheStage::GetResolutionWidth() { return this->width; }
 int TheStage::GetResolutionHeight() { return this->height; }
 
+void TheStage::RegisterActable(std::string name, IActable* actable)
+{
+  this->actables.push_back(actable);
+}
+
 void TheStage::RegisterActor(std::string name, Actor* actor)
 {
-  this->actors.insert(std::pair<std::string, Actor*>(name, actor));
+  this->RegisterActable(name, actor);
 }
 
 void TheStage::RegisterItem(std::string name, Item* item)
 {
-  this->items.insert(std::pair<std::string, Item*>(name, item));
+  this->RegisterActable(name, item);
 }
 
 IActable* TheStage::GetActable(std::string name)
 {
-  // TODO: Unify the actors and items
-  if (this->actors.find(name) != this->actors.end()) {
-    return this->actors[name];
-  }
-  if (this->items.find(name) != this->items.end()) {
-    return this->items[name];
-  }
-  return NULL;
+  std::list<IActable*>::iterator it;
+  it = std::find_if(this->actables.begin(), this->actables.end(), [name](IActable* actable) { return actable->GetName() == name; });
+  return *it;
 }
 
 int TheStage::AddCamera(double x, double y, double zoom)
