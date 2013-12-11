@@ -16,8 +16,15 @@ int main(int argc, char** argv)
   TheStage stage;
 
   cmdline::parser opt;
-  opt.add<std::string>("file", 'f', "script file.", true);
+  opt.add<std::string>("file", 'f', "Script file.", false);
+  opt.add("list-commands", 'l', "List all the avaiable commands.");
   opt.parse_check(argc, argv);
+
+  if (opt.exist("list-commands")) {
+    std::cout << "Commands supported:" << std::endl;
+    
+    exit(0);
+  }
 
   std::string scriptFileName = opt.get<std::string>("file");
   std::ifstream scriptFile(scriptFileName);
