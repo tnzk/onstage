@@ -11,6 +11,8 @@ class IActable
 public:
   virtual std::string GetName() = 0;
   virtual void SetScale(double) = 0;
+  virtual void SetPosition(double, double) = 0;
+  virtual void Move(double, double) = 0;
   virtual double GetScale() = 0;
   virtual bool Render(cairo_t*, Camera*) = 0;
 protected:

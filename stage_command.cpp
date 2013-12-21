@@ -41,7 +41,11 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
       return *cmd;
     }));
     stageCommandFactoryMap.insert(std::make_pair("camera_move", [](picojson::array& command) -> IStageCommand& {
-          IStageCommand* cmd = new CameraMoveStageCommand(command[1].get<double>(), command[2].get<double>());
+      IStageCommand* cmd = new CameraMoveStageCommand(command[1].get<double>(), command[2].get<double>());
+      return *cmd;
+    }));
+    stageCommandFactoryMap.insert(std::make_pair("move", [](picojson::array& command) -> IStageCommand& {
+      IStageCommand* cmd = new MoveStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
       return *cmd;
     }));
   }

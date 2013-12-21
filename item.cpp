@@ -49,3 +49,12 @@ bool Item::Render(cairo_t* cairo, Camera* camera)
 void Item::SetScale(double scale) { this->scale = scale;}
 double Item::GetScale() { return this->scale;}
 std::string Item::GetName() { return this->name; }
+void Item::SetPosition(double x, double y)
+{
+  this->x = x;
+  this->y = y;
+}
+void Item::Move(double dx, double dy)
+{
+  this->SetPosition(this->x + dx, this->y + dy);
+}

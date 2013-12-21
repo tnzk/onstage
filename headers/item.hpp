@@ -18,6 +18,8 @@ public:
   virtual bool Render(cairo_t*, Camera*);
   virtual void SetScale(double);
   virtual double GetScale();
+  virtual void SetPosition(double, double);
+  virtual void Move(double, double);
 private:
   RsvgHandle* rsvg;
 };

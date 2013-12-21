@@ -23,6 +23,8 @@ public:
   virtual void SetScale(double);
   virtual double GetScale();
   virtual std::string GetName();
+  virtual void SetPosition(double, double);
+  virtual void Move(double, double);
   bool Walk(double x, double y);
   bool LookAt(double r, double distance);
   bool Eyeblows(double r);
