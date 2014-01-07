@@ -1,6 +1,6 @@
 #include "item.hpp"
 #include "image_svg.hpp"
-#include "primitive.hpp"
+#include "renderable.hpp"
 #include <sstream>
 #include <iostream>
 
@@ -20,20 +20,21 @@ Item::~Item()
 {
 }
 
-bool Item::Render(cairo_t* cairo, Camera* camera)
+cairo_surface_t* Item::Render(double scale)
 {
-  double rscale = this->scale * camera->GetZoom();
+  double rscale = this->scale * scale;
+  cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
+                                                        this->width * rscale,
+                                                        this->height * rscale);
+  cairo_t* cairo = cairo_create(surface);
 
-  double rx;
-  double ry;
-  IPrimitive* svg = this->layers.front();
+  IRenderable* svg = this->layers.front();
   cairo_surface_t* subsurface = svg->Render(rscale);
-  camera->Translate(this->x, this->y, rx, ry);
-  cairo_set_source_surface(cairo, subsurface, rx, ry);
+  cairo_set_source_surface(cairo, subsurface, 0, 0);
   cairo_paint(cairo);
   cairo_surface_destroy(subsurface);
  
-  return true;
+  return surface;
 }
 
 void Item::SetScale(double scale) { this->scale = scale;}

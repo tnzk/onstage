@@ -19,7 +19,7 @@ class Actor : public IActable
 public:
   Actor(std::string);
   ~Actor();
-  virtual bool Render(cairo_t*, Camera*);
+  virtual cairo_surface_t* Render(double);
   virtual void SetScale(double);
   virtual double GetScale();
   virtual std::string GetName();

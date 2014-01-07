@@ -59,16 +59,17 @@ bool TheStage::Render(cairo_surface_t* surface)
   cairo_set_source_rgb(cairo, 1.0, 1.0, 1.0);
   cairo_paint(cairo);
 
-  cairo_select_font_face(cairo, "serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
-  cairo_set_font_size(cairo, 32.0);
-  cairo_set_source_rgb(cairo, 0.0, 0.0, 1.0);
-  cairo_move_to(cairo, (float)this->currentFrame, 50.0);
-  cairo_show_text(cairo, "Hello, world");
-
-
   for(std::list<IActable*>::reverse_iterator it = this->actables.rbegin(); it != this->actables.rend(); ++it) {
     IActable* actable = *it;
-    actable->Render(cairo, this->GetPrimaryCamera());
+    Camera* primaryCamera = this->GetPrimaryCamera();
+    double rx;
+    double ry;
+    primaryCamera->Translate(actable->x, actable->y, rx, ry);
+    cairo_surface_t* subsurface = actable->Render(primaryCamera->GetZoom());
+    cairo_set_source_surface(cairo, subsurface, rx, ry);
+    cairo_paint(cairo);
+    cairo_surface_destroy(subsurface);
+
   }
   
   std::cout << this->currentFrame << "th frame rendered." << std::endl;

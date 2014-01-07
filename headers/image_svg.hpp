@@ -1,13 +1,13 @@
 #ifndef IMAGE_SVG_HEADER
 #define IMAGE_SVG_HEADER
 
-#include "primitive.hpp"
+#include "renderable.hpp"
 #include <cairo.h>
 #include <string>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
 
-class ImageSvg : public IPrimitive
+class ImageSvg : public IRenderable
 {
 public:
   ImageSvg(std::string);

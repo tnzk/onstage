@@ -10,8 +10,11 @@ Actor::~Actor()
 {
 }
 
-bool Actor::Render(cairo_t* cairo, Camera* camera)
+cairo_surface_t* Actor::Render(double scale)
 {
+  cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 500, 500);
+  return surface;
+  /*
   double rx;
   double ry;
   camera->Translate(this->x, this->y, rx, ry);
@@ -23,6 +26,7 @@ bool Actor::Render(cairo_t* cairo, Camera* camera)
   cairo_show_text(cairo, this->name.c_str());
 
   return true;
+  */
 }
 
 void Actor::SetScale(double scale) { this->scale = scale;}

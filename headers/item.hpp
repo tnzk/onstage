@@ -13,7 +13,7 @@ public:
   Item(std::string name);
   ~Item();
   virtual std::string GetName();
-  virtual bool Render(cairo_t*, Camera*);
+  virtual cairo_surface_t* Render(double scale);
   virtual void SetScale(double);
   virtual double GetScale();
   virtual void SetPosition(double, double);

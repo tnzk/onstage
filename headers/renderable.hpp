@@ -4,7 +4,7 @@
 
 #include <cairo.h>
 
-class IPrimitive
+class IRenderable
 {
 public:
   virtual cairo_surface_t* Render(double scale) = 0;

@@ -2,10 +2,10 @@
 
 #define SHAPE_HEADER
 
-#include "primitive.hpp"
+#include "renderable.hpp"
 #include <cairo.h>
 
-class Shape : public IPrimitive
+class Shape : public IRenderable
 {
 public:
   Shape();

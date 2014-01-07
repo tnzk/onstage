@@ -5,10 +5,10 @@
 #include <list>
 #include <string>
 #include <cairo.h>
-#include "primitive.hpp"
+#include "renderable.hpp"
 #include "camera.hpp"
 
-class IActable
+class IActable : public IRenderable
 {
 public:
   virtual std::string GetName() = 0;
@@ -16,18 +16,17 @@ public:
   virtual void SetPosition(double, double) = 0;
   virtual void Move(double, double) = 0;
   virtual double GetScale() = 0;
-  virtual bool Render(cairo_t*, Camera*) = 0;
 
-  std::list<IPrimitive*> layers;
-protected:
-  int id;
-  std::string name;
-  int innerCount;
-
+  std::list<IRenderable*> layers;
   double x;
   double y;
   int width;
   int height;
+
+protected:
+  int id;
+  std::string name;
+  int innerCount;
   double scale;
 };
 
