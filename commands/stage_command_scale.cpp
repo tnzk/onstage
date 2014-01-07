@@ -14,6 +14,6 @@ ScaleStageCommand::~ScaleStageCommand()
 
 bool ScaleStageCommand::Execute(TheStage& stage)
 {
-  IActable* actable = stage.GetActable(this->targetName);
-  actable->SetScale(this->scale);
+  ISymbol* symbol = stage.GetSymbol(this->targetName);
+  symbol->SetScale(this->scale);
 }

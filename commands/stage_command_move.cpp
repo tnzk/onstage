@@ -14,6 +14,6 @@ MoveStageCommand::~MoveStageCommand()
 
 bool MoveStageCommand::Execute(TheStage& stage)
 {
-  IActable* actable = stage.GetActable(this->targetName);
-  actable->Move(this->dx, this->dy);
+  ISymbol* symbol = stage.GetSymbol(this->targetName);
+  symbol->Move(this->dx, this->dy);
 }

@@ -14,7 +14,7 @@ enum ActorFace
   Sad
 };
 
-class Actor : public IActable
+class Actor : public ISymbol
 {
 public:
   Actor(std::string);

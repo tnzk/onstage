@@ -7,7 +7,7 @@
 #include "actable.hpp"
 #include "camera.hpp"
 
-class Item : public IActable
+class Item : public ISymbol
 {
 public:
   Item(std::string name);

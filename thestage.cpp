@@ -59,13 +59,13 @@ bool TheStage::Render(cairo_surface_t* surface)
   cairo_set_source_rgb(cairo, 1.0, 1.0, 1.0);
   cairo_paint(cairo);
 
-  for(std::list<IActable*>::reverse_iterator it = this->actables.rbegin(); it != this->actables.rend(); ++it) {
-    IActable* actable = *it;
+  for(std::list<ISymbol*>::reverse_iterator it = this->symbols.rbegin(); it != this->symbols.rend(); ++it) {
+    ISymbol* symbol = *it;
     Camera* primaryCamera = this->GetPrimaryCamera();
     double rx;
     double ry;
-    primaryCamera->Translate(actable->x, actable->y, rx, ry);
-    cairo_surface_t* subsurface = actable->Render(primaryCamera->GetZoom());
+    primaryCamera->Translate(symbol->x, symbol->y, rx, ry);
+    cairo_surface_t* subsurface = symbol->Render(primaryCamera->GetZoom());
     cairo_set_source_surface(cairo, subsurface, rx, ry);
     cairo_paint(cairo);
     cairo_surface_destroy(subsurface);
@@ -86,25 +86,25 @@ bool TheStage::Skip()
 int TheStage::GetResolutionWidth() { return this->width; }
 int TheStage::GetResolutionHeight() { return this->height; }
 
-void TheStage::RegisterActable(std::string name, IActable* actable)
+void TheStage::RegisterSymbol(std::string name, ISymbol* symbol)
 {
-  this->actables.push_back(actable);
+  this->symbols.push_back(symbol);
 }
 
 void TheStage::RegisterActor(std::string name, Actor* actor)
 {
-  this->RegisterActable(name, actor);
+  this->RegisterSymbol(name, actor);
 }
 
 void TheStage::RegisterItem(std::string name, Item* item)
 {
-  this->RegisterActable(name, item);
+  this->RegisterSymbol(name, item);
 }
 
-IActable* TheStage::GetActable(std::string name)
+ISymbol* TheStage::GetSymbol(std::string name)
 {
-  std::list<IActable*>::iterator it;
-  it = std::find_if(this->actables.begin(), this->actables.end(), [name](IActable* actable) { return actable->GetName() == name; });
+  std::list<ISymbol*>::iterator it;
+  it = std::find_if(this->symbols.begin(), this->symbols.end(), [name](ISymbol* actable) { return actable->GetName() == name; });
   return *it;
 }
 

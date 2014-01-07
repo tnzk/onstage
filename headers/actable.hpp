@@ -8,7 +8,7 @@
 #include "renderable.hpp"
 #include "camera.hpp"
 
-class IActable : public IRenderable
+class ISymbol : public IRenderable
 {
 public:
   virtual std::string GetName() = 0;

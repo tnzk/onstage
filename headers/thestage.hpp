@@ -34,7 +34,7 @@ public:
   void ShowVideoSetting();
   void RegisterActor(std::string, Actor*);
   void RegisterItem(std::string, Item*);
-  IActable* GetActable(std::string name);
+  ISymbol* GetSymbol(std::string name);
   Camera* GetPrimaryCamera();
   int AddCamera(double x, double y, double zoom);
   int skipUntil;
@@ -44,10 +44,10 @@ private:
   int currentFrame;
   int fps;
   int duration; // in frame
-  std::list<IActable*> actables;
+  std::list<ISymbol*> symbols;
   int primaryCameraId;
   std::vector<Camera*> cameras;
-  void RegisterActable(std::string, IActable*);
+  void RegisterSymbol(std::string, ISymbol*);
 };
 
 #endif
