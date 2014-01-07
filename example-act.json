@@ -14,7 +14,7 @@
      ["enter", "hitomi"],
      ["scale", "bg-momo-room.json", 1],
      ["item", "example-object.json"],
-     ["scale", "example-object.json", 1],
+     ["scale", "example-object.json", 0.2],
      ["move", "example-object.json", 640, 360],
      ["move", "momo", -50, 0],
      ["move", "hitomi", 50, 0],

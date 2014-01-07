@@ -18,10 +18,6 @@ public:
   virtual double GetScale() = 0;
 
   std::list<IRenderable*> layers;
-  double x;
-  double y;
-  int width;
-  int height;
 
 protected:
   int id;

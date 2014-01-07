@@ -43,6 +43,7 @@ Item::Item(std::string name)
       ImageSvg* svg = new ImageSvg(path);
       svg->x = primitive["x"].get<double>();
       svg->y = primitive["y"].get<double>();
+      svg->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
       layers.push_back(svg);
       double requireWidth = svg->x + svg->width;
       double requireHeight = svg->y + svg->height;
@@ -68,10 +69,12 @@ cairo_surface_t* Item::Render(double scale)
 
   for (std::list<IRenderable*>::iterator it = this->layers.begin(); it != this->layers.end(); ++it) {
     IRenderable* svg = *it;
-    cairo_surface_t* subsurface = svg->Render(rscale);
-    cairo_set_source_surface(cairo, subsurface, svg->x * rscale, svg->y * rscale);
-    cairo_paint(cairo);
-    cairo_surface_destroy(subsurface);
+    if (svg->isVisible) {
+      cairo_surface_t* subsurface = svg->Render(rscale);
+      cairo_set_source_surface(cairo, subsurface, svg->x * rscale, svg->y * rscale);
+      cairo_paint(cairo);
+      cairo_surface_destroy(subsurface);
+    }
   }
 
   return surface;

@@ -3,11 +3,13 @@
   "primitives": [
     { "type": "svg",
       "path": "green-circle.svg",
-      "x": 0, "y": 0
+      "x": 0, "y": 0,
+      "visibility": false
     },
     { "type": "svg",
       "path": "yellow-plane.svg",
-      "x": 0, "y": 320
+      "x": 0, "y": 320,
+      "visibility": true
     }
   ]    
 }
