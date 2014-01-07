@@ -1,8 +1,10 @@
 #include "item.hpp"
 #include "image_svg.hpp"
 #include "renderable.hpp"
+#include "picojson.h"
 #include <sstream>
 #include <iostream>
+#include <fstream>
 
 Item::Item(std::string name)
 {
@@ -10,10 +12,39 @@ Item::Item(std::string name)
   this->x = 0;
   this->y = 0;
 
-  ImageSvg* svg = new ImageSvg(this->name);
-  layers.push_back(svg);
-  this->width = svg->width;
-  this->height = svg->height;
+  std::stringstream ss;
+  ss << "symbols/" << this->name;
+  std::string path = ss.str();
+
+  std::ifstream symbolFile(path);
+  if (!symbolFile.is_open()) {
+    std::cout << "No such file: " <<  path << std::endl;
+    exit(1);
+  }
+
+  picojson::value json;
+  symbolFile >> json;
+  symbolFile.close();
+  picojson::object& obj = json.get<picojson::object>();
+
+  std::string type = obj["type"].get<std::string>();
+  if (type != "item") {
+    std::cout << "Warning: an item is going to be initialize by the symbol whose type is " << type << std::endl;
+  }
+
+  picojson::array& primitives = obj["primitives"].get<picojson::array>();
+  for (picojson::array::iterator it = primitives.begin(); it != primitives.end(); ++it) {
+    picojson::object& primitive = (*it).get<picojson::object>();
+    std::string primitiveType = primitive["type"].get<std::string>();
+    if (primitiveType == "svg") {
+      std::string path = primitive["path"].get<std::string>();
+      ImageSvg* svg = new ImageSvg(path);
+      layers.push_back(svg);
+      this->width = svg->width;
+      this->height = svg->height;
+    }
+  }
+
 }
 
 Item::~Item()

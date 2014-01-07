@@ -1,5 +1,5 @@
 {
-  "type": "symbol",
+  "type": "item",
   "primitives": [
     { "type": "svg",
       "path": "bg-s02-b1-momoroom.svg"
