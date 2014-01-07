@@ -11,6 +11,8 @@ Item::Item(std::string name)
   this->name = name;
   this->x = 0;
   this->y = 0;
+  this->width = 0;
+  this->height = 0;
 
   std::stringstream ss;
   ss << "symbols/" << this->name;
@@ -39,9 +41,14 @@ Item::Item(std::string name)
     if (primitiveType == "svg") {
       std::string path = primitive["path"].get<std::string>();
       ImageSvg* svg = new ImageSvg(path);
+      svg->x = primitive["x"].get<double>();
+      svg->y = primitive["y"].get<double>();
       layers.push_back(svg);
-      this->width = svg->width;
-      this->height = svg->height;
+      double requireWidth = svg->x + svg->width;
+      double requireHeight = svg->y + svg->height;
+
+      if (this->width < requireWidth) this->width = requireWidth;
+      if (this->height < requireHeight) this->height = requireHeight;
     }
   }
 
@@ -59,12 +66,14 @@ cairo_surface_t* Item::Render(double scale)
                                                         this->height * rscale);
   cairo_t* cairo = cairo_create(surface);
 
-  IRenderable* svg = this->layers.front();
-  cairo_surface_t* subsurface = svg->Render(rscale);
-  cairo_set_source_surface(cairo, subsurface, 0, 0);
-  cairo_paint(cairo);
-  cairo_surface_destroy(subsurface);
- 
+  for (std::list<IRenderable*>::iterator it = this->layers.begin(); it != this->layers.end(); ++it) {
+    IRenderable* svg = *it;
+    cairo_surface_t* subsurface = svg->Render(rscale);
+    cairo_set_source_surface(cairo, subsurface, svg->x * rscale, svg->y * rscale);
+    cairo_paint(cairo);
+    cairo_surface_destroy(subsurface);
+  }
+
   return surface;
 }
 

@@ -1,0 +1,13 @@
+{
+  "type": "item",
+  "primitives": [
+    { "type": "svg",
+      "path": "green-circle.svg",
+      "x": 0, "y": 0
+    },
+    { "type": "svg",
+      "path": "yellow-plane.svg",
+      "x": 0, "y": 320
+    }
+  ]    
+}

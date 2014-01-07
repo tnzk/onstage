@@ -2,7 +2,8 @@
   "type": "item",
   "primitives": [
     { "type": "svg",
-      "path": "bg-s02-b1-momoroom.svg"
+      "path": "bg-s02-b1-momoroom.svg",
+      "x": 0, "y": 0
     }
   ]    
 }

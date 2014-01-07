@@ -59,8 +59,9 @@ bool TheStage::Render(cairo_surface_t* surface)
   cairo_set_source_rgb(cairo, 1.0, 1.0, 1.0);
   cairo_paint(cairo);
 
-  for(std::list<ISymbol*>::reverse_iterator it = this->symbols.rbegin(); it != this->symbols.rend(); ++it) {
+  for(std::list<ISymbol*>::iterator it = this->symbols.begin(); it != this->symbols.end(); ++it) {
     ISymbol* symbol = *it;
+    std::cout << symbol->GetName() << std::endl;
     Camera* primaryCamera = this->GetPrimaryCamera();
     double rx;
     double ry;

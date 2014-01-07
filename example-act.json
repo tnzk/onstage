@@ -9,10 +9,13 @@
   "actors": ["momo", "hitomi"],
   "commands": [
      ["sync", 0],
+     ["item", "bg-momo-room.json"],
      ["enter", "momo"],
      ["enter", "hitomi"],
-     ["item", "bg-momo-room.json"],
      ["scale", "bg-momo-room.json", 1],
+     ["item", "example-object.json"],
+     ["scale", "example-object.json", 1],
+     ["move", "example-object.json", 640, 360],
      ["move", "momo", -50, 0],
      ["move", "hitomi", 50, 0],
      ["camera_zoom", 2],
@@ -29,7 +32,9 @@
      ["camera_move", 690, 370],
      ["speak", "momo"],
      ["sync", 6],
-     ["camera_move", 700, 370]
+     ["camera_move", 700, 370],
+     ["sync", 7],
+     ["camera_move", 0, 0]
    ]
 }
 

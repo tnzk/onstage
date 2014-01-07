@@ -10,6 +10,8 @@ public:
   virtual cairo_surface_t* Render(double scale) = 0;
   double width;
   double height;
+  double x;
+  double y;
 };
 
 #endif
