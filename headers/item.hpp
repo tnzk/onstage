@@ -4,7 +4,7 @@
 
 #include <cairo.h>
 #include <string>
-#include "actable.hpp"
+#include "symbol.hpp"
 #include "camera.hpp"
 
 class Item : public ISymbol

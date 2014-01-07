@@ -6,7 +6,7 @@
 #include <map>
 #include <list>
 #include <string>
-#include "actable.hpp"
+#include "symbol.hpp"
 #include "actor.hpp"
 #include "item.hpp"
 #include "camera.hpp"
