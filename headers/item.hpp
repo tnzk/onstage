@@ -2,8 +2,6 @@
 
 #define ITEM_HEADER
 
-#include <librsvg/rsvg.h>
-#include <librsvg/rsvg-cairo.h>
 #include <cairo.h>
 #include <string>
 #include "actable.hpp"
@@ -21,7 +19,6 @@ public:
   virtual void SetPosition(double, double);
   virtual void Move(double, double);
 private:
-  RsvgHandle* rsvg;
 };
 
 #endif

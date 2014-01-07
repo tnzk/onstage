@@ -1,0 +1,8 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "path": "bg-s02-b1-momoroom.svg"
+    }
+  ]    
+}
