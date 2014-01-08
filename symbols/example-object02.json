@@ -1,0 +1,9 @@
+{
+  "type": "item",
+  "primitives": [
+    { "type": "svg",
+      "path": "red-circle.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    }
+}
