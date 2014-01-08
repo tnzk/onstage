@@ -41,8 +41,8 @@ Item::Item(std::string name)
     if (primitiveType == "svg") {
       std::string path = primitive["path"].get<std::string>();
       ImageSvg* svg = new ImageSvg(path);
-      svg->x = primitive["x"].get<double>();
-      svg->y = primitive["y"].get<double>();
+      svg->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
+      svg->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
       svg->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
       layers.push_back(svg);
       double requireWidth = svg->x + svg->width;

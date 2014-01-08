@@ -61,7 +61,6 @@ bool TheStage::Render(cairo_surface_t* surface)
 
   for(std::list<ISymbol*>::iterator it = this->symbols.begin(); it != this->symbols.end(); ++it) {
     ISymbol* symbol = *it;
-    std::cout << symbol->GetName() << std::endl;
     Camera* primaryCamera = this->GetPrimaryCamera();
     double rx;
     double ry;
@@ -70,7 +69,6 @@ bool TheStage::Render(cairo_surface_t* surface)
     cairo_set_source_surface(cairo, subsurface, rx, ry);
     cairo_paint(cairo);
     cairo_surface_destroy(subsurface);
-
   }
   
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
