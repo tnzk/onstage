@@ -23,7 +23,6 @@ protected:
   int id;
   std::string name;
   int innerCount;
-  double scale;
 };
 
 #endif

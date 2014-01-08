@@ -13,6 +13,8 @@ Item::Item(std::string name)
   this->y = 0;
   this->width = 0;
   this->height = 0;
+  this->scale = 1;
+  this->isVisible = true;
 
   std::stringstream ss;
   ss << "symbols/" << this->name;
@@ -37,6 +39,9 @@ Item::Item(std::string name)
   picojson::array& primitives = obj["primitives"].get<picojson::array>();
   for (picojson::array::iterator it = primitives.begin(); it != primitives.end(); ++it) {
     picojson::object& primitive = (*it).get<picojson::object>();
+    double requireWidth = 0;
+    double requireHeight = 0;
+
     std::string primitiveType = primitive["type"].get<std::string>();
     if (primitiveType == "svg") {
       std::string path = primitive["path"].get<std::string>();
@@ -45,12 +50,21 @@ Item::Item(std::string name)
       svg->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
       svg->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
       layers.push_back(svg);
-      double requireWidth = svg->x + svg->width;
-      double requireHeight = svg->y + svg->height;
-
-      if (this->width < requireWidth) this->width = requireWidth;
-      if (this->height < requireHeight) this->height = requireHeight;
+      requireWidth = svg->x + svg->width;
+      requireHeight = svg->y + svg->height;
     }
+    if (primitiveType == "symbol") {
+      std::string path = primitive["path"].get<std::string>();
+      Item* symbol = new Item(path);
+      symbol->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
+      symbol->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
+      symbol->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
+      layers.push_back(symbol);
+      requireWidth = symbol->x + symbol->width;
+      requireHeight = symbol->y + symbol->height;
+    }
+    if (this->width < requireWidth) this->width = requireWidth;
+    if (this->height < requireHeight) this->height = requireHeight;
   }
 
 }
@@ -92,3 +106,12 @@ void Item::Move(double dx, double dy)
 {
   this->SetPosition(this->x + dx, this->y + dy);
 }
+/*
+void Item::SavePng(std::string name)
+{
+  cairo_surface_t* surface = this->Render(1);
+  std::stringstream filename;
+  filename << name;
+  cairo_surface_write_to_png(surface, filename.str().c_str());
+}
+*/

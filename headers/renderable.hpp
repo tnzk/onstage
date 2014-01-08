@@ -12,6 +12,7 @@ public:
   double height;
   double x;
   double y;
+  double scale;
   bool isVisible;
 };
 
