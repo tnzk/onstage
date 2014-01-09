@@ -1,6 +1,7 @@
 ## Prerequisites ##
 
 * GCC 4.8 or later
+* Cairo 2 or later
 * Librsvg 2 or later
 
 ## TODO ##
@@ -12,8 +13,11 @@
     * SVG loading
     * script loading
 
-## Inheritance ##
+## Memo ##
 
+### Inheritance ###
+
+```
       IRenderable
           |
   +-------+----------+
@@ -25,6 +29,7 @@ Shape  ImageSVG   ISymbol
        +-------+-----+------+------+-----+
        |       |     |      |      |     |
      Actor   Head   Eye   Mouth   Leg   Arm
+```
 
 * Shape is just vague, it should be split into Path, Rectangle, Circle and whatever
 * Classes for parts of a body whould be better to operate through its interface like IHead, IEye ans so on
