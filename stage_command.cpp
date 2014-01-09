@@ -3,7 +3,7 @@
 #include "stage_command_null.hpp"
 #include "stage_command_move.hpp"
 #include "stage_command_enter.hpp"
-#include "stage_command_item.hpp"
+#include "stage_command_load_symbol.hpp"
 #include "stage_command_scale.hpp"
 #include "stage_command_camera_zoom.hpp"
 #include "stage_command_camera_move.hpp"
@@ -28,8 +28,8 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
       IStageCommand* cmd = new EnterStageCommand(command[1].get<std::string>());
       return *cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("item", [](picojson::array& command) -> IStageCommand& {
-      IStageCommand* cmd = new ItemStageCommand(command[1].get<std::string>());
+    stageCommandFactoryMap.insert(std::make_pair("load_symbol", [](picojson::array& command) -> IStageCommand& {
+      IStageCommand* cmd = new LoadSymbolStageCommand(command[1].get<std::string>());
       return *cmd;
     }));
     stageCommandFactoryMap.insert(std::make_pair("scale", [](picojson::array& command) -> IStageCommand& {

@@ -95,11 +95,6 @@ void TheStage::RegisterActor(std::string name, Actor* actor)
   this->RegisterSymbol(name, actor);
 }
 
-void TheStage::RegisterItem(std::string name, Item* item)
-{
-  this->RegisterSymbol(name, item);
-}
-
 ISymbol* TheStage::GetSymbol(std::string name)
 {
   std::list<ISymbol*>::iterator it;

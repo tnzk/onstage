@@ -6,8 +6,8 @@
 #include <list>
 #include <string>
 #include "isymbol.hpp"
+#include "symbol.hpp"
 #include "actor.hpp"
-#include "item.hpp"
 #include "camera.hpp"
 #include "stage_command.hpp"
 
@@ -32,7 +32,7 @@ public:
   bool Skip();
   void ShowVideoSetting();
   void RegisterActor(std::string, Actor*);
-  void RegisterItem(std::string, Item*);
+  void RegisterSymbol(std::string, ISymbol*);
   ISymbol* GetSymbol(std::string name);
   Camera* GetPrimaryCamera();
   int AddCamera(double x, double y, double zoom);
@@ -46,7 +46,6 @@ private:
   std::list<ISymbol*> symbols;
   int primaryCameraId;
   std::vector<Camera*> cameras;
-  void RegisterSymbol(std::string, ISymbol*);
 };
 
 #endif

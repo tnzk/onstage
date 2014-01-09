@@ -1,4 +1,4 @@
-#include "item.hpp"
+#include "symbol.hpp"
 #include "image_svg.hpp"
 #include "renderable.hpp"
 #include "picojson.h"
@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 
-Item::Item(std::string name)
+Symbol::Symbol(std::string name)
 {
   this->name = name;
   this->x = 0;
@@ -32,9 +32,6 @@ Item::Item(std::string name)
   picojson::object& obj = json.get<picojson::object>();
 
   std::string type = obj["type"].get<std::string>();
-  if (type != "item") {
-    std::cout << "Warning: an item is going to be initialize by the symbol whose type is " << type << std::endl;
-  }
 
   picojson::array& primitives = obj["primitives"].get<picojson::array>();
   for (picojson::array::iterator it = primitives.begin(); it != primitives.end(); ++it) {
@@ -55,7 +52,7 @@ Item::Item(std::string name)
     }
     if (primitiveType == "symbol") {
       std::string path = primitive["path"].get<std::string>();
-      Item* symbol = new Item(path);
+      Symbol* symbol = new Symbol(path);
       symbol->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
       symbol->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
       symbol->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
@@ -69,11 +66,11 @@ Item::Item(std::string name)
 
 }
 
-Item::~Item()
+Symbol::~Symbol()
 {
 }
 
-cairo_surface_t* Item::Render(double scale)
+cairo_surface_t* Symbol::Render(double scale)
 {
   double rscale = this->scale * scale;
   cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
@@ -94,20 +91,20 @@ cairo_surface_t* Item::Render(double scale)
   return surface;
 }
 
-void Item::SetScale(double scale) { this->scale = scale;}
-double Item::GetScale() { return this->scale;}
-std::string Item::GetName() { return this->name; }
-void Item::SetPosition(double x, double y)
+void Symbol::SetScale(double scale) { this->scale = scale;}
+double Symbol::GetScale() { return this->scale;}
+std::string Symbol::GetName() { return this->name; }
+void Symbol::SetPosition(double x, double y)
 {
   this->x = x;
   this->y = y;
 }
-void Item::Move(double dx, double dy)
+void Symbol::Move(double dx, double dy)
 {
   this->SetPosition(this->x + dx, this->y + dy);
 }
 /*
-void Item::SavePng(std::string name)
+void Symbol::SavePng(std::string name)
 {
   cairo_surface_t* surface = this->Render(1);
   std::stringstream filename;

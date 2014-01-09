@@ -1,28 +1,23 @@
-#ifndef ACTABLE_HEADER
+#ifndef SYMBOL_HEADER
+#define SYMBOL_HEADER
 
-#define ACTABLE_HEADER
-
-#include <list>
-#include <string>
 #include <cairo.h>
-#include "renderable.hpp"
+#include <string>
+#include "isymbol.hpp"
 #include "camera.hpp"
 
-class ISymbol : public IRenderable
+class Symbol : public ISymbol
 {
 public:
-  virtual std::string GetName() = 0;
-  virtual void SetScale(double) = 0;
-  virtual void SetPosition(double, double) = 0;
-  virtual void Move(double, double) = 0;
-  virtual double GetScale() = 0;
-
-  std::list<IRenderable*> layers;
-
-protected:
-  int id;
-  std::string name;
-  int innerCount;
+  Symbol(std::string name);
+  ~Symbol();
+  virtual std::string GetName();
+  virtual cairo_surface_t* Render(double scale);
+  virtual void SetScale(double);
+  virtual double GetScale();
+  virtual void SetPosition(double, double);
+  virtual void Move(double, double);
+private:
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "stage_command_scale.hpp"
-#include "item.hpp"
+#include "symbol.hpp"
 #include "actor.hpp"
 
 ScaleStageCommand::ScaleStageCommand(std::string name, double scale)
