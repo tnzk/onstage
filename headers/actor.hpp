@@ -1,10 +1,9 @@
 #ifndef ACTOR_HEADER
-
 #define ACTOR_HEADER
 
 #include <cairo.h>
 #include <string>
-#include "symbol.hpp"
+#include "isymbol.hpp"
 #include "camera.hpp"
 
 enum ActorFace 

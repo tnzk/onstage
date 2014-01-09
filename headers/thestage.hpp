@@ -1,12 +1,11 @@
 #ifndef THESTAGE_HEADER
-
 #define THESTAGE_HEADER
 
 #include <cairo.h>
 #include <map>
 #include <list>
 #include <string>
-#include "symbol.hpp"
+#include "isymbol.hpp"
 #include "actor.hpp"
 #include "item.hpp"
 #include "camera.hpp"

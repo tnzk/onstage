@@ -1,10 +1,9 @@
 #ifndef ITEM_HEADER
-
 #define ITEM_HEADER
 
 #include <cairo.h>
 #include <string>
-#include "symbol.hpp"
+#include "isymbol.hpp"
 #include "camera.hpp"
 
 class Item : public ISymbol
