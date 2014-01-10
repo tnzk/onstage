@@ -10,8 +10,8 @@
   "commands": [
      ["sync", 0],
      ["load_symbol", "bg-momo-room.json"],
-     ["enter", "momo"],
-     ["enter", "hitomi"],
+     ["load_actor", "momo"],
+     ["load_actor", "hitomi"],
      ["scale", "bg-momo-room.json", 1],
      ["load_symbol", "example-object.json"],
      ["scale", "example-object.json", 0.2],

@@ -1,12 +1,12 @@
 #include <string>
 #include "thestage.hpp"
 
-class EnterStageCommand : public IStageCommand
+class LoadActorStageCommand : public IStageCommand
 {
 private:
   std::string actorName;
 public:
-  EnterStageCommand(std::string);
-  ~EnterStageCommand();
+  LoadActorStageCommand(std::string);
+  ~LoadActorStageCommand();
   virtual bool Execute(TheStage&);
 };
