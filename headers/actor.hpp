@@ -3,8 +3,7 @@
 
 #include <cairo.h>
 #include <string>
-#include "isymbol.hpp"
-#include "camera.hpp"
+#include "symbol.hpp"
 
 enum ActorFace 
 {
@@ -13,17 +12,11 @@ enum ActorFace
   Sad
 };
 
-class Actor : public ISymbol
+class Actor : public Symbol
 {
 public:
-  Actor(std::string);
-  ~Actor();
-  virtual cairo_surface_t* Render(double);
-  virtual void SetScale(double);
-  virtual double GetScale();
-  virtual std::string GetName();
-  virtual void SetPosition(double, double);
-  virtual void Move(double, double);
+  using Symbol::Symbol;
+
   bool Walk(double x, double y);
   bool LookAt(double r, double distance);
   bool Eyeblows(double r);
@@ -31,6 +24,7 @@ public:
             double right_r, double right_distance);
   bool Speak();
   bool Shut();
+
 private:
   bool isSpeaking;
   bool isWalking;

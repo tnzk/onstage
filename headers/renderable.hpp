@@ -1,6 +1,5 @@
-#ifndef PRIMITIVE_HEADER
-
-#define PRIMITIVE_HEADER
+#ifndef RENDERABLE_HEADER
+#define RENDERABLE_HEADER
 
 #include <cairo.h>
 

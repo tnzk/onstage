@@ -1,6 +1,5 @@
-#ifndef ACTABLE_HEADER
-
-#define ACTABLE_HEADER
+#ifndef ISYMBOL_HEADER
+#define ISYMBOL_HEADER
 
 #include <list>
 #include <string>
