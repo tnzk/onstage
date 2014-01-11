@@ -1,0 +1,19 @@
+{
+  "type": "item",
+  "primitives": [
+    { "type": "svg",
+      "path": "green-circle.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "svg",
+      "path": "yellow-plane.svg",
+      "x": 0, "y": 320,
+      "visibility": true
+    },
+    { "type": "symbol",
+      "path": "example-object02.json",
+      "x": 54, "y": 23
+    }
+  ]    
+}
