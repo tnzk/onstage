@@ -4,6 +4,7 @@
 #include <cairo.h>
 #include <string>
 #include "isymbol.hpp"
+#include "renderable.hpp"
 #include "camera.hpp"
 
 class Symbol : public ISymbol
@@ -17,6 +18,7 @@ public:
   virtual double GetScale();
   virtual void SetPosition(double, double);
   virtual void Move(double, double);
+  virtual IRenderable* GetRenderable(std::string);
 private:
 };
 

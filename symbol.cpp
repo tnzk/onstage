@@ -38,28 +38,30 @@ Symbol::Symbol(std::string name)
     picojson::object& primitive = (*it).get<picojson::object>();
     double requireWidth = 0;
     double requireHeight = 0;
+    IRenderable* renderable = NULL;
 
     std::string primitiveType = primitive["type"].get<std::string>();
     if (primitiveType == "svg") {
       std::string path = primitive["path"].get<std::string>();
       ImageSvg* svg = new ImageSvg(path);
-      svg->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
-      svg->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
-      svg->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
-      layers.push_back(svg);
-      requireWidth = svg->x + svg->width;
-      requireHeight = svg->y + svg->height;
+      renderable = svg;
+      renderable->className = path;
     }
     if (primitiveType == "symbol") {
       std::string path = primitive["path"].get<std::string>();
       Symbol* symbol = new Symbol(path);
-      symbol->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
-      symbol->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
-      symbol->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
-      layers.push_back(symbol);
-      requireWidth = symbol->x + symbol->width;
-      requireHeight = symbol->y + symbol->height;
+      renderable = symbol;
+      renderable->className = path;
     }
+    renderable->instanceId = primitive["id"].is<std::string>() ? primitive["id"].get<std::string>() : renderable->className;
+    renderable->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
+    renderable->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
+    renderable->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
+    layers.push_back(renderable);
+
+    requireWidth = renderable->x + renderable->width;
+    requireHeight = renderable->y + renderable->height;
+    
     if (this->width < requireWidth) this->width = requireWidth;
     if (this->height < requireHeight) this->height = requireHeight;
   }
@@ -104,7 +106,9 @@ void Symbol::Move(double dx, double dy)
   this->SetPosition(this->x + dx, this->y + dy);
 }
 
-
+IRenderable* Symbol::GetRenderable(std::string instanceId)
+{
+}
 
 /*
 void Symbol::SavePng(std::string name)
