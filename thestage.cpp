@@ -102,6 +102,12 @@ ISymbol* TheStage::GetSymbol(std::string name)
   return *it;
 }
 
+Actor* TheStage::GetActor(std::string name)
+{
+  // TODO: Make sure to return NULL if the symbol is not an instance of Actor
+  return dynamic_cast<Actor*>(this->GetSymbol(name));
+}
+
 int TheStage::AddCamera(double x, double y, double zoom)
 {
   Camera* camera = new Camera();

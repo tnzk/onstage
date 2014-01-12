@@ -2,6 +2,7 @@
 #include "stage_command_sync.hpp"
 #include "stage_command_null.hpp"
 #include "stage_command_move.hpp"
+#include "stage_command_speak.hpp"
 #include "stage_command_load_actor.hpp"
 #include "stage_command_load_symbol.hpp"
 #include "stage_command_scale.hpp"
@@ -46,6 +47,10 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
     }));
     stageCommandFactoryMap.insert(std::make_pair("move", [](picojson::array& command) -> IStageCommand& {
       IStageCommand* cmd = new MoveStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
+      return *cmd;
+    }));
+    stageCommandFactoryMap.insert(std::make_pair("speak", [](picojson::array& command) -> IStageCommand& {
+      IStageCommand* cmd = new SpeakStageCommand(command[1].get<std::string>());
       return *cmd;
     }));
   }

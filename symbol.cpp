@@ -103,6 +103,9 @@ void Symbol::Move(double dx, double dy)
 {
   this->SetPosition(this->x + dx, this->y + dy);
 }
+
+
+
 /*
 void Symbol::SavePng(std::string name)
 {
