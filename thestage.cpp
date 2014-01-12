@@ -99,7 +99,7 @@ ISymbol* TheStage::GetSymbol(std::string name)
 {
   std::list<ISymbol*>::iterator it;
   it = std::find_if(this->symbols.begin(), this->symbols.end(), [name](ISymbol* actable) { return actable->GetName() == name; });
-  return *it;
+  return it != this->symbols.end() ? *it : NULL;
 }
 
 Actor* TheStage::GetActor(std::string name)

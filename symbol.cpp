@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 Symbol::Symbol(std::string name)
 {
@@ -53,6 +54,7 @@ Symbol::Symbol(std::string name)
       renderable = symbol;
       renderable->className = path;
     }
+    // TODO: make sure no instance id is duplicate.
     renderable->instanceId = primitive["id"].is<std::string>() ? primitive["id"].get<std::string>() : renderable->className;
     renderable->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
     renderable->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
@@ -108,6 +110,9 @@ void Symbol::Move(double dx, double dy)
 
 IRenderable* Symbol::GetRenderable(std::string instanceId)
 {
+  std::list<IRenderable*>::iterator it;
+  it = std::find_if(this->layers.begin(), this->layers.end(), [instanceId](IRenderable* renderable) { return renderable->instanceId == instanceId; });
+  return it != this->layers.end() ? *it : NULL;
 }
 
 /*

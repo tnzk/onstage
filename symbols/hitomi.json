@@ -1,5 +1,5 @@
 {
-  "type": "item",
+  "type": "actor",
   "primitives": [
     { "type": "svg",
       "path": "green-circle.svg",
