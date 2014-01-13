@@ -1,0 +1,15 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "path": "phenomena-forehair.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "symbol",
+      "path": "phenomena-face.json",
+      "x": 10, "y": 55,
+      "visibility": true
+    }
+  ]    
+}

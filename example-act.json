@@ -28,6 +28,7 @@
      ["camera_zoom", 2],
      ["camera_move", 640, 360],
      ["sync", 1],
+     ["speak", "momo.json"],
      ["camera_move", 650, 360],
      ["sync", 2],
      ["camera_move", 660, 360],

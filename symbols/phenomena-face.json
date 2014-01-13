@@ -1,0 +1,22 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "path": "phenomena-head.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "svg",
+      "id": "mouth",
+      "path": "phenomena-mouth.svg",
+      "x": 95, "y": 177,
+      "visibility": true
+    },
+    { "type": "svg",
+      "id": "eyes",
+      "path": "phenomena-eyes.svg",
+      "x": 31, "y": 80,
+      "visibility": true
+    }
+  ]    
+}

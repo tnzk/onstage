@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="227.39999"
+   height="215.39999"
+   id="svg3122"
+   version="1.1"
+   inkscape:version="0.48.1 "
+   sodipodi:docname="phenomena-head.svg">
+  <defs
+     id="defs3124" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="174.85127"
+     inkscape:cy="130.33896"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="896"
+     inkscape:window-height="662"
+     inkscape:window-x="1690"
+     inkscape:window-y="70"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3127">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-25.227571,-27.448358)">
+    <path
+       style="fill:none;stroke:#000000;stroke-opacity:1"
+       inkscape:connector-curvature="0"
+       d="m 243.55814,166.8451 c 0,58.376 -47.324,74.789 -105.701,74.789 -58.376998,0 -105.700998,-16.413 -105.700998,-74.789 0,-58.377 47.324,-136.611993 105.700998,-136.611993 58.377,0 105.701,78.234993 105.701,136.611993 z"
+       id="path86" />
+  </g>
+</svg>

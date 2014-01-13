@@ -1,34 +1,24 @@
-#ifndef ACTOR_HEADER
-#define ACTOR_HEADER
+#ifndef HEAD_HEADER
+#define HEAD_HEADER
 
-#include <cairo.h>
-#include <string>
 #include "symbol.hpp"
-#include "head.hpp"
 
-enum ActorFace 
-{
-  Smily,
-  Anger,
-  Sad
-};
-
-class Actor : public Symbol
+class Head
 {
 public:
-  Actor(std::string name);
-
-  bool Walk(double x, double y);
+  Head(Symbol*);
+  ~Head();
   bool LookAt(double r, double distance);
   bool Eyeblows(double r);
   bool Hand(double left_r,  double left_distance, 
             double right_r, double right_distance);
   bool Speak();
   bool Shut();
+
 private:
   bool isSpeaking;
-  bool isWalking;
-  Head* head;
+  Symbol* symbol;
 };
+
 
 #endif

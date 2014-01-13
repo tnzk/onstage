@@ -10,6 +10,8 @@
 Symbol::Symbol(std::string name)
 {
   this->name = name;
+  this->className = name; // the class name decided here will be overwritten by symbol-specifier if this is nested symbol.
+  this->instanceId = this->className; // be likely overwritten
   this->x = 0;
   this->y = 0;
   this->width = 0;
