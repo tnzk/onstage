@@ -11,7 +11,7 @@
      ["sync", 0],
      ["load_symbol", "bg-momo-room.json"],
      ["load_actor", "momo.json"],
-     ["load_actor", "hitomi.json"],
+     ["load_symbol", "hitomi.json"],
      ["load_symbol", "example-object.json"],
      ["load_symbol", "example-object02.json"],
      ["scale", "bg-momo-room.json", 1],

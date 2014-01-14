@@ -6,9 +6,9 @@
       "x": 0, "y": 0,
       "visibility": true
     },
-    { "type": "svg",
+    { "type": "symbol",
       "id": "mouth",
-      "path": "phenomena-mouth.svg",
+      "path": "phenomena-mouth.json",
       "x": 95, "y": 177,
       "visibility": true
     },

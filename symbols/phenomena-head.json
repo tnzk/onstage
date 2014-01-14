@@ -7,6 +7,7 @@
       "visibility": true
     },
     { "type": "symbol",
+      "id": "face",
       "path": "phenomena-face.json",
       "x": 10, "y": 55,
       "visibility": true

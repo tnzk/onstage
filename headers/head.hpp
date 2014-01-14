@@ -1,6 +1,7 @@
 #ifndef HEAD_HEADER
 #define HEAD_HEADER
 
+#include "mouth.hpp"
 #include "symbol.hpp"
 
 class Head
@@ -18,6 +19,8 @@ public:
 private:
   bool isSpeaking;
   Symbol* symbol;
+  Mouth* mouth;
+  //Eyes* eyes;
 };
 
 
