@@ -61,6 +61,15 @@ Symbol::Symbol(std::string name)
     renderable->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
     renderable->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
     renderable->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
+
+    if (primitive["meta"].is<picojson::object>()) {
+      picojson::object metadata = primitive["meta"].get<picojson::object>();
+      for (picojson::object::iterator it = metadata.begin(); it != metadata.end(); ++it) {
+        // TODO: Make sure if using #to_str here is appropriate
+        renderable->meta.insert(std::make_pair(it->first, it->second.to_str()));
+      }
+    }
+
     layers.push_back(renderable);
 
     requireWidth = renderable->x + renderable->width;

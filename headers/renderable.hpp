@@ -3,6 +3,7 @@
 
 #include <cairo.h>
 #include <string>
+#include <map>
 
 class IRenderable
 {
@@ -17,6 +18,7 @@ public:
   bool isVisible;
   std::string instanceId;
   std::string className;
+  std::map<std::string, std::string> meta;
 };
 
 #endif

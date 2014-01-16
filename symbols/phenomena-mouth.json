@@ -5,26 +5,41 @@
       "id": "mouth-01",
       "path": "phenomena-mouth-01.svg",
       "x": 0, "y": 0,
-      "visibility": true
+      "visibility": true,
+      "meta": {
+        "facial-type": "smile",
+        "mouth-style": "close"
+      }
     },
     { "type": "svg",
       "id": "mouth-02",
       "path": "phenomena-mouth-02.svg",
       "x": 0, "y": 0,
-      "visibility": false
+      "visibility": false,
+      "meta": { 
+        "facial-type": "sad",
+        "mouth-style": "close"
+      }
     },
     { "type": "svg",
       "id": "mouth-03",
       "path": "phenomena-mouth-03.svg",
       "x": 0, "y": 0,
-      "visibility": false
+      "visibility": false,
+      "meta": {
+        "facial-type": "sad",
+        "mouth-style": "open"
+      }
     },
     { "type": "svg",
       "id": "mouth-04",
       "path": "phenomena-mouth-04.svg",
       "x": 0, "y": 0,
-      "visibility": false
+      "visibility": false,
+      "meta": {
+        "facial-type": "smile",
+        "mouth-style": "open"
+      }
     }
-
   ]    
 }
