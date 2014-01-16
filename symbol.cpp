@@ -37,8 +37,8 @@ Symbol::Symbol(std::string name)
   std::string type = obj["type"].get<std::string>();
 
   picojson::array& primitives = obj["primitives"].get<picojson::array>();
-  for (picojson::array::iterator it = primitives.begin(); it != primitives.end(); ++it) {
-    picojson::object& primitive = (*it).get<picojson::object>();
+  for (auto& element : primitives) {
+    picojson::object& primitive = element.get<picojson::object>();
     double requireWidth = 0;
     double requireHeight = 0;
     IRenderable* renderable = NULL;
@@ -64,9 +64,9 @@ Symbol::Symbol(std::string name)
 
     if (primitive["meta"].is<picojson::object>()) {
       picojson::object metadata = primitive["meta"].get<picojson::object>();
-      for (picojson::object::iterator it = metadata.begin(); it != metadata.end(); ++it) {
+      for (auto& element : metadata) {
         // TODO: Make sure if using #to_str here is appropriate
-        renderable->meta.insert(std::make_pair(it->first, it->second.to_str()));
+        renderable->meta.insert(std::make_pair(element.first, element.second.to_str()));
       }
     }
 
@@ -93,8 +93,8 @@ cairo_surface_t* Symbol::Render(double scale)
                                                         this->height * rscale);
   cairo_t* cairo = cairo_create(surface);
 
-  for (std::list<IRenderable*>::iterator it = this->layers.begin(); it != this->layers.end(); ++it) {
-    IRenderable* svg = *it;
+  for (IRenderable* element : this->layers) {
+    IRenderable* svg = element;
     if (svg->isVisible) {
       cairo_surface_t* subsurface = svg->Render(rscale);
       cairo_set_source_surface(cairo, subsurface, svg->x * rscale, svg->y * rscale);
