@@ -13,7 +13,7 @@
    height="78.610001"
    id="svg3244"
    version="1.1"
-   inkscape:version="0.48.1 "
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="phenomena-eyes.svg">
   <defs
      id="defs3246" />
@@ -34,8 +34,8 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="789"
-     inkscape:window-height="398"
+     inkscape:window-width="977"
+     inkscape:window-height="433"
      inkscape:window-x="150"
      inkscape:window-y="252"
      inkscape:window-maximized="0" />
@@ -71,32 +71,6 @@
          sodipodi:ry="37.805"
          d="m 550.29298,402.95401 c 0,20.87913 -16.92588,37.805 -37.805,37.805 -20.87913,0 -37.805,-16.92587 -37.805,-37.805 0,-20.87913 16.92587,-37.805 37.805,-37.805 20.87912,0 37.805,16.92587 37.805,37.805 z"
          transform="translate(1.6019068,-0.96114408)" />
-      <g
-         id="eye_right"
-         transform="translate(1.6019068,-0.96114408)">
-        <circle
-           cx="525.12097"
-           cy="410.134"
-           r="16.634001"
-           id="circle3352"
-           style="fill:none;stroke:#000000;stroke-opacity:1"
-           d="m 541.75497,410.134 c 0,9.18671 -7.44729,16.634 -16.634,16.634 -9.1867,0 -16.634,-7.44729 -16.634,-16.634 0,-9.1867 7.4473,-16.634 16.634,-16.634 9.18671,0 16.634,7.4473 16.634,16.634 z"
-           sodipodi:cx="525.12097"
-           sodipodi:cy="410.134"
-           sodipodi:rx="16.634001"
-           sodipodi:ry="16.634001" />
-        <circle
-           cx="525"
-           cy="411.026"
-           r="2.5"
-           id="circle3354"
-           style="fill:#000000;fill-opacity:1"
-           d="m 527.5,411.026 c 0,1.38071 -1.11929,2.5 -2.5,2.5 -1.38071,0 -2.5,-1.11929 -2.5,-2.5 0,-1.38071 1.11929,-2.5 2.5,-2.5 1.38071,0 2.5,1.11929 2.5,2.5 z"
-           sodipodi:cx="525"
-           sodipodi:cy="411.026"
-           sodipodi:rx="2.5"
-           sodipodi:ry="2.5" />
-      </g>
       <circle
          cx="597.48798"
          cy="402.95401"
@@ -109,32 +83,6 @@
          sodipodi:rx="37.805"
          sodipodi:ry="37.805"
          transform="translate(1.6019068,-0.96114408)" />
-      <g
-         id="eye_left"
-         transform="translate(1.6019068,-0.96114408)">
-        <circle
-           cx="581.12097"
-           cy="410.134"
-           r="16.634001"
-           id="circle3358"
-           style="fill:none;stroke:#000000;stroke-opacity:1"
-           d="m 597.75497,410.134 c 0,9.18671 -7.44729,16.634 -16.634,16.634 -9.1867,0 -16.634,-7.44729 -16.634,-16.634 0,-9.1867 7.4473,-16.634 16.634,-16.634 9.18671,0 16.634,7.4473 16.634,16.634 z"
-           sodipodi:cx="581.12097"
-           sodipodi:cy="410.134"
-           sodipodi:rx="16.634001"
-           sodipodi:ry="16.634001" />
-        <circle
-           cx="581"
-           cy="411.026"
-           r="2.5220001"
-           id="circle3360"
-           style="fill:#000000;fill-opacity:1"
-           d="m 583.522,411.026 c 0,1.39286 -1.12914,2.522 -2.522,2.522 -1.39286,0 -2.522,-1.12914 -2.522,-2.522 0,-1.39286 1.12914,-2.522 2.522,-2.522 1.39286,0 2.522,1.12914 2.522,2.522 z"
-           sodipodi:cx="581"
-           sodipodi:cy="411.026"
-           sodipodi:rx="2.5220001"
-           sodipodi:ry="2.5220001" />
-      </g>
     </g>
   </g>
 </svg>

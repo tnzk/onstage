@@ -1,0 +1,22 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+       "path": "phenomena-eyes.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "svg",
+      "path": "phenomena-pupil.svg",
+      "id": "left-pupil",
+      "x": 20, "y": 20,
+      "visibility": true
+    },
+    { "type": "svg",
+      "path": "phenomena-pupil.svg",
+      "id": "right-pupil",
+      "x": 105,  "y": 20,
+      "visibility": true
+    }
+  ]
+}

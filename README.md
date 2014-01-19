@@ -13,6 +13,7 @@
     * SVG loading
     * script loading
 * Introduce an interface to deal the phenomena that have anything sequential
+* Possibility to determine which intermediate is better by previous and next mouth shape
 
 ## Memo ##
 

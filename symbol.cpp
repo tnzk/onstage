@@ -93,6 +93,12 @@ cairo_surface_t* Symbol::Render(double scale)
                                                         this->height * rscale);
   cairo_t* cairo = cairo_create(surface);
 
+  if (this->debug) {
+    cairo_set_source_rgba(cairo, 0.1, 0.1, 0.18, 0.3);
+    cairo_rectangle(cairo, 0, 0, this->width * rscale, this->height * rscale);
+    cairo_fill(cairo);
+  }
+
   for (IRenderable* element : this->layers) {
     IRenderable* svg = element;
     if (svg->isVisible) {

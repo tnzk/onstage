@@ -18,6 +18,7 @@ public:
   double y;
   double scale;
   bool isVisible;
+  bool debug = false;
   std::string instanceId;
   std::string className;
   std::map<std::string, std::string> meta;

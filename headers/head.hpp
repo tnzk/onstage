@@ -1,6 +1,7 @@
 #ifndef HEAD_HEADER
 #define HEAD_HEADER
 
+#include "eyes.hpp"
 #include "mouth.hpp"
 #include "symbol.hpp"
 
@@ -21,7 +22,7 @@ private:
   bool isSpeaking;
   Symbol* symbol;
   Mouth* mouth;
-  //Eyes* eyes;
+  Eyes* eyes;
 };
 
 
