@@ -41,8 +41,7 @@
      ["speak", "momo.json"],
      ["sync", 6],
      ["camera_move", 700, 370],
-     ["sync", 7],
-     ["camera_move", 0, 0]
+     ["sync", 7]
    ]
 }
 

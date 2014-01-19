@@ -12,10 +12,9 @@
     * symbol loading
     * SVG loading
     * script loading
+* Introduce an interface to deal the phenomena that have anything sequential
 
 ## Memo ##
-
-### Inheritance ###
 
 ```
       IRenderable

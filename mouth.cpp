@@ -57,7 +57,6 @@ bool Mouth::Close()
 
 void Mouth::Sync(int frame)
 {
-  std::cout << "Mouth synced at " << frame << std::endl;
   this->symbol->Sync(frame);
   if (frame % 2) {
     this->Open();
