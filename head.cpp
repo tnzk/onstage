@@ -19,3 +19,9 @@ bool Head::Speak()
   std::cout << "Head speaks." << std::endl;
   this->mouth->Open();
 }
+
+void Head::Sync(int frame)
+{
+  this->symbol->Sync(frame);
+  this->mouth->Sync(frame);
+}

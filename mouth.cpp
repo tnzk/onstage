@@ -54,3 +54,14 @@ bool Mouth::Close()
   this->currentFacial.second->isVisible = false;
   return true;
 }
+
+void Mouth::Sync(int frame)
+{
+  std::cout << "Mouth synced at " << frame << std::endl;
+  this->symbol->Sync(frame);
+  if (frame % 2) {
+    this->Open();
+  } else {
+    this->Close();
+  }
+}

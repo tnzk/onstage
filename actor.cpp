@@ -22,4 +22,5 @@ void Actor::Sync(int frame)
 {
   // std::cout << "Actor::Sync" << std::endl;
   Symbol::Sync(frame);
+  this->head->Sync(frame);
 }

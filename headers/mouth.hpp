@@ -13,6 +13,7 @@ public:
   bool Open();
   bool Close();
   bool ChangeFacial(std::string);
+  void Sync(int);
 
 private:
   Symbol* symbol;

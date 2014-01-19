@@ -15,6 +15,7 @@ public:
             double right_r, double right_distance);
   bool Speak();
   bool Shut();
+  void Sync(int);
 
 private:
   bool isSpeaking;
