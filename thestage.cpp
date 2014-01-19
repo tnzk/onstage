@@ -64,6 +64,7 @@ bool TheStage::Render(cairo_surface_t* surface)
     Camera* primaryCamera = this->GetPrimaryCamera();
     double rx;
     double ry;
+    symbol->Sync(this->currentFrame);
     primaryCamera->Translate(symbol->x, symbol->y, rx, ry);
     cairo_surface_t* subsurface = symbol->Render(primaryCamera->GetZoom());
     cairo_set_source_surface(cairo, subsurface, rx, ry);

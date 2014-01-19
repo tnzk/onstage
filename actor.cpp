@@ -17,3 +17,9 @@ bool Actor::Speak()
   this->head->Speak();
   return true;
 }
+
+void Actor::Sync(int frame)
+{
+  // std::cout << "Actor::Sync" << std::endl;
+  Symbol::Sync(frame);
+}

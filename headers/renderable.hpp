@@ -9,6 +9,8 @@ class IRenderable
 {
 public:
   virtual cairo_surface_t* Render(double scale) = 0;
+  virtual void Sync(int) = 0;
+  virtual int GetCurrentFrame() = 0;
 
   double width;
   double height;
@@ -19,6 +21,8 @@ public:
   std::string instanceId;
   std::string className;
   std::map<std::string, std::string> meta;
+protected:
+  int currentFrame;
 };
 
 #endif

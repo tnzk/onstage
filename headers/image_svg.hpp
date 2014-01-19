@@ -13,6 +13,8 @@ public:
   ImageSvg(std::string);
   ~ImageSvg();
   virtual cairo_surface_t* Render(double scale);
+  virtual void Sync(int) {};
+  virtual int GetCurrentFrame() {};
 private:
   RsvgHandle* rsvg;
 

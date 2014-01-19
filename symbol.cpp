@@ -126,6 +126,17 @@ IRenderable* Symbol::GetRenderable(std::string instanceId)
   return it != this->layers.end() ? *it : NULL;
 }
 
+void Symbol::Sync(int frame)
+{
+  // std::cout << "Symbol::Sync at " << frame << " for " << this->className << std::endl;
+  this->currentFrame = frame;
+}
+
+int Symbol::GetCurrentFrame()
+{
+  return this->currentFrame;
+}
+
 /*
 void Symbol::SavePng(std::string name)
 {
