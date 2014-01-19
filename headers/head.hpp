@@ -10,7 +10,7 @@ class Head
 public:
   Head(Symbol*);
   ~Head();
-  bool LookAt(double r, double distance);
+  bool LookAt(double rad, double distance);
   bool Eyeblows(double r);
   bool Hand(double left_r,  double left_distance, 
             double right_r, double right_distance);

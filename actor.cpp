@@ -18,6 +18,12 @@ bool Actor::Speak()
   return true;
 }
 
+bool Actor::LookAt(double rad, double distance)
+{
+  this->head->LookAt(rad, distance);
+  return true;
+}
+
 void Actor::Sync(int frame)
 {
   // std::cout << "Actor::Sync" << std::endl;

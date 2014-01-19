@@ -8,6 +8,7 @@
 #include "stage_command_scale.hpp"
 #include "stage_command_camera_zoom.hpp"
 #include "stage_command_camera_move.hpp"
+#include "stage_command_lookat.hpp"
 #include <map>
 #include <algorithm>
 #include <functional>
@@ -51,6 +52,10 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
     }));
     stageCommandFactoryMap.insert(std::make_pair("speak", [](picojson::array& command) -> IStageCommand& {
       IStageCommand* cmd = new SpeakStageCommand(command[1].get<std::string>());
+      return *cmd;
+    }));
+    stageCommandFactoryMap.insert(std::make_pair("lookat", [](picojson::array& command) -> IStageCommand& {
+      IStageCommand* cmd = new LookatStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
       return *cmd;
     }));
   }

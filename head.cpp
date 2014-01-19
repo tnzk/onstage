@@ -22,15 +22,18 @@ Head::Head(Symbol* symbol)
     // TODO: Abort
   }
   this->eyes = new Eyes(dynamic_cast<Symbol*>(eyes));
-
-  this->eyes->LookAt(M_PI, 100);
-  this->eyes->LookAt(M_PI, 100);
 }
 
 bool Head::Speak()
 {
   std::cout << "Head speaks." << std::endl;
   this->mouth->Open();
+}
+
+bool Head::LookAt(double rad, double distance)
+{
+  this->eyes->LookAt(rad, distance);
+  return true;
 }
 
 void Head::Sync(int frame)

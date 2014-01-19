@@ -15,7 +15,6 @@ Eyes::Eyes(Symbol* symbol)
 
 bool Eyes::LookAt(double rad, double distance)
 {
-  this->symbol->debug = true;
   double centerX = this->symbol->width / 2.0;
   double centerY = this->symbol->height / 2.0;
   double focusX = centerX + distance * cos(rad);

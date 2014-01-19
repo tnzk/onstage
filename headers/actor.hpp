@@ -19,7 +19,7 @@ public:
   Actor(std::string name);
 
   bool Walk(double x, double y);
-  bool LookAt(double r, double distance);
+  bool LookAt(double rad, double distance);
   bool Eyeblows(double r);
   bool Hand(double left_r,  double left_distance, 
             double right_r, double right_distance);
