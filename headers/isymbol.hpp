@@ -15,7 +15,8 @@ public:
   virtual void SetPosition(double, double) = 0;
   virtual void Move(double, double) = 0;
   virtual double GetScale() = 0;
-  virtual IRenderable* GetRenderable(std::string) = 0;
+  virtual IRenderable* GetRenderableById(std::string) = 0;
+  virtual void AddRenderable(IRenderable*) = 0;
 
   std::list<IRenderable*> layers;
 

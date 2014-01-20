@@ -125,7 +125,7 @@ void Symbol::Move(double dx, double dy)
   this->SetPosition(this->x + dx, this->y + dy);
 }
 
-IRenderable* Symbol::GetRenderable(std::string instanceId)
+IRenderable* Symbol::GetRenderableById(std::string instanceId)
 {
   std::list<IRenderable*>::iterator it;
   it = std::find_if(this->layers.begin(), this->layers.end(), [instanceId](IRenderable* renderable) { return renderable->instanceId == instanceId; });
@@ -141,6 +141,10 @@ void Symbol::Sync(int frame)
 int Symbol::GetCurrentFrame()
 {
   return this->currentFrame;
+}
+
+void Symbol::AddRenderable(IRenderable* renderable)
+{
 }
 
 /*

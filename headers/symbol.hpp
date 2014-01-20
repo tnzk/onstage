@@ -18,10 +18,10 @@ public:
   virtual double GetScale();
   virtual void SetPosition(double, double);
   virtual void Move(double, double);
-  virtual IRenderable* GetRenderable(std::string);
+  virtual IRenderable* GetRenderableById(std::string);
   virtual void Sync(int);
   virtual int GetCurrentFrame();
-
+  virtual void AddRenderable(IRenderable*);
 private:
 };
 

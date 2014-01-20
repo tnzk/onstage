@@ -3,7 +3,7 @@
 
 Actor::Actor(std::string name) : Symbol(name)
 {
-  IRenderable* head = this->GetRenderable("head");
+  IRenderable* head = this->GetRenderableById("head");
   if (head == NULL) {
     std::cout << "Error: No symbol whose name is head not found for " 
               << this->instanceId << ":"  << this->className << std::endl;

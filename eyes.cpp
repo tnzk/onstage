@@ -5,8 +5,8 @@
 Eyes::Eyes(Symbol* symbol)
 {
   this->symbol = symbol;
-  this->pupils.first = symbol->GetRenderable("left-pupil");
-  this->pupils.second = symbol->GetRenderable("right-pupil");
+  this->pupils.first = symbol->GetRenderableById("left-pupil");
+  this->pupils.second = symbol->GetRenderableById("right-pupil");
   this->leftBasePosition.first = this->pupils.first->x;
   this->leftBasePosition.second = this->pupils.first->y;
   this->rightBasePosition.first = this->pupils.second->x;

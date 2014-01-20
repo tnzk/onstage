@@ -5,9 +5,9 @@
 Head::Head(Symbol* symbol)
 {
   this->symbol = symbol;
-  Symbol* face = dynamic_cast<Symbol*>(this->symbol->GetRenderable("face"));
+  Symbol* face = dynamic_cast<Symbol*>(this->symbol->GetRenderableById("face"));
 
-  IRenderable* mouth = face->GetRenderable("mouth");
+  IRenderable* mouth = face->GetRenderableById("mouth");
   if (mouth == NULL) {
     std::cout << "Error: No symbol whose name is mouth not found for " 
               << face->instanceId << ":"  << face->className << std::endl;
@@ -15,7 +15,7 @@ Head::Head(Symbol* symbol)
   }
   this->mouth = new Mouth(dynamic_cast<Symbol*>(mouth));
 
-  IRenderable* eyes = face->GetRenderable("eyes");
+  IRenderable* eyes = face->GetRenderableById("eyes");
   if (eyes == NULL) {
     std::cout << "Error: No symbol whose name is eyes not found for " 
               << face->instanceId << ":"  << face->className << std::endl;
