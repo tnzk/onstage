@@ -16,6 +16,9 @@ Symbol::Symbol(std::string name)
   this->y = 0;
   this->width = 0;
   this->height = 0;
+  this->centerX = 0;
+  this->centerY = 0;
+  this->angle = 0;
   this->scale = 1;
   this->isVisible = true;
 
@@ -99,13 +102,17 @@ cairo_surface_t* Symbol::Render(double scale)
     cairo_fill(cairo);
   }
 
-  for (IRenderable* element : this->layers) {
-    IRenderable* svg = element;
-    if (svg->isVisible) {
-      cairo_surface_t* subsurface = svg->Render(rscale);
-      cairo_set_source_surface(cairo, subsurface, svg->x * rscale, svg->y * rscale);
+  for (IRenderable* renderable : this->layers) {
+    if (renderable->isVisible) {
+      cairo_surface_t* subsurface = renderable->Render(rscale);
+      cairo_translate(cairo, -renderable->centerX * rscale, -renderable->centerY * rscale);
+      cairo_rotate(cairo, renderable->angle);
+      cairo_translate(cairo, renderable->x * rscale, renderable->y * rscale);
+      cairo_set_source_surface(cairo, subsurface, 0, 0);
+      cairo_translate(cairo, renderable->centerX * rscale, renderable->centerY * rscale);
       cairo_paint(cairo);
       cairo_surface_destroy(subsurface);
+      cairo_identity_matrix(cairo);
     }
   }
 

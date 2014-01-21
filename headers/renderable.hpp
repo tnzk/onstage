@@ -17,6 +17,9 @@ public:
   double x;
   double y;
   double scale;
+  double angle;
+  double centerX;
+  double centerY;
   bool isVisible;
   bool debug = false;
   std::string instanceId;
