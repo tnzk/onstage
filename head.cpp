@@ -30,6 +30,8 @@ bool Head::Speak()
   this->mouth->Open();
   this->symbol->centerX = this->symbol->width / 2;
   this->symbol->centerY = this->symbol->height / 2;
+  this->symbol->x = this->symbol->width / 2;
+  this->symbol->y = this->symbol->height / 2;
 }
 
 bool Head::LookAt(double rad, double distance)

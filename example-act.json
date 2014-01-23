@@ -26,7 +26,7 @@
      ["move", "momo.json", -50, 0],
      ["move", "hitomi.json", 50, 0],
      ["lookat", "momo.json", 0, 0],
-     ["camera_zoom", 2],
+     ["camera_zoom", 2.2],
      ["camera_move", 640, 360],
      ["sync", 1],
      ["speak", "momo.json"],

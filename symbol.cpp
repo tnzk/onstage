@@ -96,7 +96,7 @@ cairo_surface_t* Symbol::Render(double scale)
                                                         this->height * rscale);
   cairo_t* cairo = cairo_create(surface);
 
-  if (this->debug) {
+  if (true || this->debug) {
     cairo_set_source_rgba(cairo, 0.1, 0.1, 0.18, 0.3);
     cairo_rectangle(cairo, 0, 0, this->width * rscale, this->height * rscale);
     cairo_fill(cairo);
@@ -105,11 +105,10 @@ cairo_surface_t* Symbol::Render(double scale)
   for (IRenderable* renderable : this->layers) {
     if (renderable->isVisible) {
       cairo_surface_t* subsurface = renderable->Render(rscale);
-      cairo_translate(cairo, -renderable->centerX * rscale, -renderable->centerY * rscale);
-      cairo_rotate(cairo, renderable->angle);
       cairo_translate(cairo, renderable->x * rscale, renderable->y * rscale);
+      cairo_rotate(cairo, renderable->angle);
+      cairo_translate(cairo, -renderable->centerX * rscale, -renderable->centerY * rscale);
       cairo_set_source_surface(cairo, subsurface, 0, 0);
-      cairo_translate(cairo, renderable->centerX * rscale, renderable->centerY * rscale);
       cairo_paint(cairo);
       cairo_surface_destroy(subsurface);
       cairo_identity_matrix(cairo);
