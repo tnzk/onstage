@@ -14,6 +14,8 @@
     * script loading
 * Introduce an interface to deal the phenomena that have anything sequential
 * Possibility to determine which intermediate is better by previous and next mouth shape
+* It may seem to be better to say 'render' command rather 'sync'
+* Rotations in degree
 
 ## Memo ##
 
