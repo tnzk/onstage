@@ -12,15 +12,15 @@ public:
   virtual void Sync(int) = 0;
   virtual int GetCurrentFrame() = 0;
 
-  double width;
-  double height;
-  double x;
-  double y;
-  double scale;
-  double angle;
-  double centerX;
-  double centerY;
-  bool isVisible;
+  double width = 0;
+  double height = 0;
+  double x = 0;
+  double y = 0;
+  double scale = 1;
+  double angle = 0;
+  double centerX = 0;
+  double centerY = 0;
+  bool isVisible = true;
   bool debug = false;
   std::string instanceId;
   std::string className;
