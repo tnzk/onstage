@@ -28,10 +28,6 @@ bool Head::Speak()
 {
   std::cout << "Head speaks." << std::endl;
   this->mouth->Open();
-  this->symbol->centerX = this->symbol->width / 2;
-  this->symbol->centerY = this->symbol->height / 2;
-  this->symbol->x = this->symbol->width / 2;
-  this->symbol->y = this->symbol->height / 2;
 }
 
 bool Head::LookAt(double rad, double distance)
@@ -43,6 +39,5 @@ bool Head::LookAt(double rad, double distance)
 void Head::Sync(int frame)
 {
   this->symbol->Sync(frame);
-  this->symbol->angle = 0.05 * frame;
   this->mouth->Sync(frame);
 }
