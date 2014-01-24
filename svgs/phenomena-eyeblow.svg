@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="74.639999"
+   height="13.17"
+   id="svg3244"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="phenomena-eyes.svg">
+  <defs
+     id="defs3246" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.1212802"
+     inkscape:cx="76.640039"
+     inkscape:cy="-14.23293"
+     inkscape:document-units="px"
+     inkscape:current-layer="eyes"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="977"
+     inkscape:window-height="433"
+     inkscape:window-x="224"
+     inkscape:window-y="291"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3249">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-291.93139,-312.14401)">
+    <g
+       transform="translate(-186.41655,-50.591824)"
+       id="eyes">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 481.73137,369.95474 c 36.84385,9.29106 66.63932,1.28153 66.63932,1.28153 0,0 -22.74708,-10.25221 -66.63932,-1.28153 z"
+         id="path2985"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

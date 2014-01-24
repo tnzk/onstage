@@ -63,6 +63,9 @@ Symbol::Symbol(std::string name)
     renderable->instanceId = primitive["id"].is<std::string>() ? primitive["id"].get<std::string>() : renderable->className;
     renderable->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
     renderable->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
+    renderable->angle = primitive["angle"].is<double>() ? primitive["angle"].get<double>() : 0;
+    renderable->centerX = primitive["center-x"].is<double>() ? primitive["center-x"].get<double>() : 0;
+    renderable->centerY = primitive["center-y"].is<double>() ? primitive["center-y"].get<double>() : 0;
     renderable->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
 
     if (primitive["meta"].is<picojson::object>()) {
