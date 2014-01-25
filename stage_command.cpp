@@ -15,53 +15,53 @@
 #include <functional>
 #include <iostream>
 
-IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
+IStageCommand* StageCommandFactory::Create(picojson::value& jsonCommand)
 {
   static bool initialized = false;
-  static std::map<std::string, std::function<IStageCommand&(picojson::array&)> > stageCommandFactoryMap;
+  static std::map<std::string, std::function<IStageCommand*(picojson::array&)> > stageCommandFactoryMap;
 
   if(!initialized) {
     initialized = true;
 
-    stageCommandFactoryMap.insert(std::make_pair("sync", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("sync", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new SyncStageCommand(command[1].get<double>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("load_actor", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("load_actor", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new LoadActorStageCommand(command[1].get<std::string>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("load_symbol", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("load_symbol", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new LoadSymbolStageCommand(command[1].get<std::string>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("scale", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("scale", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new ScaleStageCommand(command[1].get<std::string>(), command[2].get<double>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("camera_zoom", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("camera_zoom", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new CameraZoomStageCommand(command[1].get<double>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("camera_move", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("camera_move", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new CameraMoveStageCommand(command[1].get<double>(), command[2].get<double>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("move", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("move", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new MoveStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("speak", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("speak", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new SpeakStageCommand(command[1].get<std::string>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("lookat", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("lookat", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new LookatStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
-      return *cmd;
+      return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("eyeblows", [](picojson::array& command) -> IStageCommand& {
+    stageCommandFactoryMap.insert(std::make_pair("eyeblows", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new EyeblowsStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
-      return *cmd;
+      return cmd;
     }));
   }
     
@@ -74,6 +74,6 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
     return f(command);
   } else {
     IStageCommand* cmd = new NullStageCommand(commandName);
-    return *cmd;
+    return cmd;
   }
 }

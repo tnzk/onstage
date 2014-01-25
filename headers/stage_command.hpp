@@ -16,7 +16,7 @@ public:
 class StageCommandFactory
 {
 public:
-  static IStageCommand& Create(picojson::value&);
+  static IStageCommand* Create(picojson::value&);
 };
 
 #endif

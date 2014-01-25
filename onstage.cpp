@@ -27,7 +27,6 @@ int main(int argc, char** argv)
 
   if (opt.exist("list-commands")) {
     std::cout << "Commands supported:" << std::endl;
-    
     exit(0);
   }
 
@@ -58,14 +57,17 @@ int main(int argc, char** argv)
 
   rsvg_init();
 
-  int skipAt = 0;
-  picojson::array::iterator it = commands.begin();
+  for(picojson::array::iterator it = commands.begin(); it != commands.end(); ++it) {
+    stage.storedCommands.push_back(StageCommandFactory::Create(*it));
+  }
+
+  std::list<IStageCommand*>::iterator it = stage.storedCommands.begin();
   for(int i = 0; i < stage.GetDuration(); i++) {
-    for (; stage.GetCurrentFrame() >= stage.skipUntil && it != commands.end(); it++) {
-      IStageCommand& command = StageCommandFactory::Create(*it);
-      stage.Execute(command);
+    for (; stage.GetCurrentFrame() >= stage.skipUntil && it != stage.storedCommands.end(); ++it) {
+      IStageCommand* command = *it;
+      stage.Execute(*command);
     }
-    cairo_surface_t* surface = stage.Render(surface);
+    cairo_surface_t* surface = stage.Render();
     std::stringstream filename;
     filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
     cairo_surface_write_to_png(surface, filename.str().c_str());

@@ -38,6 +38,7 @@ public:
   Camera* GetPrimaryCamera();
   int AddCamera(double x, double y, double zoom);
   int skipUntil;
+  std::list<IStageCommand*> storedCommands;
 private:
   int width;
   int height;
