@@ -28,7 +28,7 @@ public:
   int GetDuration();
   int GetCurrentFrame();
   bool Execute(IStageCommand& command);
-  bool Render(cairo_surface_t*);
+  cairo_surface_t* Render();
   bool Skip();
   void ShowVideoSetting();
   void RegisterActor(std::string, Actor*);

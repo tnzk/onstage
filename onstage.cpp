@@ -17,9 +17,11 @@ int main(int argc, char** argv)
 {
 
   TheStage stage;
+  bool isInteractive = false;
 
   cmdline::parser opt;
   opt.add<std::string>("file", 'f', "Script file.", false);
+  opt.add("interactive", 'i', "Run in interactive mode.");
   opt.add("list-commands", 'l', "List all the avaiable commands.");
   opt.parse_check(argc, argv);
 
@@ -27,6 +29,10 @@ int main(int argc, char** argv)
     std::cout << "Commands supported:" << std::endl;
     
     exit(0);
+  }
+
+  if (opt.exist("interactive")) {
+    std::cout << "Interactive mode not supported." << std::endl;
   }
 
   std::string scriptFileName = opt.get<std::string>("file");
@@ -51,7 +57,6 @@ int main(int argc, char** argv)
   stage.ShowVideoSetting();
 
   rsvg_init();
-  cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, stage.GetResolutionWidth(), stage.GetResolutionHeight());
 
   int skipAt = 0;
   picojson::array::iterator it = commands.begin();
@@ -60,10 +65,11 @@ int main(int argc, char** argv)
       IStageCommand& command = StageCommandFactory::Create(*it);
       stage.Execute(command);
     }
-    stage.Render(surface);
+    cairo_surface_t* surface = stage.Render(surface);
     std::stringstream filename;
     filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
     cairo_surface_write_to_png(surface, filename.str().c_str());
+    cairo_surface_destroy(surface);
   }
 
   rsvg_term();

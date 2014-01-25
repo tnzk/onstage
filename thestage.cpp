@@ -49,10 +49,11 @@ bool TheStage::Execute(IStageCommand& command)
 
 int TheStage::GetCurrentFrame() { return this->currentFrame; }
 
-bool TheStage::Render(cairo_surface_t* surface)
+cairo_surface_t* TheStage::Render()
 {
   this->currentFrame++;
-  
+
+  cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, this->width, this->height);
   cairo_t* cairo = cairo_create(surface);
 
   // Clear the surface
@@ -73,7 +74,7 @@ bool TheStage::Render(cairo_surface_t* surface)
   }
   
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
-  return true;
+  return surface;
 }
 
 bool TheStage::Skip()
