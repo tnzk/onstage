@@ -20,6 +20,8 @@ class TheStage
 {
 public:
   TheStage();
+  void Start();
+  void End();
   void SetResolution(int, int);
   int GetResolutionWidth();
   int GetResolutionHeight();
@@ -37,6 +39,7 @@ public:
   Actor* GetActor(std::string name);
   Camera* GetPrimaryCamera();
   int AddCamera(double x, double y, double zoom);
+  void ExecuteCommandsUntilCurrentFrame();
   int skipUntil;
   std::list<IStageCommand*> storedCommands;
 private:
@@ -48,6 +51,7 @@ private:
   std::list<ISymbol*> symbols;
   int primaryCameraId;
   std::vector<Camera*> cameras;
+  std::list<IStageCommand*>::iterator storedCommandIterator;
 };
 
 #endif

@@ -61,18 +61,16 @@ int main(int argc, char** argv)
     stage.storedCommands.push_back(StageCommandFactory::Create(*it));
   }
 
-  std::list<IStageCommand*>::iterator it = stage.storedCommands.begin();
+  stage.Start();
   for(int i = 0; i < stage.GetDuration(); i++) {
-    for (; stage.GetCurrentFrame() >= stage.skipUntil && it != stage.storedCommands.end(); ++it) {
-      IStageCommand* command = *it;
-      stage.Execute(*command);
-    }
+    stage.ExecuteCommandsUntilCurrentFrame();
     cairo_surface_t* surface = stage.Render();
     std::stringstream filename;
     filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
     cairo_surface_write_to_png(surface, filename.str().c_str());
     cairo_surface_destroy(surface);
   }
+  stage.End();
 
   rsvg_term();
   return 0;

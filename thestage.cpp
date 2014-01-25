@@ -124,3 +124,23 @@ Camera* TheStage::GetPrimaryCamera()
 {
   return this->cameras[this->primaryCameraId];
 }
+
+void TheStage::ExecuteCommandsUntilCurrentFrame()
+{
+  auto& it = this->storedCommandIterator;
+  for (; this->GetCurrentFrame() >= this->skipUntil 
+	 && it != this->storedCommands.end(); ++it) {
+    IStageCommand* command = *it;
+    this->Execute(*command);
+  }
+}
+
+void TheStage::Start()
+{
+  this->storedCommandIterator = this->storedCommands.begin();
+}
+
+void TheStage::End()
+{
+  // TODO: release the resouces
+}
