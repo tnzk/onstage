@@ -24,9 +24,20 @@ bool Actor::LookAt(double rad, double distance)
   return true;
 }
 
+bool Actor::Eyeblows(double r) { return this->Eyeblows(r, r); }
+bool Actor::Eyeblows(double left, double right)
+{
+  return this->head->Eyeblows(left, right);
+}
+
 void Actor::Sync(int frame)
 {
   // std::cout << "Actor::Sync" << std::endl;
   Symbol::Sync(frame);
   this->head->Sync(frame);
+}
+
+bool Actor::IsSpeaking()
+{
+  return this->head->IsSpeaking();
 }

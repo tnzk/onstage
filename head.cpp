@@ -22,18 +22,36 @@ Head::Head(Symbol* symbol)
     // TODO: Abort
   }
   this->eyes = new Eyes(dynamic_cast<Symbol*>(eyes));
+
+  IRenderable* leftEyeblow = face->GetRenderableById("eyeblow-left");
+  IRenderable* rightEyeblow =  face->GetRenderableById("eyeblow-right");
+  this->eyeblows.first = leftEyeblow;
+  this->eyeblows.second = rightEyeblow;
 }
 
 bool Head::Speak()
 {
-  std::cout << "Head speaks." << std::endl;
+  this->isSpeaking = true;
   this->mouth->Open();
 }
+
+bool Head::Shut()
+{
+  this->isSpeaking = false;
+}
+
+bool Head::IsSpeaking() { return this->isSpeaking; }
 
 bool Head::LookAt(double rad, double distance)
 {
   this->eyes->LookAt(rad, distance);
   return true;
+}
+
+bool Head::Eyeblows(double left, double right)
+{
+  if (this->eyeblows.first) this->eyeblows.first->angle = left;
+  if (this->eyeblows.second) this->eyeblows.second->angle = right;
 }
 
 void Head::Sync(int frame)

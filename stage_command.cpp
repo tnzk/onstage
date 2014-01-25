@@ -9,6 +9,7 @@
 #include "stage_command_camera_zoom.hpp"
 #include "stage_command_camera_move.hpp"
 #include "stage_command_lookat.hpp"
+#include "stage_command_eyeblows.hpp"
 #include <map>
 #include <algorithm>
 #include <functional>
@@ -56,6 +57,10 @@ IStageCommand& StageCommandFactory::Create(picojson::value& jsonCommand)
     }));
     stageCommandFactoryMap.insert(std::make_pair("lookat", [](picojson::array& command) -> IStageCommand& {
       IStageCommand* cmd = new LookatStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
+      return *cmd;
+    }));
+    stageCommandFactoryMap.insert(std::make_pair("eyeblows", [](picojson::array& command) -> IStageCommand& {
+      IStageCommand* cmd = new EyeblowsStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
       return *cmd;
     }));
   }
