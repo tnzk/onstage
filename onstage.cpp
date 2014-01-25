@@ -11,7 +11,7 @@
 #include <cairo.h>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
-
+#include "stage_viewer.hpp"
 
 int main(int argc, char** argv)
 {
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
   }
 
   if (opt.exist("interactive")) {
-    std::cout << "Interactive mode not supported." << std::endl;
+    isInteractive = true;
   }
 
   std::string scriptFileName = opt.get<std::string>("file");
@@ -55,24 +55,33 @@ int main(int argc, char** argv)
   stage.SetResolution((int)videoSetting["width"].get<double>(), (int)videoSetting["height"].get<double>());
   stage.ShowVideoSetting();
 
-  rsvg_init();
+  rsvg_init(); // TODO: GCC tells this is deprecated. See the detail. Or about librsvgmm.
 
   for(picojson::array::iterator it = commands.begin(); it != commands.end(); ++it) {
     stage.storedCommands.push_back(StageCommandFactory::Create(*it));
   }
 
   stage.Start();
-  for(int i = 0; i < stage.GetDuration(); i++) {
-    stage.ExecuteCommandsUntilCurrentFrame();
-    cairo_surface_t* surface = stage.Render();
-    std::stringstream filename;
-    filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
-    cairo_surface_write_to_png(surface, filename.str().c_str());
-    cairo_surface_destroy(surface);
+
+  if (isInteractive) {
+    StageViewer viewer(&stage);
+    viewer.Run();
+  } else {
+    for(int i = 0; i < stage.GetDuration(); i++) {
+      stage.ExecuteCommandsUntilCurrentFrame();
+      cairo_surface_t* surface = stage.Render();
+      std::stringstream filename;
+      filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
+      cairo_surface_write_to_png(surface, filename.str().c_str());
+      cairo_surface_destroy(surface);
+      std::cout << stage.GetCurrentFrame() << "th frame rendered." << std::endl;
+    }
   }
+
   stage.End();
 
-  rsvg_term();
+  rsvg_term(); // TODO: GCC tells this is deprecated. See the detail.
+
   return 0;
 }
 

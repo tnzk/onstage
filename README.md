@@ -3,6 +3,7 @@
 * GCC 4.8 or later
 * Cairo 2 or later
 * Librsvg 2 or later
++ GTK+ 3.8 or later
 
 ## TODO ##
 

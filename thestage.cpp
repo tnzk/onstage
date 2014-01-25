@@ -74,7 +74,6 @@ cairo_surface_t* TheStage::Render()
   }
 
   cairo_destroy(cairo);
-  std::cout << this->currentFrame << "th frame rendered." << std::endl;
   return surface;
 }
 
