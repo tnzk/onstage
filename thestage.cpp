@@ -72,7 +72,8 @@ cairo_surface_t* TheStage::Render()
     cairo_paint(cairo);
     cairo_surface_destroy(subsurface);
   }
-  
+
+  cairo_destroy(cairo);
   std::cout << this->currentFrame << "th frame rendered." << std::endl;
   return surface;
 }

@@ -117,7 +117,7 @@ cairo_surface_t* Symbol::Render(double scale)
       cairo_identity_matrix(cairo);
     }
   }
-
+  cairo_destroy(cairo);
   return surface;
 }
 
