@@ -71,6 +71,7 @@ Symbol::Symbol(std::string name)
     renderable->centerX = primitive["center-x"].is<double>() ? primitive["center-x"].get<double>() : 0;
     renderable->centerY = primitive["center-y"].is<double>() ? primitive["center-y"].get<double>() : 0;
     renderable->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
+    renderable->debug = primitive["debug"].is<bool>() ? primitive["debug"].get<bool>() : false;
 
     if (primitive["meta"].is<picojson::object>()) {
       picojson::object metadata = primitive["meta"].get<picojson::object>();
@@ -104,8 +105,13 @@ cairo_surface_t* Symbol::Render(double scale)
   cairo_t* cairo = cairo_create(surface);
 
   if (this->debug) {
-    cairo_set_source_rgba(cairo, 0.1, 0.1, 0.18, 0.3);
+    // Draw a bounding box
+    cairo_set_source_rgba(cairo, 0.1, 0.1, 0.18, 0.5);
     cairo_rectangle(cairo, 0, 0, this->width * rscale, this->height * rscale);
+    cairo_stroke(cairo);
+    // Draw center point
+    cairo_set_source_rgba(cairo, 0.1, 0.1, 0.18, 0.8);
+    cairo_arc(cairo, this->centerX, this->centerY, 2, 0, M_PI * 2); 
     cairo_fill(cairo);
   }
 
