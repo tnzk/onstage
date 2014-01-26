@@ -26,7 +26,8 @@
     { "type": "svg",
       "id": "mouth-03",
       "path": "phenomena-mouth-03.svg",
-      "x": 3, "y": 0,
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
       "visibility": false,
       "meta": {
         "facial-type": "sad",
@@ -43,6 +44,22 @@
         "facial-type": "smile",
         "mouth-style": "open"
       }
+    },
+    { "type": "svg",
+      "id": "mouth-05",
+      "path": "phenomena-mouth-05.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": false,
+      "meta": { "facial-type": "intermediate" }
+    },
+    { "type": "svg",
+      "id": "mouth-06",
+      "path": "phenomena-mouth-06.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": false,
+      "meta": { "facial-type": "intermediate" }
     }
   ]    
 }

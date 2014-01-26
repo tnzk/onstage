@@ -2,6 +2,7 @@
 #define MOUTH_HEADER
 
 #include <string>
+#include <vector>
 #include <map>
 #include "symbol.hpp"
 
@@ -16,9 +17,11 @@ public:
   void Sync(int);
 private:
   void Clear();
+  IRenderable* Intermediate();
   Symbol* symbol;
   std::pair<IRenderable*, IRenderable*> currentFacial;
   std::map<std::string, std::pair<IRenderable*, IRenderable*>> facials;
+  std::vector<IRenderable*> intermediates;
 };
 
 

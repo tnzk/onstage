@@ -1,6 +1,7 @@
 #include "mouth.hpp"
 #include <iostream>
 #include <list>
+#include <stdlib.h>
 
 Mouth::Mouth(Symbol* symbol)
 {
@@ -11,6 +12,10 @@ Mouth::Mouth(Symbol* symbol)
   std::map<std::string, std::list<IRenderable*>> facialTemp;
   for (IRenderable* renderable : this->symbol->layers) {
     std::string facialType = renderable->meta["facial-type"];
+    if (facialType == "intermediate") {
+      this->intermediates.push_back(renderable);
+      continue;
+    }
     auto mouthStylesIterator = facialTemp.find(facialType);
     auto mouthStyles = (mouthStylesIterator != facialTemp.end()) ? mouthStylesIterator->second : std::list<IRenderable*>();
     if (renderable->meta["mouth-style"] == "open") {
@@ -48,25 +53,36 @@ bool Mouth::ChangeFacial(std::string facial)
 
 bool Mouth::Open()
 {
-  this->currentFacial.first->isVisible = false;
+  this->Clear();
   this->currentFacial.second->isVisible = true;
   return true;
 }
 
 bool Mouth::Close()
 {
+  this->Clear();
   this->currentFacial.first->isVisible = true;
-  this->currentFacial.second->isVisible = false;
   return true;
+}
+
+IRenderable* Mouth::Intermediate()
+{
+  int index = rand() % this->intermediates.size();
+  IRenderable* intermediate = this->intermediates[index];
+  this->Clear();
+  intermediate->isVisible = true;
+  return intermediate;
 }
 
 void Mouth::Sync(int frame)
 {
   this->symbol->Sync(frame);
-  if (frame % 2) {
-    this->Open();
-  } else {
-    this->Close();
+  switch(frame % 8) {
+  case 0: this->Open(); break;
+  case 2: this->Intermediate(); break;
+  case 4: this->Close(); break;
+  case 6: this->Intermediate(); break;
+  default: break;
   }
 }
 
