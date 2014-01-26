@@ -1,6 +1,7 @@
 #include "head.hpp"
 #include <iostream>
 #include <math.h>
+#include <stdlib.h>
 
 Head::Head(Symbol* symbol)
 {
@@ -27,20 +28,22 @@ Head::Head(Symbol* symbol)
   IRenderable* rightEyeblow =  face->GetRenderableById("eyeblow-right");
   this->eyeblows.first = leftEyeblow;
   this->eyeblows.second = rightEyeblow;
+
+  this->basePosition.first = this->symbol->x;
+  this->basePosition.second= this->symbol->y;
 }
 
 bool Head::Speak()
 {
-  this->isSpeaking = true;
-  this->mouth->Open();
+  this->mouth->Speak();
 }
 
 bool Head::Shut()
 {
-  this->isSpeaking = false;
+  this->mouth->Shut();
 }
 
-bool Head::IsSpeaking() { return this->isSpeaking; }
+bool Head::IsSpeaking() { return this->mouth->IsSpeaking(); }
 
 bool Head::LookAt(double rad, double distance)
 {
@@ -58,6 +61,16 @@ void Head::Sync(int frame)
 {
   this->symbol->Sync(frame);
   this->mouth->Sync(frame);
+
+  if (this->IsSpeaking()) {
+    double bias = ((rand() % 5) - 2) * 0.01;
+    this->symbol->y = this->basePosition.second + bias * 70;
+    this->symbol->angle = (((frame / 2) % 3) - 1 ) * 0.05 + bias;
+  } else {
+    this->symbol->x = this->basePosition.first;
+    this->symbol->y = this->basePosition.second;
+    this->symbol->angle = 0;
+  }
 }
 
 void Head::ChangeFacial(std::string facial)

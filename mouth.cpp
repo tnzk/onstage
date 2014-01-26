@@ -77,12 +77,14 @@ IRenderable* Mouth::Intermediate()
 void Mouth::Sync(int frame)
 {
   this->symbol->Sync(frame);
-  switch(frame % 8) {
-  case 0: this->Open(); break;
-  case 2: this->Intermediate(); break;
-  case 4: this->Close(); break;
-  case 6: this->Intermediate(); break;
-  default: break;
+  if (this->IsSpeaking()) {
+    switch(frame % 8) {
+    case 0: this->Open(); break;
+    case 2: this->Intermediate(); break;
+    case 4: this->Close(); break;
+    case 6: this->Intermediate(); break;
+    default: break;
+    }
   }
 }
 
@@ -91,4 +93,20 @@ void Mouth::Clear()
   for (auto& layer: this->symbol->layers) {
     layer->isVisible = false;
   }
+}
+
+void Mouth::Speak()
+{
+  this->isSpeaking = true;
+}
+
+void Mouth::Shut()
+{
+  this->isSpeaking = false;
+  this->Close();
+}
+
+bool Mouth::IsSpeaking()
+{
+  return this->isSpeaking;
 }

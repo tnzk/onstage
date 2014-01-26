@@ -20,6 +20,7 @@ public:
   bool IsSpeaking();
   void ChangeFacial(std::string);
 private:
+  std::pair<double, double> basePosition;
   bool isSpeaking;
   Symbol* symbol;
   Mouth* mouth;

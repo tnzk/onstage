@@ -6,8 +6,10 @@
     { "type": "symbol",
       "id": "head",
       "path": "phenomena-head.json",
-      "x": 0, "y": 0,
-      "visibility": true
+      "x": 127, "y": 255,
+      "center-x": 120, "center-y": 260,
+      "visibility": true,
+      "debug": true
     },
     { "type": "svg",
       "path": "phenomena-body.svg",

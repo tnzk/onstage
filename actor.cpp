@@ -18,6 +18,12 @@ bool Actor::Speak()
   return true;
 }
 
+bool Actor::Shut()
+{
+  this->head->Shut();
+  return true;
+}
+
 bool Actor::LookAt(double rad, double distance)
 {
   this->head->LookAt(rad, distance);
