@@ -26,9 +26,9 @@ bool Eyes::LookAt(double rad, double distance)
   double leftRad  = atan2(focusY - leftCenterY,  focusX - leftCenterX);
   double rightRad = atan2(focusY - rightCenterY, focusX - rightCenterX);
   this->pupils.first->x = this->leftBasePosition.first  + 15 * cos(leftRad);
-  this->pupils.first->y = this->leftBasePosition.second + 15 * sin(leftRad);
+  this->pupils.first->y = this->leftBasePosition.second + 15 * sin(leftRad) * -1;
   this->pupils.second->x = this->rightBasePosition.first  + 15 * cos(rightRad);
-  this->pupils.second->y = this->rightBasePosition.second + 15 * sin(rightRad);
+  this->pupils.second->y = this->rightBasePosition.second + 15 * sin(rightRad) * -1;
 
   return true;
 }
