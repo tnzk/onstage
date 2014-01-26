@@ -1,11 +1,18 @@
 {
   "type": "actor",
+  "center-x": 15, "center-x": 220,
+  "angle": 0,
   "primitives": [
     { "type": "symbol",
       "id": "head",
       "path": "phenomena-head.json",
       "x": 0, "y": 0,
       "visibility": true
+    },
+    { "type": "svg",
+      "path": "phenomena-body.svg",
+      "x": 15, "y": 220,
+      "visibility": true
     }
-  ]    
+  ]
 }

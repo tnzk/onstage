@@ -65,12 +65,17 @@ cairo_surface_t* TheStage::Render()
     Camera* primaryCamera = this->GetPrimaryCamera();
     double rx;
     double ry;
+    double rscale = primaryCamera->GetZoom();
     symbol->Sync(this->currentFrame);
     primaryCamera->Translate(symbol->x, symbol->y, rx, ry);
-    cairo_surface_t* subsurface = symbol->Render(primaryCamera->GetZoom());
-    cairo_set_source_surface(cairo, subsurface, rx, ry);
+    cairo_surface_t* subsurface = symbol->Render(rscale);
+    cairo_translate(cairo, rx, ry);
+    cairo_rotate(cairo, symbol->angle);
+    cairo_translate(cairo, -symbol->centerX * rscale, -symbol->centerY * rscale);
+    cairo_set_source_surface(cairo, subsurface, 0, 0);
     cairo_paint(cairo);
     cairo_surface_destroy(subsurface);
+    cairo_identity_matrix(cairo);
   }
 
   cairo_destroy(cairo);

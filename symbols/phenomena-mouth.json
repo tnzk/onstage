@@ -4,7 +4,8 @@
     { "type": "svg",
       "id": "mouth-01",
       "path": "phenomena-mouth-01.svg",
-      "x": 1, "y": 0,
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
       "visibility": true,
       "meta": {
         "facial-type": "smile",
@@ -14,7 +15,8 @@
     { "type": "svg",
       "id": "mouth-02",
       "path": "phenomena-mouth-02.svg",
-      "x": 2, "y": 0,
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
       "visibility": false,
       "meta": { 
         "facial-type": "sad",
@@ -34,7 +36,8 @@
     { "type": "svg",
       "id": "mouth-04",
       "path": "phenomena-mouth-04.svg",
-      "x": 4, "y": 0,
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
       "visibility": false,
       "meta": {
         "facial-type": "smile",

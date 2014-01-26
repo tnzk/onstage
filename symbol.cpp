@@ -23,7 +23,7 @@ Symbol::Symbol(std::string name)
   this->isVisible = true;
 
   std::stringstream ss;
-  ss << "symbols/" << this->name;
+  ss << "symbols/" << this->name; // TODO: Do not assume the directory always exists
   std::string path = ss.str();
 
   std::ifstream symbolFile(path);
@@ -38,6 +38,10 @@ Symbol::Symbol(std::string name)
   picojson::object& obj = json.get<picojson::object>();
 
   std::string type = obj["type"].get<std::string>();
+  
+  this->centerX = obj["center-x"].is<double>() ? obj["center-x"].get<double>() : 0;
+  this->centerY = obj["center-y"].is<double>() ? obj["center-y"].get<double>() : 0;
+  this->angle = obj["angle"].is<double>() ? obj["angle"].get<double>() : 0;
 
   picojson::array& primitives = obj["primitives"].get<picojson::array>();
   for (auto& element : primitives) {

@@ -3,7 +3,7 @@
   "primitives": [
     { "type": "svg",
       "path": "phenomena-forehair.svg",
-      "x": 0, "y": 0,
+      "x": 5, "y": 0,
       "visibility": true
     },
     { "type": "symbol",

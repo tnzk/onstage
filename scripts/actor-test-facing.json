@@ -1,0 +1,37 @@
+{
+  "video": {
+    "fps": 30,
+    "duration": 30,
+    "width": 1280,
+    "height": 720,
+    "resources": "",
+    "output": "/home/tnzk/www/playground/onstage/"
+  },
+  "actors": ["momo"],
+  "commands": [
+     ["sync", 0],
+     ["load_actor", "momo.json"],
+     ["scale", "momo.json", 1],
+     ["move", "momo.json", 640, 360],
+     ["move", "momo.json", -50, 0],
+     ["lookat", "momo.json", 0, 0],
+     ["eyeblows", "momo.json", 0, -0],
+     ["camera_zoom", 1],
+     ["camera_move", 640, 460],
+     ["sync", 1],
+     ["speak", "momo.json"],
+     ["sync", 30],
+     ["lookat", "momo.json", 1.57079, 80],
+     ["eyeblows", "momo.json", 0.4, -0.4],
+     ["sync", 60],
+     ["lookat", "momo.json", 3.141592, 80],
+     ["eyeblows", "momo.json", -0.4, 0.4],
+     ["sync", 90],
+     ["lookat", "momo.json", 0, 80],
+     ["eyeblows", "momo.json", 0.0, 0.4],
+     ["sync", 120],
+     ["lookat", "momo.json", 4.71238, 80],
+     ["eyeblows", "momo.json", 0.0, 0.0]
+   ]
+}
+
