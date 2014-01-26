@@ -76,4 +76,5 @@ void Head::Sync(int frame)
 void Head::ChangeFacial(std::string facial)
 {
   this->mouth->ChangeFacial(facial);
+  this->mouth->Close();
 }
