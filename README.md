@@ -18,6 +18,7 @@
 * It may seem to be better to say 'render' command rather 'sync'
 * Rotations in degree
 * Introduce logging utility and json configurator
+* Use librsvgmm and libgtkmm
 
 ## Memo ##
 

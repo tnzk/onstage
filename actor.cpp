@@ -41,3 +41,16 @@ bool Actor::IsSpeaking()
 {
   return this->head->IsSpeaking();
 }
+
+void Actor::ChangeFacial(std::string facial)
+{
+  std::map<std::string, double> tableFacialToEyeblowAngle;
+  tableFacialToEyeblowAngle["sad"] = -0.4;
+  tableFacialToEyeblowAngle["offensive"] = 0.4;
+  tableFacialToEyeblowAngle["anger"] = 0.4;
+  tableFacialToEyeblowAngle["smile"] = 0;
+  double eyeblowAngle = tableFacialToEyeblowAngle[facial];
+  this->Eyeblows(eyeblowAngle, -eyeblowAngle);
+
+  this->head->ChangeFacial(facial);
+}

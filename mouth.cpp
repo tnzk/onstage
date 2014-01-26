@@ -37,8 +37,13 @@ Mouth::Mouth(Symbol* symbol)
 
 bool Mouth::ChangeFacial(std::string facial)
 {
-  this->currentFacial = this->facials[facial];
-  return true;
+  // Do nothing and returns false if no facial type registeredb
+  if (this->facials.find(facial) != this->facials.end()) {
+    this->Clear();
+    this->currentFacial = this->facials[facial];
+    return true;
+  }
+  return false;
 }
 
 bool Mouth::Open()
@@ -62,5 +67,12 @@ void Mouth::Sync(int frame)
     this->Open();
   } else {
     this->Close();
+  }
+}
+
+void Mouth::Clear()
+{
+  for (auto& layer: this->symbol->layers) {
+    layer->isVisible = false;
   }
 }

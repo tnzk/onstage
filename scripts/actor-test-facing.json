@@ -21,17 +21,17 @@
      ["sync", 1],
      ["speak", "momo.json"],
      ["sync", 30],
+     ["facial", "momo.json", "sad"],
      ["lookat", "momo.json", 1.57079, 80],
-     ["eyeblows", "momo.json", 0.4, -0.4],
      ["sync", 60],
+     ["facial", "momo.json", "offensive"],
      ["lookat", "momo.json", 3.141592, 80],
-     ["eyeblows", "momo.json", -0.4, 0.4],
      ["sync", 90],
+     ["facial", "momo.json", "smile"],
      ["lookat", "momo.json", 0, 80],
-     ["eyeblows", "momo.json", 0.0, 0.4],
      ["sync", 120],
-     ["lookat", "momo.json", 4.71238, 80],
-     ["eyeblows", "momo.json", 0.0, 0.0]
+     ["facial", "momo.json", "anger"],
+     ["lookat", "momo.json", 4.71238, 80]
    ]
 }
 

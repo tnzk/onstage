@@ -59,3 +59,8 @@ void Head::Sync(int frame)
   this->symbol->Sync(frame);
   this->mouth->Sync(frame);
 }
+
+void Head::ChangeFacial(std::string facial)
+{
+  this->mouth->ChangeFacial(facial);
+}

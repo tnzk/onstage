@@ -28,6 +28,7 @@ public:
   bool Shut();
   void Sync(int) override;
   bool IsSpeaking();
+  void ChangeFacial(std::string);
 private:
   bool isWalking;
   Head* head;

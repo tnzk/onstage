@@ -18,7 +18,7 @@ public:
   bool Shut();
   void Sync(int);
   bool IsSpeaking();
-
+  void ChangeFacial(std::string);
 private:
   bool isSpeaking;
   Symbol* symbol;

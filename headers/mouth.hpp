@@ -14,8 +14,8 @@ public:
   bool Close();
   bool ChangeFacial(std::string);
   void Sync(int);
-
 private:
+  void Clear();
   Symbol* symbol;
   std::pair<IRenderable*, IRenderable*> currentFacial;
   std::map<std::string, std::pair<IRenderable*, IRenderable*>> facials;
