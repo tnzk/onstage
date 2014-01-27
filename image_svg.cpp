@@ -1,4 +1,5 @@
 #include "image_svg.hpp"
+#include <math.h>
 #include <sstream>
 
 ImageSvg::ImageSvg(std::string svgPath)
@@ -24,9 +25,21 @@ cairo_surface_t* ImageSvg::Render(double scale)
   cairo_surface_t* surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
                                                         this->width * scale,
                                                         this->height * scale);
-  cairo_t* cairoInternal = cairo_create(surface);
-  cairo_scale(cairoInternal, scale, scale);
-  rsvg_handle_render_cairo(this->rsvg, cairoInternal);
-  cairo_destroy(cairoInternal);
+  cairo_t* cairo = cairo_create(surface);
+  cairo_scale(cairo, scale, scale);
+  rsvg_handle_render_cairo(this->rsvg, cairo);
+
+  if (this->debug) {
+    // Draw a bounding box
+    cairo_set_source_rgba(cairo, 1.0, 0, 0.9, 0.5);
+    cairo_rectangle(cairo, 0, 0, this->width * scale, this->height * scale);
+    cairo_stroke(cairo);
+    // Draw center point
+    cairo_set_source_rgba(cairo, 1.0, 0, 0.9, 0.8);
+    cairo_arc(cairo, this->centerX, this->centerY, 2, 0, M_PI * 2); 
+    cairo_fill(cairo);
+  }
+
+  cairo_destroy(cairo);
   return surface;
 }
