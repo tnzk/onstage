@@ -1,0 +1,13 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "id": "hand",
+      "path": "phenomena-hand-left.svg",
+      "x": 50, "y": 40,
+      "center-x": 50, "center-y": 40,
+      "visibility": true,
+      "debug": true
+    }
+  ]    
+}

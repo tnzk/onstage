@@ -14,7 +14,15 @@
     { "type": "svg",
       "path": "phenomena-body.svg",
       "x": 15, "y": 220,
-      "visibility": true
+      "visibility": true,
+      "debug": true
+    },
+    { "type": "symbol",
+      "id": "arm-left",
+      "path": "phenomena-arm-left.json",
+      "x": 15, "y": 220,
+      "visibility": true,
+      "debug": true
     }
   ]
 }
