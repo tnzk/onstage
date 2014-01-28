@@ -1,6 +1,22 @@
 {
   "type": "symbol",
   "primitives": [
+    { "type": "circle",
+      "id": "shoulder",
+      "radius": 5,
+      "x": 180, "y": 180,
+      "center-x": 5, "center-y": 5,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "circle",
+      "id": "elbow",
+      "radius": 5,
+      "x": 90, "y": 90,
+      "center-x": 5, "center-y": 5,
+      "visibility": true,
+      "debug": false
+    },
     { "type": "svg",
       "id": "hand",
       "path": "phenomena-hand-left.svg",

@@ -10,6 +10,14 @@ Actor::Actor(std::string name) : Symbol(name)
     // TODO: Abort
   }  
   this->head = new Head(dynamic_cast<Symbol*>(head));
+
+  IRenderable* arm = this->GetRenderableById("arm-left");
+  if (arm == NULL) {
+    std::cout << "Error: No symbol whose name is arm-left not found for " 
+              << this->instanceId << ":"  << this->className << std::endl;
+    // TODO: Abort
+  }
+  this->arm = new Arm(dynamic_cast<Symbol*>(arm));
 }
 
 bool Actor::Speak()
@@ -41,6 +49,7 @@ void Actor::Sync(int frame)
   // std::cout << "Actor::Sync" << std::endl;
   Symbol::Sync(frame);
   this->head->Sync(frame);
+  this->arm->SetPosition(frame * 0.1, 20);
 }
 
 bool Actor::IsSpeaking()

@@ -2,7 +2,7 @@ CPPFLAGS = -std=c++0x `pkg-config --cflags cairo librsvg-2.0 gtk+-3.0` -I./heade
 OBJS = thestage.o stage_command.o stage_command_sync.o stage_command_null.o stage_command_move.o stage_command_load_actor.o \
        stage_command_load_symbol.o onstage.o actor.o symbol.o stage_command_scale.o camera.o stage_command_camera_zoom.o \
        stage_command_camera_move.o stage_command_lookat.o shape.o image_svg.o stage_command_speak.o head.o mouth.o eyes.o \
-       stage_command_eyeblows.o stage_viewer.o stage_command_facial.o stage_command_shut.o
+       stage_command_eyeblows.o stage_viewer.o stage_command_facial.o stage_command_shut.o arm.o shape_circle.o
 #GCC48 = /opt/bin/g++
 GCC48 = g++
 
@@ -21,6 +21,9 @@ stage_viewer.o: stage_viewer.cpp
 actor.o: actor.cpp
 	$(GCC48) -c actor.cpp $(CPPFLAGS)
 
+arm.o: arm.cpp
+	$(GCC48) -c arm.cpp $(CPPFLAGS)
+
 head.o: head.cpp
 	$(GCC48) -c head.cpp $(CPPFLAGS)
 
@@ -32,6 +35,9 @@ eyes.o: eyes.cpp
 
 shape.o: shape.cpp
 	$(GCC48) -c shape.cpp $(CPPFLAGS)
+
+shape_circle.o: shape_circle.cpp
+	$(GCC48) -c shape_circle.cpp $(CPPFLAGS)
 
 image_svg.o: image_svg.cpp
 	$(GCC48) -c image_svg.cpp $(CPPFLAGS)
