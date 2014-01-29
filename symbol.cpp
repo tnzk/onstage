@@ -40,9 +40,12 @@ Symbol::Symbol(std::string name)
 
   std::string type = obj["type"].get<std::string>();
   
+  this->width = obj["width"].is<double>() ? obj["width"].get<double>() : 0;
+  this->height = obj["height"].is<double>() ? obj["height"].get<double>() : 0;
   this->centerX = obj["center-x"].is<double>() ? obj["center-x"].get<double>() : 0;
   this->centerY = obj["center-y"].is<double>() ? obj["center-y"].get<double>() : 0;
   this->angle = obj["angle"].is<double>() ? obj["angle"].get<double>() : 0;
+  this->debug = obj["debug"].is<bool>() ? obj["debug"].get<bool>() : 0;
 
   picojson::array& primitives = obj["primitives"].get<picojson::array>();
   for (auto& element : primitives) {
@@ -79,6 +82,14 @@ Symbol::Symbol(std::string name)
     renderable->centerY = primitive["center-y"].is<double>() ? primitive["center-y"].get<double>() : 0;
     renderable->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
     renderable->debug = primitive["debug"].is<bool>() ? primitive["debug"].get<bool>() : false;
+    if (primitive["width"].is<double>()) {
+      double widthByCaller = primitive["width"].get<double>();
+      if (renderable->width < widthByCaller) renderable->width = widthByCaller;
+    }
+    if (primitive["height"].is<double>()) {
+      double heightByCaller = primitive["height"].get<double>();
+      if (renderable->height < heightByCaller) renderable->height = heightByCaller;
+    }
 
     if (primitive["meta"].is<picojson::object>()) {
       picojson::object metadata = primitive["meta"].get<picojson::object>();

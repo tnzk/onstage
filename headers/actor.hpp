@@ -33,7 +33,7 @@ public:
 private:
   bool isWalking;
   Head* head;
-  Arm* arm;
+  std::pair<Arm*, Arm*> arms;
 };
 
 #endif

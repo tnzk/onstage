@@ -6,11 +6,12 @@
 class Arm
 {
 public:
-  Arm(Symbol*);
+  Arm(Symbol*, std::string);
   bool SetPosition(double angle, double distance);
 private:
   Symbol* symbol;
   IRenderable* hand;
+  std::string direction;
   std::pair<double, double> baseHandPosition;
 };
 

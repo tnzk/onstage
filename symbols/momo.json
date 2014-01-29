@@ -1,28 +1,44 @@
 {
   "type": "actor",
-  "center-x": 15, "center-x": 220,
+  "center-x": 250,
+  "center-y": 500,
+  "width": 500, "height": 0,
+  "debug": true,
   "angle": 0,
   "primitives": [
     { "type": "symbol",
       "id": "head",
       "path": "phenomena-head.json",
-      "x": 127, "y": 255,
+      "x": 250, "y": 355,
       "center-x": 120, "center-y": 260,
       "visibility": true,
       "debug": true
     },
     { "type": "svg",
       "path": "phenomena-body.svg",
-      "x": 15, "y": 220,
+      "x": 138, "y": 320,
       "visibility": true,
       "debug": true
     },
     { "type": "symbol",
       "id": "arm-left",
       "path": "phenomena-arm-left.json",
-      "x": 15, "y": 220,
+      "x": 210, "y": 365,
+      "width": 200, "height": 200,
+      "center-x": 190, "center-y": 100,
       "visibility": true,
-      "debug": true
+      "debug": true,
+      "meta": { "direction": "left"}
+    },
+    { "type": "symbol",
+      "id": "arm-right",
+      "path": "phenomena-arm-right.json",
+      "x": 300, "y": 365,
+      "width": 200, "height": 200,
+      "center-x": 10, "center-y": 100,
+      "visibility": true,
+      "debug": true,
+      "meta": { "direction": "right"}
     }
   ]
 }

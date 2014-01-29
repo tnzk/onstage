@@ -12,7 +12,7 @@
      ["sync", 0],
      ["load_actor", "momo.json"],
      ["scale", "momo.json", 1],
-     ["move", "momo.json", 640, 360],
+     ["move", "momo.json", 640, 700],
      ["move", "momo.json", -50, 0],
      ["lookat", "momo.json", 0, 0],
      ["eyeblows", "momo.json", 0, -0],
