@@ -1,5 +1,6 @@
 #include "symbol.hpp"
 #include "shape_circle.hpp"
+#include "shape_path.hpp"
 #include "image_svg.hpp"
 #include "renderable.hpp"
 #include "picojson.h"
@@ -59,7 +60,13 @@ Symbol::Symbol(std::string name)
       double radius = primitive["radius"].get<double>();
       ShapeCircle* circle = new ShapeCircle(radius);
       renderable = circle;
-      renderable->className = "foobar";
+      renderable->className = "foobar"; // TODO: classify somehow
+    }
+    if (primitiveType == "path") {
+      std::string command = primitive["command"].get<std::string>();
+      ShapePath* shape = new ShapePath(command);
+      renderable = shape;
+      renderable->className = "foobar"; // TODO: classify somehow
     }
     if (primitiveType == "svg") {
       std::string path = primitive["path"].get<std::string>();

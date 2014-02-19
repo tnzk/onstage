@@ -1,13 +1,13 @@
 {
   "type": "symbol",
   "primitives": [
-    { "type": "circle",
+    { "type": "path",
       "id": "shoulder",
-      "radius": 5,
+      "command": "",
       "x": 190, "y": 100,
       "center-x": 5, "center-y": 5,
       "visibility": true,
-      "debug": false
+      "debug": true
     },
     { "type": "circle",
       "id": "elbow",

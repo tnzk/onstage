@@ -23,7 +23,6 @@ bool Arm::SetPosition(double angle, double distance)
   double upperArmLength = 60;
   double theta = atan2(this->hand->y - shoulder->y, this->hand->x - shoulder->x) - (this->direction == "left" ? 0.3 : -0.3);
 
-
   // For the left arm.
   if (this->direction == "left") {
     if (theta >= 0 && theta < M_PI /  1.9) theta = M_PI /  1.9;
