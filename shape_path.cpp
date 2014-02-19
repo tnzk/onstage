@@ -1,10 +1,13 @@
 #include "shape_path.hpp"
 #include <math.h>
+#include <iostream>
 #include <sstream>
+#include <string.h>
 
 ShapePath::ShapePath(std::string command)
 {
-  this->command = command;
+  //this->command = command;
+  this->ParseCommandString(command);
   this->width = 200;
   this->height = 200;
 }
@@ -29,9 +32,76 @@ cairo_surface_t* ShapePath::Render(double scale)
   }
 
   cairo_set_source_rgb(cairo, 0, 0, 0);
-  cairo_arc(cairo, 10, 10, 10, 0, M_PI * 2); 
-  cairo_fill(cairo);  
+  for (auto command : this->commands) {
+    switch (std::get<0>(command)) {
+    case ShapePath::Command::MOVE:
+      cairo_move_to(cairo, std::get<1>(command), std::get<2>(command)); 
+      break;
+    case ShapePath::Command::LINE:
+      cairo_line_to(cairo, std::get<1>(command), std::get<2>(command)); 
+      break;
+    case ShapePath::Command::MOVE_RELATIVE:
+      cairo_rel_move_to(cairo, std::get<1>(command), std::get<2>(command)); 
+      break;
+    case ShapePath::Command::LINE_RELATIVE:
+      cairo_rel_line_to(cairo, std::get<1>(command), std::get<2>(command)); 
+      break;
+    case ShapePath::Command::STROKE:
+      cairo_stroke(cairo); 
+      break;
+    case ShapePath::Command::FILL:
+      cairo_fill(cairo); 
+      break;
+    }
+  }
 
   cairo_destroy(cairo);
   return surface;
+}
+
+void ShapePath::ParseCommandString(std::string commandString)
+{
+  if (commandString.size() > 0) {
+    std::vector<std::string> tokens;
+
+    // Tokenize the command string and push into the array.
+    char* command = (char*)malloc(commandString.size());
+    strcpy(command, commandString.c_str());
+    char* token = strtok(command, " ,");
+    while (token != NULL) {
+      tokens.push_back(std::string(token));
+      token = strtok(NULL, " ,");
+    }
+    free(command);
+
+    // Convert tokens to tuples that represent drawing instructions.
+    // TODO: roughly redundant.
+    for (int i = 0; i < tokens.size(); ++i) {
+      std::string token = tokens[i];
+      if (token == "M" || token == "MR") {
+	double x;
+	double y;
+	ShapePath::Command instruction = token == "M" ? ShapePath::Command::MOVE : ShapePath::Command::MOVE_RELATIVE;
+	std::istringstream(tokens[i+1]) >> x;
+	std::istringstream(tokens[i+2]) >> y;
+	this->commands.push_back(std::make_tuple(instruction, x, y, 0, 0, 0));
+	i += 2;
+      }
+      if (token == "L" || token =="LR") {
+	double x;
+	double y;
+	ShapePath::Command instruction = token == "L" ? ShapePath::Command::LINE : ShapePath::Command::LINE_RELATIVE;
+	std::istringstream(tokens[i+1]) >> x;
+	std::istringstream(tokens[i+2]) >> y;
+	this->commands.push_back(std::make_tuple(instruction, x, y, 0, 0, 0));
+	i += 2;
+      }
+      if (token == "S") {
+	this->commands.push_back(std::make_tuple(ShapePath::Command::STROKE, 0, 0, 0, 0, 0));
+      }
+      if (token == "F") {
+	this->commands.push_back(std::make_tuple(ShapePath::Command::FILL, 0, 0, 0, 0, 0));
+      }
+    }
+  }
 }

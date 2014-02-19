@@ -64,7 +64,7 @@ shape.o: shape.cpp
 shape_circle.o: shape_circle.cpp
 	$(GCC48) -c shape_circle.cpp $(CPPFLAGS)
 
-shape_circle.o: shape_path.cpp
+shape_path.o: shape_path.cpp
 	$(GCC48) -c shape_path.cpp $(CPPFLAGS)
 
 image_svg.o: image_svg.cpp

@@ -4,6 +4,7 @@
 #include "renderable.hpp"
 #include <cairo.h>
 #include <tuple>
+#include <vector>
 #include <string>
 
 class ShapePath : public IRenderable
@@ -13,8 +14,13 @@ public:
   virtual cairo_surface_t* Render(double scale);
   virtual void Sync(int) {};
   virtual int GetCurrentFrame() {};
+  void SetCommand(std::string);
 private:
-  std::string command;
+  void ParseCommandString(std::string);
+  enum class Command { MOVE, LINE, ARC, CURVE,
+                       MOVE_RELATIVE, LINE_RELATIVE,
+                       FILL, STROKE,
+                       FILL_COLOR, STROKE_COLOR, STROKE_WIDTH};
+  std::vector<std::tuple<ShapePath::Command, double, double, double, double, double>> commands;
 };
-
 #endif
