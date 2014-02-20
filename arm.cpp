@@ -1,6 +1,8 @@
 #include "arm.hpp"
+#include "shape_path.hpp"
 #include <math.h>
 #include <iostream>
+#include <sstream>
 
 Arm::Arm(Symbol* symbol, std::string direction)
 {
@@ -18,7 +20,7 @@ bool Arm::SetPosition(double angle, double distance)
   this->hand->x = x;
   this->hand->y = y;
 
-  IRenderable* shoulder = this->symbol->GetRenderableById("shoulder");
+  ShapePath* shoulder = this->symbol->GetElementById<ShapePath*>("shoulder"); 
 
   double upperArmLength = 60;
   double theta = atan2(this->hand->y - shoulder->y, this->hand->x - shoulder->x) - (this->direction == "left" ? 0.3 : -0.3);
@@ -50,6 +52,13 @@ bool Arm::SetPosition(double angle, double distance)
     this->hand->x = lowerArmLength * cos(elbowTheta) + elbow->x;
     this->hand->y = lowerArmLength * sin(elbowTheta) + elbow->y;
   }
+
+  std::stringstream ss;
+  ss << "MR 0, 0 LR " << elbow->x - shoulder->x << ", " << elbow->y - shoulder->y
+     << " LR " << hand->x - elbow->x << ", " << hand->y - elbow->y << " F";
+  std::string command = ss.str();
+  shoulder->SetCommand(command);
+
   return true;
 }
 

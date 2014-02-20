@@ -31,6 +31,7 @@ cairo_surface_t* ShapePath::Render(double scale)
     cairo_fill(cairo);
   }
 
+  cairo_move_to(cairo, this->centerX, this->centerY);
   cairo_set_source_rgb(cairo, 0, 0, 0);
   for (auto command : this->commands) {
     switch (std::get<0>(command)) {
@@ -59,13 +60,19 @@ cairo_surface_t* ShapePath::Render(double scale)
   return surface;
 }
 
+void ShapePath::SetCommand(std::string commandString)
+{
+  // TODO: Validate commandString.
+  this->ParseCommandString(commandString);
+}
+
 void ShapePath::ParseCommandString(std::string commandString)
 {
   if (commandString.size() > 0) {
     std::vector<std::string> tokens;
 
-    // Tokenize the command string and push into the array.
-    char* command = (char*)malloc(commandString.size());
+    // Tokenize the command string and push into the array. Plus one for null-termination.
+    char* command = (char*)malloc(commandString.size() + 1);
     strcpy(command, commandString.c_str());
     char* token = strtok(command, " ,");
     while (token != NULL) {
@@ -76,6 +83,7 @@ void ShapePath::ParseCommandString(std::string commandString)
 
     // Convert tokens to tuples that represent drawing instructions.
     // TODO: roughly redundant.
+    this->commands.clear();
     for (int i = 0; i < tokens.size(); ++i) {
       std::string token = tokens[i];
       if (token == "M" || token == "MR") {
