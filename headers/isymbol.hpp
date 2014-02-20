@@ -17,6 +17,10 @@ public:
   virtual double GetScale() = 0;
   virtual IRenderable* GetRenderableById(std::string) = 0;
   virtual void AddRenderable(IRenderable*) = 0;
+  template<typename T> T GetElementById(std::string id)
+  {
+    return dynamic_cast<T>(this->GetRenderableById(id));
+  };
 
   std::list<IRenderable*> layers;
 
