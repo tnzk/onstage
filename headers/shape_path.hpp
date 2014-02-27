@@ -17,10 +17,10 @@ public:
   void SetCommand(std::string);
 private:
   void ParseCommandString(std::string);
-  enum class Command { MOVE, LINE, ARC, CURVE,
-                       MOVE_RELATIVE, LINE_RELATIVE,
-                       FILL, STROKE,
+  enum class Command { MOVE, LINE, CURVE, ARC, ARC_NEGATIVE,
+                       MOVE_RELATIVE, LINE_RELATIVE, CURVE_RELATIVE,
+                       FILL, STROKE, CLOSE,
                        FILL_COLOR, STROKE_COLOR, STROKE_WIDTH};
-  std::vector<std::tuple<ShapePath::Command, double, double, double, double, double>> commands;
+  std::vector<std::tuple<ShapePath::Command, double, double, double, double, double, double>> commands;
 };
 #endif

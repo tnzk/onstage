@@ -37,7 +37,7 @@ bool Arm::SetPosition(double angle, double distance)
     if (theta > M_PI /  2.3) theta = M_PI /  2.3; 
   }
 
-  IRenderable* elbow = this->symbol->GetRenderableById("elbow");
+  ShapePath* elbow = this->symbol->GetElementById<ShapePath*>("elbow");
   elbow->x = upperArmLength * cos(theta) + shoulder->x;
   elbow->y = upperArmLength * sin(theta) + shoulder->y;
   // std::cout << "elbow = {" << elbow->x << ", " << elbow->y << "}" << std::endl;
@@ -53,12 +53,64 @@ bool Arm::SetPosition(double angle, double distance)
     this->hand->y = lowerArmLength * sin(elbowTheta) + elbow->y;
   }
 
-  std::stringstream ss;
-  ss << "MR 0, 0 LR " << elbow->x - shoulder->x << ", " << elbow->y - shoulder->y
-     << " LR " << hand->x - elbow->x << ", " << hand->y - elbow->y << " F";
-  std::string command = ss.str();
-  shoulder->SetCommand(command);
-
+  shoulder->SetCommand(this->GetShoulderPathString(shoulder->centerX, shoulder->centerY,
+						   elbow->x - shoulder->x, elbow->y - shoulder->y));
+  elbow->SetCommand(this->GetElbowPathString(elbow->centerX, elbow->centerY,
+					     hand->x - elbow->x, hand->y - elbow->y));
+  
   return true;
 }
 
+std::string Arm::GetShoulderPathString(double x, double y, double dx, double dy)
+{
+  std::stringstream ss;
+  double theta = atan2(dy, dx);
+  double r = 8;
+  double px = x - r * cos(theta);
+  double py = y - r * sin(theta);
+  double qx = x + dx + r * 1.5 * cos(theta);
+  double qy = y + dy + r * 1.5 * sin(theta);
+  double c1x = px + 2 * r * cos(theta + M_PI / 2);
+  double c1y = py + 2 * r * sin(theta + M_PI / 2);
+  double c2x = qx + 4 * r * cos(theta + M_PI / 2);
+  double c2y = qy + 4 * r * sin(theta + M_PI / 2);
+  double d1x = qx + 4 * r * cos(theta - M_PI / 2);
+  double d1y = qy + 4 * r * sin(theta - M_PI / 2);
+  double d2x = px + 2 * r * cos(theta - M_PI / 2);
+  double d2y = py + 2 * r * sin(theta - M_PI / 2);
+
+  ss << " M " << px << ", " << py  
+     << " CURVE " << c1x << ", " << c1y << ", " << c2x << ", " << c2y <<", " << qx << ", " << qy
+     << " CURVE " << d1x << ", " << d1y << ", " << d2x << ", " << d2y <<", " << px << ", " << py
+     << " Z F";
+  std::string result = ss.str();
+  return result;
+}
+
+std::string Arm::GetElbowPathString(double x, double y, double dx, double dy)
+{
+  std::stringstream ss;
+  double theta = atan2(dy, dx);
+  double l = sqrt(dx * dx + dy * dy);
+  double volume = 100 - l;
+  double r = 20;
+  double px = x - r * cos(theta);
+  double py = y - r * sin(theta);
+  double qx = x + dx + r * 0.7 * cos(theta);
+  double qy = y + dy + r * 0.7 * sin(theta);
+  double c1x = px + 0.5 * volume * cos(theta + M_PI / 2);
+  double c1y = py + 0.5 * volume * sin(theta + M_PI / 2);
+  double c2x = qx + 0.3 * volume * cos(theta + M_PI / 2);
+  double c2y = qy + 0.3 * volume * sin(theta + M_PI / 2);
+  double d1x = qx + 0.3 * volume * cos(theta - M_PI / 2);
+  double d1y = qy + 0.3 * volume * sin(theta - M_PI / 2);
+  double d2x = px + 0.5 * volume * cos(theta - M_PI / 2);
+  double d2y = py + 0.5 * volume * sin(theta - M_PI / 2);
+
+  ss << " M " << px << ", " << py  
+     << " CURVE " << c1x << ", " << c1y << ", " << c2x << ", " << c2y <<", " << qx << ", " << qy
+     << " CURVE " << d1x << ", " << d1y << ", " << d2x << ", " << d2y <<", " << px << ", " << py
+     << " Z F";
+  std::string result = ss.str();
+  return result;
+}

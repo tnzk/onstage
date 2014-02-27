@@ -10,11 +10,13 @@
       "visibility": true,
       "debug": true
     },
-    { "type": "circle",
+    { "type": "path",
       "id": "elbow",
       "radius": 3,
       "x": 90, "y": 90,
-      "center-x": 5, "center-y": 5,
+      "center-x": 100, "center-y": 100,
+      "width": 200, "height": 200,
+      "command": "MR 10, 10 LR 50, 50, S",
       "visibility": true,
       "debug": false
     },

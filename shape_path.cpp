@@ -47,11 +47,25 @@ cairo_surface_t* ShapePath::Render(double scale)
     case ShapePath::Command::LINE_RELATIVE:
       cairo_rel_line_to(cairo, std::get<1>(command), std::get<2>(command)); 
       break;
+    case ShapePath::Command::ARC:
+      cairo_arc(cairo, std::get<1>(command), std::get<2>(command), std::get<3>(command), std::get<4>(command), std::get<5>(command));
+      break;
+    case ShapePath::Command::CURVE:
+      cairo_curve_to(cairo, std::get<1>(command), std::get<2>(command), std::get<3>(command), std::get<4>(command),
+		            std::get<5>(command), std::get<6>(command));
+      break;
+    case ShapePath::Command::CURVE_RELATIVE:
+      cairo_rel_curve_to(cairo, std::get<1>(command), std::get<2>(command), std::get<3>(command), std::get<4>(command),
+		            std::get<5>(command), std::get<6>(command));
+      break;
     case ShapePath::Command::STROKE:
       cairo_stroke(cairo); 
       break;
     case ShapePath::Command::FILL:
       cairo_fill(cairo); 
+      break;
+    case ShapePath::Command::CLOSE:
+      cairo_close_path(cairo); 
       break;
     }
   }
@@ -92,7 +106,7 @@ void ShapePath::ParseCommandString(std::string commandString)
 	ShapePath::Command instruction = token == "M" ? ShapePath::Command::MOVE : ShapePath::Command::MOVE_RELATIVE;
 	std::istringstream(tokens[i+1]) >> x;
 	std::istringstream(tokens[i+2]) >> y;
-	this->commands.push_back(std::make_tuple(instruction, x, y, 0, 0, 0));
+	this->commands.push_back(std::make_tuple(instruction, x, y, 0, 0, 0, 0));
 	i += 2;
       }
       if (token == "L" || token =="LR") {
@@ -101,14 +115,49 @@ void ShapePath::ParseCommandString(std::string commandString)
 	ShapePath::Command instruction = token == "L" ? ShapePath::Command::LINE : ShapePath::Command::LINE_RELATIVE;
 	std::istringstream(tokens[i+1]) >> x;
 	std::istringstream(tokens[i+2]) >> y;
-	this->commands.push_back(std::make_tuple(instruction, x, y, 0, 0, 0));
+	this->commands.push_back(std::make_tuple(instruction, x, y, 0, 0, 0, 0));
 	i += 2;
       }
+      if (token == "ARC" || token =="ARCN") {
+	double xc;
+	double yc;
+	double radius;
+	double angleBegins;
+	double angleEnds;
+	ShapePath::Command instruction = token == "ARC" ? ShapePath::Command::ARC : ShapePath::Command::ARC_NEGATIVE;
+	std::istringstream(tokens[i+1]) >> xc;
+	std::istringstream(tokens[i+2]) >> yc;
+	std::istringstream(tokens[i+3]) >> radius;
+	std::istringstream(tokens[i+4]) >> angleBegins;
+	std::istringstream(tokens[i+5]) >> angleEnds;
+	this->commands.push_back(std::make_tuple(instruction, xc, yc, radius, angleBegins, angleEnds, 0));
+	i += 5;
+      }
+      if (token == "CURVE" || token =="CURVER") {
+	double c1x;
+	double c1y;
+	double c2x;
+	double c2y;
+	double px;
+	double py;
+	ShapePath::Command instruction = token == "CURVE" ? ShapePath::Command::CURVE : ShapePath::Command::CURVE_RELATIVE;
+	std::istringstream(tokens[i+1]) >> c1x;
+	std::istringstream(tokens[i+2]) >> c1y;
+	std::istringstream(tokens[i+3]) >> c2x;
+	std::istringstream(tokens[i+4]) >> c2y;
+	std::istringstream(tokens[i+5]) >> px;
+	std::istringstream(tokens[i+6]) >> py;
+	this->commands.push_back(std::make_tuple(instruction, c1x, c1y, c2x, c2y, px, py));
+	i += 6;
+      }
       if (token == "S") {
-	this->commands.push_back(std::make_tuple(ShapePath::Command::STROKE, 0, 0, 0, 0, 0));
+	this->commands.push_back(std::make_tuple(ShapePath::Command::STROKE, 0, 0, 0, 0, 0, 0));
       }
       if (token == "F") {
-	this->commands.push_back(std::make_tuple(ShapePath::Command::FILL, 0, 0, 0, 0, 0));
+	this->commands.push_back(std::make_tuple(ShapePath::Command::FILL, 0, 0, 0, 0, 0, 0));
+      }
+      if (token == "Z") {
+	this->commands.push_back(std::make_tuple(ShapePath::Command::CLOSE, 0, 0, 0, 0, 0, 0));
       }
     }
   }

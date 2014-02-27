@@ -12,6 +12,8 @@ private:
   Symbol* symbol;
   IRenderable* hand;
   std::string direction;
+  std::string GetShoulderPathString(double x, double y, double dx, double dy);
+  std::string GetElbowPathString(double x, double y, double dx, double dy);
   std::pair<double, double> baseHandPosition;
 };
 
