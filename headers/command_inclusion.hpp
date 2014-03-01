@@ -12,3 +12,4 @@
 #include "stage_command_eyeblows.hpp"
 #include "stage_command_facial.hpp"
 #include "stage_command_left_hand.hpp"
+#include "stage_command_right_hand.hpp"

@@ -18,6 +18,7 @@ OBJS =	onstage.o \
 	stage_command_facial.o \
 	stage_command_shut.o \
 	stage_command_left_hand.o \
+	stage_command_right_hand.o \
 	symbol.o \
 	shape.o \
 	image_svg.o \
