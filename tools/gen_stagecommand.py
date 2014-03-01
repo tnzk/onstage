@@ -66,7 +66,7 @@ std::string %sStageCommand::Serialize()
 {
   // TODO: Implement here.
   std::stringstream ss;
-  ss << "[\"%s\", \"" << "]";
+  ss << "[\\"%s\\", \\"" << "]";
   return ss.str();
 }''' % (hpp_filename, class_name, class_name, constructor_arg_names, class_name, class_name, class_name, class_name, command_name)
 
@@ -84,11 +84,25 @@ hpp.write(hpp_content)
 hpp.close()
 print 'Generated %s.' % hpp_path
 
+# TODO: Show this.
+generator_args = ', '.join(['command[%s].get<%s>()' % (t[1] + 1, t[0]) for t in zip([type_map[c] for c in arg_types], itertools.count())])
+generator_snippet = '''\
+    stageCommandFactoryMap.insert(std::make_pair("left_hand", [](picojson::array& command) -> IStageCommand* {
+      IStageCommand* cmd = new LeftHandStageCommand(
+        %s
+      );
+      return cmd;
+    }));''' % generator_args
+
 print '''TODO:
-    * Add #include to StageCommandFactory.
-    * Add a generator for this command.
+    * Paste the generator code below to stage_command.cpp.
     * Add object file for this to Makefile.
+    * Insert new #include to header_inclusion.hpp.
     * Implement cpp.
 
+----
+%s
+----
+
 Done. Yey.
-'''
+''' % generator_snippet
