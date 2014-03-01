@@ -56,7 +56,7 @@ private:
   int primaryCameraId;
   std::vector<Camera*> cameras;
   std::list<IStageCommand*>::iterator storedCommandIterator;
-  std::stringstream recordingStream;
+  std::vector<std::string> recordedCommands;
   std::string resourcesDirectory;
   std::string outputDirectory;
 };

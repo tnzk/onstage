@@ -44,7 +44,7 @@ int TheStage::GetDuration() { return this->duration; }
 bool TheStage::Execute(IStageCommand& command) 
 {
   command.Execute(*this);
-  this->recordingStream << "     " << command.Serialize() << "," << std::endl;
+  this->recordedCommands.push_back(command.Serialize());
   return true;
 }
 
@@ -153,6 +153,16 @@ void TheStage::End()
 
 std::string TheStage::GetRecordedScript()
 {
+  std::stringstream commandStream;
+  bool initial = true;
+  for (std::string s : this->recordedCommands) {
+    if (initial) {
+      initial = false;
+    } else {
+      commandStream << ",\n";
+    }
+    commandStream << "    " << s;
+  }
   std::stringstream stageScriptStream;
   stageScriptStream << "{\n"
 		    << "  \"video\": {\n"
@@ -164,8 +174,7 @@ std::string TheStage::GetRecordedScript()
 		    << "    \"output\": " << "\"" << this->outputDirectory << "\"" << "\n"
 		    << "  },\n"
 		    << "  \"commands\": [\n"
-		    << this->recordingStream.str()
-		    << "    [\"dammy\"]\n"
+		    << commandStream.str() << "\n"
 		    << "  ]\n"
 		    << "}\n";
     return stageScriptStream.str();
