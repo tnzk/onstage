@@ -44,6 +44,7 @@ int TheStage::GetDuration() { return this->duration; }
 bool TheStage::Execute(IStageCommand& command) 
 {
   command.Execute(*this);
+  this->recordingStream << "     " << command.Serialize() << "," << std::endl;
   return true;
 }
 
@@ -148,4 +149,34 @@ void TheStage::Start()
 void TheStage::End()
 {
   // TODO: release the resouces
+}
+
+std::string TheStage::GetRecordedScript()
+{
+  std::stringstream stageScriptStream;
+  stageScriptStream << "{\n"
+		    << "  \"video\": {\n"
+		    << "    \"fps\": " << this->fps << ",\n"
+		    << "    \"duration\": " << this->duration << ",\n"
+		    << "    \"width\": " << this->width << ",\n"
+		    << "    \"height\": " << this->height << ",\n"
+		    << "    \"resources\": " << "\"" << this->resourcesDirectory << "\"" << ",\n"
+		    << "    \"output\": " << "\"" << this->outputDirectory << "\"" << "\n"
+		    << "  },\n"
+		    << "  \"commands\": [\n"
+		    << this->recordingStream.str()
+		    << "    [\"dammy\"]\n"
+		    << "  ]\n"
+		    << "}\n";
+    return stageScriptStream.str();
+}
+
+void TheStage::SetOutputDirectory(std::string path)
+{
+  this->outputDirectory = path;
+}
+
+void TheStage::SetResourcesDirectory(std::string path)
+{
+  this->resourcesDirectory = path;
 }

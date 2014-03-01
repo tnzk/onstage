@@ -5,6 +5,7 @@
 #include <map>
 #include <list>
 #include <string>
+#include <sstream>
 #include "isymbol.hpp"
 #include "symbol.hpp"
 #include "actor.hpp"
@@ -27,6 +28,8 @@ public:
   int GetResolutionHeight();
   void SetFps(int);
   void SetDuration(int);
+  void SetOutputDirectory(std::string);
+  void SetResourcesDirectory(std::string);
   int GetDuration();
   int GetCurrentFrame();
   bool Execute(IStageCommand& command);
@@ -42,6 +45,7 @@ public:
   void ExecuteCommandsUntilCurrentFrame();
   int skipUntil;
   std::list<IStageCommand*> storedCommands;
+  std::string GetRecordedScript();
 private:
   int width;
   int height;
@@ -52,6 +56,9 @@ private:
   int primaryCameraId;
   std::vector<Camera*> cameras;
   std::list<IStageCommand*>::iterator storedCommandIterator;
+  std::stringstream recordingStream;
+  std::string resourcesDirectory;
+  std::string outputDirectory;
 };
 
 #endif

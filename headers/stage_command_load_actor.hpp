@@ -9,4 +9,5 @@ public:
   LoadActorStageCommand(std::string);
   ~LoadActorStageCommand();
   virtual bool Execute(TheStage&);
+  virtual std::string Serialize();
 };

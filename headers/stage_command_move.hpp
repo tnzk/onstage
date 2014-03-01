@@ -7,6 +7,7 @@ public:
   MoveStageCommand(std::string, double, double);
   ~MoveStageCommand();
   virtual bool Execute(TheStage&);
+  virtual std::string Serialize();
 private:
   std::string targetName;
   double dx;

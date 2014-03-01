@@ -8,5 +8,6 @@ public:
   SyncStageCommand(int frame);
   ~SyncStageCommand();
   virtual bool Execute(TheStage&);
+  virtual std::string Serialize();
 };
 

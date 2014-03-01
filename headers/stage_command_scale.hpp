@@ -7,6 +7,7 @@ public:
   ScaleStageCommand(std::string, double);
   ~ScaleStageCommand();
   virtual bool Execute(TheStage&);
+  virtual std::string Serialize();
 private:
   std::string targetName;
   double scale;

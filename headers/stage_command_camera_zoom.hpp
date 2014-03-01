@@ -7,6 +7,7 @@ public:
   CameraZoomStageCommand(double);
   ~CameraZoomStageCommand();
   virtual bool Execute(TheStage&);
+  virtual std::string Serialize();
 private:
   double zoom;
 };

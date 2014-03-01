@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <sstream>
 #include <cinttypes>
+#include <ctime>
 #include <cairo.h>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
@@ -34,6 +35,7 @@ int main(int argc, char** argv)
     isInteractive = true;
   }
 
+  // TODO: Do these things inside the Stage
   std::string scriptFileName = opt.get<std::string>("file");
   std::ifstream scriptFile(scriptFileName);
 
@@ -48,11 +50,14 @@ int main(int argc, char** argv)
   picojson::object& obj = json.get<picojson::object>();
   picojson::array& commands = obj["commands"].get<picojson::array>();
 
+  // TODO: Make VideoConfig and use it to deal with these.
   picojson::object& videoSetting = obj["video"].get<picojson::object>();
   std::string outputDirectory = videoSetting["output"].get<std::string>();
   stage.SetFps((int)videoSetting["fps"].get<double>());
   stage.SetDuration((int)videoSetting["duration"].get<double>());
   stage.SetResolution((int)videoSetting["width"].get<double>(), (int)videoSetting["height"].get<double>());
+  stage.SetOutputDirectory(videoSetting["output"].get<std::string>());
+  stage.SetResourcesDirectory(videoSetting["resources"].get<std::string>());
   stage.ShowVideoSetting();
 
   rsvg_init(); // TODO: GCC tells this is deprecated. See the detail. Or about librsvgmm.
@@ -81,6 +86,14 @@ int main(int argc, char** argv)
   stage.End();
 
   rsvg_term(); // TODO: GCC tells this is deprecated. See the detail.
+
+  time_t t = time(0);
+  std::stringstream ss;
+  ss << "recorded-" << t << ".json";
+  std::string recordedScriptFileName = ss.str();
+  std::ofstream recordedScriptFile(recordedScriptFileName);
+  recordedScriptFile << stage.GetRecordedScript();
+  recordedScriptFile.close();
 
   return 0;
 }

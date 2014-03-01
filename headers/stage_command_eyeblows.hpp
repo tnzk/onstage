@@ -10,6 +10,7 @@ public:
   EyeblowsStageCommand(std::string, double, double);
   ~EyeblowsStageCommand();
   virtual bool Execute(TheStage&);
+  virtual std::string Serialize();
 private:
   std::string targetName;
   double left;

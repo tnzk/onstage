@@ -10,4 +10,5 @@ public:
   FacialStageCommand(std::string, std::string);
   ~FacialStageCommand();
   virtual bool Execute(TheStage&);
+  virtual std::string Serialize();
 };

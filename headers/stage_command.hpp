@@ -3,6 +3,7 @@
 #define COMMAND_HEADER
 
 #include "picojson.h"
+#include "string"
 class TheStage;
 
 class IStageCommand
@@ -10,6 +11,7 @@ class IStageCommand
 private:
   
 public:
+  virtual std::string Serialize() = 0;
   virtual bool Execute(TheStage&) = 0;
 };
 
