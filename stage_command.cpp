@@ -1,17 +1,5 @@
 #include "stage_command.hpp"
-#include "stage_command_sync.hpp"
-#include "stage_command_null.hpp"
-#include "stage_command_move.hpp"
-#include "stage_command_speak.hpp"
-#include "stage_command_shut.hpp"
-#include "stage_command_load_actor.hpp"
-#include "stage_command_load_symbol.hpp"
-#include "stage_command_scale.hpp"
-#include "stage_command_camera_zoom.hpp"
-#include "stage_command_camera_move.hpp"
-#include "stage_command_lookat.hpp"
-#include "stage_command_eyeblows.hpp"
-#include "stage_command_facial.hpp"
+#include "command_inclusion.hpp"
 #include <map>
 #include <algorithm>
 #include <functional>
@@ -65,12 +53,21 @@ IStageCommand* StageCommandFactory::Create(picojson::value& jsonCommand)
       IStageCommand* cmd = new LookatStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
       return cmd;
     }));
+    stageCommandFactoryMap.insert(std::make_pair("left_hand", [](picojson::array& command) -> IStageCommand* {
+      IStageCommand* cmd = new LeftHandStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
+      return cmd;
+    }));
     stageCommandFactoryMap.insert(std::make_pair("eyeblows", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new EyeblowsStageCommand(command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
       return cmd;
     }));
     stageCommandFactoryMap.insert(std::make_pair("facial", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new FacialStageCommand(command[1].get<std::string>(), command[2].get<std::string>());
+      return cmd;
+    }));
+    stageCommandFactoryMap.insert(std::make_pair("left_hand", [](picojson::array& command) -> IStageCommand* {
+      IStageCommand* cmd = new LeftHandStageCommand(
+      command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
       return cmd;
     }));
   }
