@@ -25,6 +25,7 @@
      ["facial", "momo.json", "sad"],
      ["lookat", "momo.json", 1.57079, 80],
      ["sync", 60],
+     ["unknown", "very", 2.3, "foobar"],
      ["speak", "momo.json"],
      ["facial", "momo.json", "offensive"],
      ["lookat", "momo.json", 3.141592, 80],

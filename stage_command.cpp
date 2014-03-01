@@ -83,7 +83,7 @@ IStageCommand* StageCommandFactory::Create(picojson::value& jsonCommand)
     auto f = stageCommandFactoryMap[commandName];
     return f(command);
   } else {
-    IStageCommand* cmd = new NullStageCommand(commandName);
+    IStageCommand* cmd = new NullStageCommand(commandName, jsonCommand.serialize());
     return cmd;
   }
 }

@@ -1,9 +1,10 @@
 #include "stage_command_null.hpp"
 #include "thestage.hpp"
 
-NullStageCommand::NullStageCommand(std::string commandName)
+NullStageCommand::NullStageCommand(std::string originalName, std::string originalCommand)
 {
-  this->originalName = commandName; // TODO: should be the entire of the command.
+  this->originalName = originalName;
+  this->originalCommand = originalCommand;
 }
 
 NullStageCommand::~NullStageCommand()
@@ -17,5 +18,5 @@ bool NullStageCommand::Execute(TheStage& stage)
 
 std::string NullStageCommand::Serialize()
 {
-  return this->originalName;
+  return this->originalCommand;
 }
