@@ -57,8 +57,16 @@ void Actor::Sync(int frame)
   // std::cout << "Actor::Sync" << std::endl;
   Symbol::Sync(frame);
   this->head->Sync(frame);
-  this->arms.first->SetPosition(frame * 0.1, frame * 0.1);
-  this->arms.second->SetPosition(frame * -0.1, frame * 0.1);
+}
+
+void Actor::LeftHand(double rad, double distance)
+{
+  this->arms.first->SetPosition(rad, distance);
+}
+
+void Actor::RightHand(double rad, double distance)
+{
+  this->arms.second->SetPosition(rad, distance);
 }
 
 bool Actor::IsSpeaking()

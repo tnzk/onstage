@@ -24,19 +24,27 @@
     ["shut", "momo.json"],
     ["facial", "momo.json", "sad"],
     ["lookat", "momo.json", 1.57079, 80],
+    ["left_hand", "momo.json", 1.57079, 80],
+    ["right_hand", "momo.json", 1.57079, 80],
     ["sync", 60],
     ["unknown", "very", 2.3, "foobar"],
     ["speak", "momo.json"],
     ["facial", "momo.json", "offensive"],
     ["lookat", "momo.json", 3.141592, 80],
+    ["left_hand", "momo.json", 3.141592, 90],
+    ["right_hand", "momo.json", 3.141592, 90],
     ["sync", 90],
     ["facial", "momo.json", "smile"],
     ["shut", "momo.json"],
     ["lookat", "momo.json", 0, 80],
+    ["left_hand", "momo.json", 0, 90],
+    ["right_hand", "momo.json", 0, 90],
     ["sync", 120],
     ["speak", "momo.json"],
     ["facial", "momo.json", "anger"],
-    ["lookat", "momo.json", 4.71238, 80]
+    ["lookat", "momo.json", 4.71238, 80],
+    ["left_hand", "momo.json", 4.841592, 90],
+    ["right_hand", "momo.json", 4.841592, 90]
    ]
 }
 

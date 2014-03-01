@@ -23,8 +23,8 @@ public:
   bool LookAt(double rad, double distance);
   bool Eyeblows(double r);
   bool Eyeblows(double left, double right);
-  bool Hand(double leftAngle,  double leftDistance, 
-            double rightAngle, double rightDistance);
+  void LeftHand(double rad, double distance);
+  void RightHand(double rad, double distance);
   bool Speak();
   bool Shut();
   void Sync(int) override;
