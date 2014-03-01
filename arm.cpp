@@ -16,7 +16,7 @@ Arm::Arm(Symbol* symbol, std::string direction)
 bool Arm::SetPosition(double angle, double distance)
 {
   double x = this->baseHandPosition.first + distance * cos(angle);
-  double y = this->baseHandPosition.second + distance * sin(angle);
+  double y = this->baseHandPosition.second + distance * -sin(angle);
   this->hand->x = x;
   this->hand->y = y;
 
