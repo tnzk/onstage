@@ -8,7 +8,7 @@ if not os.path.isfile('onstage.cpp'):
     sys.exit()
 
 if len(sys.argv) < 2:
-    print('Usage: ' + sys.argv[0] + ' command_name_like_this s s r...')
+    print('Usage: ' + sys.argv[0] + ' command_name_like_this s s d d...')
     sys.exit()
 
 command_name = sys.argv[1]
