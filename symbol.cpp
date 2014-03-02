@@ -85,8 +85,9 @@ Symbol::Symbol(std::string name)
     renderable->x = primitive["x"].is<double>() ? primitive["x"].get<double>() : 0;
     renderable->y = primitive["y"].is<double>() ? primitive["y"].get<double>() : 0;
     renderable->angle = primitive["angle"].is<double>() ? primitive["angle"].get<double>() : 0;
-    renderable->centerX = primitive["center-x"].is<double>() ? primitive["center-x"].get<double>() : 0;
-    renderable->centerY = primitive["center-y"].is<double>() ? primitive["center-y"].get<double>() : 0;
+    // Overwrite center position only if specified by primitive-specifier.
+    if (primitive["center-x"].is<double>()) renderable->centerX = primitive["center-x"].get<double>();
+    if (primitive["center-y"].is<double>()) renderable->centerY = primitive["center-y"].get<double>();
     renderable->isVisible = primitive["visibility"].is<bool>() ? primitive["visibility"].get<bool>() : true;
     renderable->debug = primitive["debug"].is<bool>() ? primitive["debug"].get<bool>() : false;
     if (primitive["width"].is<double>()) {
