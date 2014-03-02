@@ -81,6 +81,12 @@ IStageCommand* StageCommandFactory::Create(picojson::value& jsonCommand)
       command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
       return cmd;
     }));
+    stageCommandFactoryMap.insert(std::make_pair("stop", [](picojson::array& command) -> IStageCommand* {
+      IStageCommand* cmd = new StopStageCommand(
+      command[1].get<std::string>()
+      );
+      return cmd;
+    }));
   }
     
   picojson::array& command = jsonCommand.get<picojson::array>();
