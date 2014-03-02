@@ -20,8 +20,7 @@ bool StopStageCommand::Execute(TheStage& stage)
 
 std::string StopStageCommand::Serialize()
 {
-  // TODO: Implement here.
   std::stringstream ss;
-  ss << "[\"stop\", \"" << "]";
+  ss << "[\"stop\", \"" << this->actorId << "\"]";
   return ss.str();
 }
