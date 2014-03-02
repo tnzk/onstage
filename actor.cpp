@@ -1,5 +1,7 @@
 #include "actor.hpp"
 #include <iostream>
+#include <tuple>
+#include <math.h>
 
 Actor::Actor(std::string name) : Symbol(name)
 {
@@ -26,6 +28,8 @@ Actor::Actor(std::string name) : Symbol(name)
     // TODO: Abort
   }
   this->arms.second = new Arm(dynamic_cast<Symbol*>(armRight), "right");
+  this->dx = 0;
+  this->dy = 0;
 }
 
 bool Actor::Speak()
@@ -57,6 +61,15 @@ void Actor::Sync(int frame)
   // std::cout << "Actor::Sync" << std::endl;
   Symbol::Sync(frame);
   this->head->Sync(frame);
+  if (this->isWalking) {
+    this->walkingOrigin = std::make_tuple(std::get<0>(this->walkingOrigin) + this->dx,
+					  std::get<1>(this->walkingOrigin) + this->dy,
+					  std::get<2>(this->walkingOrigin));
+    this->x = std::get<0>(this->walkingOrigin);
+    this->y = std::get<1>(this->walkingOrigin);
+    double frequency = frame * (sqrt(dx * dx + dy * dy) * 0.05 + 0.7);
+    this->angle = std::get<2>(this->walkingOrigin) + sin(frequency) * M_PI / 90;
+  }
 }
 
 void Actor::LeftHand(double rad, double distance)
@@ -85,4 +98,26 @@ void Actor::ChangeFacial(std::string facial)
   this->Eyeblows(eyeblowAngle, -eyeblowAngle);
 
   this->head->ChangeFacial(facial);
+}
+
+void Actor::Walk(double dx, double dy)
+{
+  if (!this->isWalking) {
+    this->walkingOrigin = std::make_tuple(this->x, this->y, this->angle);
+    this->dx = dx;
+    this->dy = dy;
+    this->isWalking = true;
+  }
+}
+
+void Actor::Stop()
+{
+  if (this->isWalking) {
+    this->dx = 0;
+    this->dy = 0;
+    this->isWalking = false;
+    this->x = std::get<0>(this->walkingOrigin);
+    this->y = std::get<1>(this->walkingOrigin);
+    this->angle = std::get<2>(this->walkingOrigin);
+  }
 }

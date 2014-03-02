@@ -18,8 +18,9 @@ class Actor : public Symbol
 {
 public:
   Actor(std::string name);
-
-  bool Walk(double x, double y);
+  
+  void Walk(double dx, double dy);
+  void Stop();
   bool LookAt(double rad, double distance);
   bool Eyeblows(double r);
   bool Eyeblows(double left, double right);
@@ -34,6 +35,9 @@ private:
   bool isWalking;
   Head* head;
   std::pair<Arm*, Arm*> arms;
+  std::tuple<double, double, double> walkingOrigin;
+  double dx;
+  double dy;
 };
 
 #endif
