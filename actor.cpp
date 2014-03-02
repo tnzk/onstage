@@ -66,8 +66,8 @@ void Actor::Sync(int frame)
 					  std::get<1>(this->walkingOrigin) + this->dy,
 					  std::get<2>(this->walkingOrigin));
     this->x = std::get<0>(this->walkingOrigin);
-    this->y = std::get<1>(this->walkingOrigin);
     double frequency = frame * (sqrt(dx * dx + dy * dy) * 0.05 + 0.7);
+    this->y = std::get<1>(this->walkingOrigin) + fabs(sin(frequency)) * 10.0;
     this->angle = std::get<2>(this->walkingOrigin) + sin(frequency) * M_PI / 90;
   }
 }
