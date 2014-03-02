@@ -87,12 +87,12 @@ print 'Generated %s.' % hpp_path
 # TODO: Show this.
 generator_args = ', '.join(['command[%s].get<%s>()' % (t[1] + 1, t[0]) for t in zip([type_map[c] for c in arg_types], itertools.count())])
 generator_snippet = '''\
-    stageCommandFactoryMap.insert(std::make_pair("left_hand", [](picojson::array& command) -> IStageCommand* {
-      IStageCommand* cmd = new LeftHandStageCommand(
+    stageCommandFactoryMap.insert(std::make_pair("%s", [](picojson::array& command) -> IStageCommand* {
+      IStageCommand* cmd = new %sStageCommand(
         %s
       );
       return cmd;
-    }));''' % generator_args
+    }));''' % (command_name, class_name, generator_args)
 
 print '''TODO:
     * Paste the generator code below to stage_command.cpp.
