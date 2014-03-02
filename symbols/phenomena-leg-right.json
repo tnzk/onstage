@@ -1,0 +1,13 @@
+{
+  "type": "symbol",
+  "center-x": 40, "center-y": 50,
+  "primitives": [
+    { "type": "svg",
+      "id": "leg",
+      "path": "phenomena-leg-right.svg",
+      "x": 0, "y": 0,
+      "visibility": true,
+      "debug": true
+    }
+  ]    
+}
