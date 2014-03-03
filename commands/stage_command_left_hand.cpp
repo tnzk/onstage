@@ -22,6 +22,6 @@ bool LeftHandStageCommand::Execute(TheStage& stage)
 std::string LeftHandStageCommand::Serialize()
 {
   std::stringstream ss;
-  ss << "[\"left_hand\", " << this->rad << ", " << this->distance << "]";
+  ss << "[\"left_hand\", \"" << this->actorId <<  "\", " << this->rad << ", " << this->distance << "]";
   return ss.str();
 }

@@ -23,6 +23,6 @@ bool RightHandStageCommand::Execute(TheStage& stage)
 std::string RightHandStageCommand::Serialize()
 {
   std::stringstream ss;
-  ss << "[\"right_hand\", " << this->rad << ", " << this->distance << "]";
+  ss << "[\"right_hand\", \"" << this->actorId << "\", " << this->rad << ", " << this->distance << "]";
   return ss.str();
 }
