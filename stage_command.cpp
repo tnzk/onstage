@@ -71,11 +71,6 @@ IStageCommand* StageCommandFactory::Create(picojson::value& jsonCommand)
       IStageCommand* cmd = new FacialStageCommand(command[1].get<std::string>(), command[2].get<std::string>());
       return cmd;
     }));
-    stageCommandFactoryMap.insert(std::make_pair("left_hand", [](picojson::array& command) -> IStageCommand* {
-      IStageCommand* cmd = new LeftHandStageCommand(
-      command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
-      return cmd;
-    }));
     stageCommandFactoryMap.insert(std::make_pair("walk", [](picojson::array& command) -> IStageCommand* {
       IStageCommand* cmd = new WalkStageCommand(
       command[1].get<std::string>(), command[2].get<double>(), command[3].get<double>());
