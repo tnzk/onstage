@@ -18,11 +18,11 @@ int main(int argc, char** argv)
 {
 
   TheStage stage;
-  bool isInteractive = false;
 
   cmdline::parser opt;
   opt.add<std::string>("file", 'f', "Script file.");
   opt.add("interactive", 'i', "Run in interactive mode.");
+  opt.add("quiet", 'q', "Quiet mode; does not emit recorded script.");
   opt.add<std::string>("directory", 'd', "Recording directory.", false, ".");
   opt.add("list-commands", 'l', "List all the avaiable commands.");
   opt.parse_check(argc, argv);
@@ -32,10 +32,8 @@ int main(int argc, char** argv)
     exit(0);
   }
 
-  if (opt.exist("interactive")) {
-    isInteractive = true;
-  }
-
+  bool isInteractive = opt.exist("interactive");
+  bool isQuiet = opt.exist("quiet");
   
   std::string recordingDirectory = opt.get<std::string>("directory");
 
@@ -91,15 +89,17 @@ int main(int argc, char** argv)
 
   rsvg_term(); // TODO: GCC tells this is deprecated. See the detail.
 
-  time_t t = time(0);
-  std::stringstream ss;
-  // TODO: Trim the trailing slash
-  // TODO: Make sure the existance of the directory you're about to write into. 
-  ss << recordingDirectory << "/recorded-" << t << ".json";
-  std::string recordedScriptFileName = ss.str();
-  std::ofstream recordedScriptFile(recordedScriptFileName);
-  recordedScriptFile << stage.GetRecordedScript();
-  recordedScriptFile.close();
+  if (!isQuiet) {
+    time_t t = time(0);
+    std::stringstream ss;
+    // TODO: Trim the trailing slash
+    // TODO: Make sure the existance of the directory you're about to write into. 
+    ss << recordingDirectory << "/recorded-" << t << ".json";
+    std::string recordedScriptFileName = ss.str();
+    std::ofstream recordedScriptFile(recordedScriptFileName);
+    recordedScriptFile << stage.GetRecordedScript();
+    recordedScriptFile.close();
+  }
 
   return 0;
 }
