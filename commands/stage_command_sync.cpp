@@ -14,8 +14,14 @@ SyncStageCommand::~SyncStageCommand()
 
 bool SyncStageCommand::Execute(TheStage& stage)
 {
-  std::cout << "Sync at " << this->sync_at << std::endl;
-  stage.skipUntil = this->sync_at;
+  int current = stage.GetCurrentFrame();
+  if (current < this->sync_at) {
+    stage.skipUntil = this->sync_at;
+    std::cout << "Sync at " << this->sync_at << std::endl;
+  } else {
+    std::cout << "Invalid sync: Request for " << this->sync_at << " at " << current << std::endl;
+  }
+  
 }
 
 std::string SyncStageCommand::Serialize()
