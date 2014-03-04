@@ -21,8 +21,9 @@ int main(int argc, char** argv)
   bool isInteractive = false;
 
   cmdline::parser opt;
-  opt.add<std::string>("file", 'f', "Script file.", false);
+  opt.add<std::string>("file", 'f', "Script file.");
   opt.add("interactive", 'i', "Run in interactive mode.");
+  opt.add<std::string>("directory", 'd', "Recording directory.", false, ".");
   opt.add("list-commands", 'l', "List all the avaiable commands.");
   opt.parse_check(argc, argv);
 
@@ -34,6 +35,9 @@ int main(int argc, char** argv)
   if (opt.exist("interactive")) {
     isInteractive = true;
   }
+
+  
+  std::string recordingDirectory = opt.get<std::string>("directory");
 
   // TODO: Do these things inside the Stage
   std::string scriptFileName = opt.get<std::string>("file");
@@ -89,7 +93,9 @@ int main(int argc, char** argv)
 
   time_t t = time(0);
   std::stringstream ss;
-  ss << "recorded-" << t << ".json";
+  // TODO: Trim the trailing slash
+  // TODO: Make sure the existance of the directory you're about to write into. 
+  ss << recordingDirectory << "/recorded-" << t << ".json";
   std::string recordedScriptFileName = ss.str();
   std::ofstream recordedScriptFile(recordedScriptFileName);
   recordedScriptFile << stage.GetRecordedScript();
