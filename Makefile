@@ -3,6 +3,7 @@ OBJS =	onstage.o \
 	thestage.o \
 	camera.o \
 	stage_viewer.o \
+	joystick_state.o \
 	stage_command.o \
 	stage_command_sync.o \
 	stage_command_null.o \
@@ -46,6 +47,9 @@ thestage.o: thestage.cpp
 
 stage_viewer.o: stage_viewer.cpp
 	$(GCC48) -c stage_viewer.cpp $(CPPFLAGS) 
+
+joystick_state.o: joystick_state.cpp
+	$(GCC48) -c joystick_state.cpp $(CPPFLAGS) 
 
 actor.o: actor.cpp
 	$(GCC48) -c actor.cpp $(CPPFLAGS)

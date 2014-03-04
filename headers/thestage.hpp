@@ -43,6 +43,7 @@ public:
   Camera* GetPrimaryCamera();
   int AddCamera(double x, double y, double zoom);
   void ExecuteCommandsUntilCurrentFrame();
+  void SyncForRecording(int);
   int skipUntil;
   std::list<IStageCommand*> storedCommands;
   std::string GetRecordedScript();

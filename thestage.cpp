@@ -1,4 +1,5 @@
 #include "thestage.hpp"
+#include "stage_command_sync.hpp"
 #include <stdlib.h>
 #include <algorithm>
 
@@ -44,7 +45,11 @@ int TheStage::GetDuration() { return this->duration; }
 bool TheStage::Execute(IStageCommand& command) 
 {
   command.Execute(*this);
-  this->recordedCommands.push_back(command.Serialize());
+  // TODO: This is clearly abusing of dynamic cast.
+  //       http://stackoverflow.com/questions/307765/what-is-a-good-way-to-check-if-an-objects-type-is-a-particular-subclass
+  if (dynamic_cast<SyncStageCommand*>(&command) == NULL) {    
+    this->recordedCommands.push_back(command.Serialize()); // TODO: Do this via pravite method.
+  }
   return true;
 }
 
@@ -134,11 +139,21 @@ Camera* TheStage::GetPrimaryCamera()
 void TheStage::ExecuteCommandsUntilCurrentFrame()
 {
   auto& it = this->storedCommandIterator;
+  if (this->GetCurrentFrame() == this->skipUntil) {
+    this->SyncForRecording(this->skipUntil);
+  }
+
   for (; this->GetCurrentFrame() >= this->skipUntil 
 	 && it != this->storedCommands.end(); ++it) {
     IStageCommand* command = *it;
     this->Execute(*command);
   }
+}
+
+void TheStage::SyncForRecording(int frame)
+{
+  SyncStageCommand* sync = new SyncStageCommand(frame);
+  this->recordedCommands.push_back(sync->Serialize());
 }
 
 void TheStage::Start()
