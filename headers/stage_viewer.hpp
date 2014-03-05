@@ -2,14 +2,14 @@
 #define STAGE_VIEWER_HEADER
 
 #include "thestage.hpp"
-#include "joystick_state.hpp"
+#include "user_control_context.hpp"
 
 class StageViewer
 {
 public:
   StageViewer(TheStage* const);
   void Run();
-  JoystickState* joystick; // TODO: Be private.
+  UserControlContext* controlContext; // TODO: Be private.
 private:
   TheStage* thestage;
 };

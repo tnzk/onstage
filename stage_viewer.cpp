@@ -25,6 +25,10 @@ static gboolean OnDrawing(GtkWidget* widget, cairo_t* cairo, gpointer userData)
 
 static gboolean UpdateFrame(GtkWidget* widget)
 {
+  UserControlContext* context = globalViewer->controlContext;
+  auto commands = context->ProcessInput();
+  std::cout << context->ToString() << std::endl;
+  /*
   globalViewer->joystick->ProcessEvent();
   std::pair<int, int> leftAxis = globalViewer->joystick->GetAxis(JoystickState::AxisSymbol::LX, JoystickState::AxisSymbol::LY);
   if (leftAxis.first != 0 || leftAxis.second != 0) {
@@ -49,6 +53,7 @@ static gboolean UpdateFrame(GtkWidget* widget)
     IStageCommand* command = new RightHandStageCommand("momo.json", theta, r);
     globalStage->Execute(*command);
   }
+  */
 
   gtk_widget_queue_draw(widget);
 
@@ -63,7 +68,7 @@ StageViewer::StageViewer(TheStage* stage)
 
 void StageViewer::Run()
 {
-  this->joystick = new JoystickState("/dev/input/js0"); // TODO: device name?
+  this->controlContext = new UserControlContext("/dev/input/js0"); // TODO: device name?
   globalViewer = this;
   globalStage = this->thestage;
   gtk_init(0, NULL);

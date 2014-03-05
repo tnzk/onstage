@@ -4,13 +4,14 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "joystick_event.hpp"
 
 class JoystickState
 {
 public:
   JoystickState(std::string);
   ~JoystickState();
-  void ProcessEvent();
+  std::vector<JoystickEvent> ProcessEvent();
   enum class ButtonSymbol { X, Y, A, B, L1, L2, R1, R2,
                             START, SELECT, LHAT, RHAT };
   enum class AxisSymbol { LX, LY, RX, RY, CX, CY};

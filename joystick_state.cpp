@@ -50,21 +50,24 @@ JoystickState::~JoystickState()
 {
 }
 
-void JoystickState::ProcessEvent()
+std::vector<JoystickEvent> JoystickState::ProcessEvent()
 {
+  std::vector<JoystickEvent> events;
   struct js_event e;
   while (read(this->fd, &e, sizeof(e)) > 0) {
+    JoystickEvent ev(&e);
     if (e.type & JS_EVENT_BUTTON) {
       this->buttons[e.number] = e.value == 1;
     }
     if (e.type & JS_EVENT_AXIS) {
       this->axis[e.number] = e.value;
     }
+    events.push_back(ev);
   }
   if (errno != EAGAIN) {
     // TODO: Anything else EAGAIN should be taken care of as a real error.
   }
-
+  return events;
 }
 
 std::pair<int, int> JoystickState::GetAxis(AxisSymbol xSymbol, AxisSymbol ySymbol) 
