@@ -12,6 +12,16 @@ JoystickEvent::~JoystickEvent()
 {
 }
 
+bool JoystickEvent::IsButton()
+{
+  return this->type == JoystickEvent::Type::BUTTON;
+}
+
+bool JoystickEvent::IsAxis()
+{
+  return this->type == JoystickEvent::Type::AXIS;
+}
+
 std::string JoystickEvent::ToString()
 {
   std::stringstream ss;

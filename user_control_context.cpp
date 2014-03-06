@@ -13,9 +13,8 @@ std::vector<IStageCommand> UserControlContext::ProcessInput()
 {
   std::vector<IStageCommand> commands;
   auto events = this->joystick->ProcessEvent();
-  std::cout << events.size() << std::endl;
   for (auto ev : events) {
-    std::cout << ev.ToString() << std::endl;
+    this->controlState->Input(*this->joystick, ev);
   }
   return commands;
 }

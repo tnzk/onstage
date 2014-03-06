@@ -19,6 +19,8 @@ public:
   unsigned int number;
   int value;
   std::string ToString();
+  bool IsButton();
+  bool IsAxis();
 private:
 };
 

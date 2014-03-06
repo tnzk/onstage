@@ -16,6 +16,7 @@ public:
                             START, SELECT, LHAT, RHAT };
   enum class AxisSymbol { LX, LY, RX, RY, CX, CY};
   std::pair<int, int> GetAxis(AxisSymbol, AxisSymbol);
+  bool Prove(JoystickEvent&, ButtonSymbol, bool);
 private:
   int fd;
   std::map<ButtonSymbol, int> buttonMap;
