@@ -14,8 +14,8 @@ public:
   ~UserControlContext();
   std::vector<IStageCommand> ProcessInput();
   std::string ToString();
-private:
   UserControlState* controlState;
+private:
   JoystickState* joystick;
 };
 

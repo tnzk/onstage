@@ -1,8 +1,12 @@
 #include "user_control_state.hpp"
+#include <limits.h>
+#include <iostream>
 
 UserControlState::UserControlState()
 {
+  this->previousState = UserControlState::State::Global;
   this->state = UserControlState::State::Global;
+  this->index = 0;
 }
 
 UserControlState::~UserControlState()
@@ -16,10 +20,26 @@ bool UserControlState::Prove(JoystickEvent& event, JoystickEvent::Type type, uns
 
 void UserControlState::Input(JoystickState& state, JoystickEvent& event)
 {
-  switch(this->state) {
+  switch (this->state) {
   case UserControlState::State::Global:
-    if (state.Prove(event, JoystickState::ButtonSymbol::X, true)) {
-      this->ChangeStateTo(UserControlState::State::Camera);
+    if (state.Prove(event, JoystickState::AxisSymbol::CY)) {
+      int cyValue = event.value;
+      // TODO: The value of a joystick event would always be from SHORT_MIN to SHORT_MAX.
+      if (cyValue >  100) this->index++; 
+      if (cyValue < -100) this->index--;
+      
+      if (this->index > 3) this->index = 0;
+      if (this->index < 0) this->index = 3;
+    }
+    if (state.Prove(event, JoystickState::ButtonSymbol::A, true)) {
+      UserControlState::State arr[] = { UserControlState::State::Loader,
+					UserControlState::State::Camera,
+					UserControlState::State::Behaviour};
+      if (this->index == 3) {
+	this->BackState();
+      } else {
+	this->ChangeStateTo(arr[this->index]);
+      }
     }
     break;
   case UserControlState::State::Camera:
@@ -39,6 +59,12 @@ void UserControlState::ChangeStateTo(UserControlState::State newState)
 {
   this->previousState = this->state;
   this->state = newState;
+  this->index = 0;
+}
+
+void UserControlState::BackState()
+{
+  this->ChangeStateTo(this->previousState);
 }
 
 UserControlState::State UserControlState::GetState()

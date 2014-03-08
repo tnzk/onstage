@@ -14,12 +14,13 @@ public:
   void Input(JoystickState&, JoystickEvent&);
   State GetState();
   static std::string StateToString(State state);
+  int index;
 private:
   bool Prove(JoystickEvent&, JoystickEvent::Type, unsigned int, int);
+  void BackState();
   void ChangeStateTo(State);
   State state;
   State previousState;
-  int index;
 };
 
 

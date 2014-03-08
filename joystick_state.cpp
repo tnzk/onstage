@@ -70,6 +70,11 @@ std::vector<JoystickEvent> JoystickState::ProcessEvent()
   return events;
 }
 
+int JoystickState::GetAxis(AxisSymbol symbol)
+{
+  return this->axis[this->axisMap[symbol]];
+}
+
 std::pair<int, int> JoystickState::GetAxis(AxisSymbol xSymbol, AxisSymbol ySymbol) 
 {
   int x = this->axis[this->axisMap[xSymbol]];
@@ -80,4 +85,9 @@ std::pair<int, int> JoystickState::GetAxis(AxisSymbol xSymbol, AxisSymbol ySymbo
 bool JoystickState::Prove(JoystickEvent& event, JoystickState::ButtonSymbol symbol, bool isPressed)
 {
   return event.IsButton() && event.number == this->buttonMap[symbol] && event.value == 1;
+}
+
+bool JoystickState::Prove(JoystickEvent& event, JoystickState::AxisSymbol symbol)
+{
+  return event.IsAxis() && event.number == this->axisMap[symbol];
 }
