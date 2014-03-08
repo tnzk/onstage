@@ -12,7 +12,7 @@ class UserControlContext
 public:
   UserControlContext(std::string deviceName);
   ~UserControlContext();
-  std::vector<IStageCommand> ProcessInput();
+  std::vector<IStageCommand*> ProcessInput();
   std::string ToString();
   UserControlState* controlState;
 private:

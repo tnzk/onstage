@@ -24,26 +24,29 @@ static gboolean OnDrawing(GtkWidget* widget, cairo_t* cairo, gpointer userData)
 
   // Draw controls.
   UserControlContext* context = globalViewer->controlContext;
-  cairo_set_source_rgba(cairo, 0.1, 0.1, 0.1, 0.5); 
-  cairo_rectangle(cairo, 0, 0, 200, globalStage->GetResolutionHeight());
-  cairo_fill(cairo);
-  cairo_set_source_rgba(cairo, 0.8, 0.3, 0.3, 0.3); 
-  cairo_rectangle(cairo, 0, 58 + 30 * context->controlState->index, 200, 30);
-  cairo_fill(cairo);
-  cairo_set_source_rgba(cairo, 1, 1, 1, 1); 
-  cairo_set_font_size(cairo, 22);
-  cairo_select_font_face(cairo, "sans-serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
-  cairo_move_to(cairo, 20, 50);
-  cairo_show_text(cairo, "Mode");
-  cairo_move_to(cairo, 30, 80);
-  cairo_show_text(cairo, "Load");
-  cairo_move_to(cairo, 30, 110);
-  cairo_show_text(cairo, "Camera");
-  cairo_move_to(cairo, 30, 140);
-  cairo_show_text(cairo, "Act");
-  cairo_move_to(cairo, 30, 170);
-  cairo_show_text(cairo, "Cancel");
-  // UserControlState::StateToString(context->controlState->GetState()).c_str()
+  UserControlState::State state = context->controlState->GetState();
+  if (state == UserControlState::State::Global) {
+    cairo_set_source_rgba(cairo, 0.1, 0.1, 0.1, 0.5); 
+    cairo_rectangle(cairo, 0, 0, 200, globalStage->GetResolutionHeight());
+    cairo_fill(cairo);
+    cairo_set_source_rgba(cairo, 0.8, 0.3, 0.3, 0.3); 
+    cairo_rectangle(cairo, 0, 58 + 30 * context->controlState->index, 200, 30);
+    cairo_fill(cairo);
+    cairo_set_source_rgba(cairo, 1, 1, 1, 1); 
+    cairo_set_font_size(cairo, 22);
+    cairo_select_font_face(cairo, "sans-serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+    cairo_move_to(cairo, 20, 50);
+    cairo_show_text(cairo, "Mode");
+    cairo_move_to(cairo, 30, 80);
+    cairo_show_text(cairo, "Load");
+    cairo_move_to(cairo, 30, 110);
+    cairo_show_text(cairo, "Camera");
+    cairo_move_to(cairo, 30, 140);
+    cairo_show_text(cairo, "Act");
+    cairo_move_to(cairo, 30, 170);
+    cairo_show_text(cairo, "Cancel");
+  }
+    // UserControlState::StateToString(context->controlState->GetState()).c_str()
   return TRUE;
 }
 
@@ -51,32 +54,12 @@ static gboolean UpdateFrame(GtkWidget* widget)
 {
   UserControlContext* context = globalViewer->controlContext;
   auto commands = context->ProcessInput();
-  /*
-  globalViewer->joystick->ProcessEvent();
-  std::pair<int, int> leftAxis = globalViewer->joystick->GetAxis(JoystickState::AxisSymbol::LX, JoystickState::AxisSymbol::LY);
-  if (leftAxis.first != 0 || leftAxis.second != 0) {
+  if (commands.size() > 0) {
     globalStage->SyncForRecording(globalStage->GetCurrentFrame());
-
-    double dx = leftAxis.first / 32767.0;
-    double dy = leftAxis.second / -32767.0;
-    double theta = atan2(dy, dx);
-    double r = sqrt(dx * dx + dy * dy) * 150;
-    IStageCommand* command = new LeftHandStageCommand("momo.json", theta, r);
-    globalStage->Execute(*command);
+    for (auto command : commands) {
+      globalStage->Execute(*command);
+    }
   }
-
-  std::pair<int, int> rAxis = globalViewer->joystick->GetAxis(JoystickState::AxisSymbol::RX, JoystickState::AxisSymbol::RY);
-  if (rAxis.first != 0 || rAxis.second != 0) {
-    globalStage->SyncForRecording(globalStage->GetCurrentFrame());
-
-    double dx = rAxis.first / 32767.0;
-    double dy = rAxis.second / -32767.0;
-    double theta = atan2(dy, dx);
-    double r = sqrt(dx * dx + dy * dy) * 150;
-    IStageCommand* command = new RightHandStageCommand("momo.json", theta, r);
-    globalStage->Execute(*command);
-  }
-  */
 
   gtk_widget_queue_draw(widget);
 
