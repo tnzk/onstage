@@ -21,6 +21,7 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
     this->controlState->Input(*this->joystick, ev);
   }
   
+  // TODO: Do this by lambdas.
   switch (this->controlState->GetState()) {
   case UserControlState::State::Behaviour:
     {

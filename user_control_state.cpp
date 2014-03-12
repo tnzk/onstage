@@ -20,6 +20,14 @@ bool UserControlState::Prove(JoystickEvent& event, JoystickEvent::Type type, uns
 
 void UserControlState::Input(JoystickState& state, JoystickEvent& event)
 {
+  if (state.Prove(event, JoystickState::ButtonSymbol::START, true)) {
+    if (this->state == UserControlState::State::Global) {
+      this->BackState();
+    } else {
+      this->ChangeStateTo(State::Global);
+    }
+  }
+
   switch (this->state) {
   case UserControlState::State::Global:
     if (state.Prove(event, JoystickState::AxisSymbol::CY)) {
