@@ -19,6 +19,8 @@
 * Rotations in degree
 * Introduce logging utility and json configurator
 * Use librsvgmm and libgtkmm
+* Use pango for rendering text
+* Impove the performance at close shot
 
 ## Memo ##
 

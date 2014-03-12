@@ -4,11 +4,15 @@
 #include "stage_command_shut.hpp"
 #include "stage_command_left_hand.hpp"
 #include "stage_command_right_hand.hpp"
+#include "stage_command_camera_zoom.hpp"
+#include "stage_command_camera_move.hpp"
+#include <iostream>
 
-UserControlContext::UserControlContext(std::string deviceName)
+UserControlContext::UserControlContext(std::string deviceName, TheStage* stage)
 {
   this->joystick = new JoystickState(deviceName);
   this->controlState = new UserControlState();
+  this->stage = stage;
 }
 
 UserControlContext::~UserControlContext() {}
@@ -44,6 +48,29 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	double theta = atan2(dy, dx);
 	double r = sqrt(dx * dx + dy * dy) * 150;
 	IStageCommand* command = new RightHandStageCommand("momo.json", theta, r);
+	commands.push_back(command);
+      }
+
+    }
+    break;
+  case UserControlState::State::Camera:
+    {
+      Camera* camera = this->stage->GetPrimaryCamera();
+      int zoomSlider = this->joystick->GetAxis(JoystickState::AxisSymbol::LY);
+      if (zoomSlider != 0) {
+	double zoom = zoomSlider / 327670.0; // TODO: Don't be magical.
+	IStageCommand* command = new CameraZoomStageCommand(camera->GetZoom() - zoom);
+	commands.push_back(command);
+      }
+
+      auto rightAxis = this->joystick->GetAxis(JoystickState::AxisSymbol::RX, JoystickState::AxisSymbol::RY);
+      if (rightAxis.first != 0 || rightAxis.second != 0) {
+	double x;
+	double y;
+	camera->GetPosition(x, y);
+	x += (rightAxis.first / 32767.0) * 10.0; // TODO: Don't be magical.
+	y += (rightAxis.second / 32767.0) * 10.0; // TODO: Don't be magical.
+	IStageCommand* command = new CameraMoveStageCommand(x, y);
 	commands.push_back(command);
       }
 

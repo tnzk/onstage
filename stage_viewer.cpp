@@ -74,7 +74,7 @@ StageViewer::StageViewer(TheStage* stage)
 
 void StageViewer::Run()
 {
-  this->controlContext = new UserControlContext("/dev/input/js0"); // TODO: device name?
+  this->controlContext = new UserControlContext("/dev/input/js0", this->thestage); // TODO: device name?
   globalViewer = this;
   globalStage = this->thestage;
   gtk_init(0, NULL);

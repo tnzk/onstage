@@ -9,6 +9,6 @@ public:
   virtual bool Execute(TheStage&);
   virtual std::string Serialize();
 private:
-  double dx;
-  double dy;
+  double dx; // TODO: This command use these paramters
+  double dy; // TODO: as absolute position.
 };
