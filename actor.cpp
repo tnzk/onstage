@@ -30,6 +30,7 @@ Actor::Actor(std::string name) : Symbol(name)
   this->arms.second = new Arm(dynamic_cast<Symbol*>(armRight), "right");
   this->dx = 0;
   this->dy = 0;
+  this->isWalking = false;
 }
 
 bool Actor::Speak()
