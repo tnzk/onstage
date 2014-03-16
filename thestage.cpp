@@ -44,8 +44,8 @@ int TheStage::GetDuration() { return this->duration; }
 
 bool TheStage::Execute(IStageCommand& command) 
 {
-  /* TODO: Do these logging with some utility.
   std::string serializedCommand = command.Serialize();
+  /* TODO: Do these logging with some utility.
   std::cout << serializedCommand << std::endl;
   // */
 

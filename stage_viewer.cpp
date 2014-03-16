@@ -1,4 +1,5 @@
 #include "stage_viewer.hpp"
+#include <sstream>
 #include <math.h>
 #include <SDL.h>
 #include <cairo.h>
@@ -8,7 +9,54 @@
 #include "stage_command_right_hand.hpp"
 #include "stage_command_sync.hpp"
 
-#include <math.h>
+void StageViewer::DrawMetaInfo(cairo_t* cairo, double x, double y)
+{
+  std::stringstream ss;
+  ss << "FPS: " << this->averageFps;
+  std::string fps = ss.str();
+
+  ss.str("");
+  ss << "Mode: " << UserControlState::StateToString(this->controlContext->controlState->GetState());
+  std::string globalMode = ss.str();
+
+  cairo_set_source_rgba(cairo, 0.8, 0.5, 0.5, 0.6);
+  cairo_rectangle(cairo, x, y, 200, 200);
+  cairo_fill(cairo);
+  cairo_set_source_rgba(cairo, 1, 1, 1, 1); 
+
+  cairo_set_font_size(cairo, 17);
+  cairo_move_to(cairo, x + 20, y + 30);
+  cairo_show_text(cairo, "Meta info");
+
+  cairo_set_font_size(cairo, 12);
+  cairo_move_to(cairo, x + 20, y + 60);
+  cairo_show_text(cairo, fps.c_str());
+  cairo_move_to(cairo, x + 20, y + 80);
+  cairo_show_text(cairo, globalMode.c_str());
+}
+
+void StageViewer::DrawGlobalMenu(cairo_t* cairo, double x, double y)
+{
+  cairo_set_source_rgba(cairo, 0.1, 0.1, 0.1, 0.5); 
+  cairo_rectangle(cairo, x, y, 200, this->thestage->GetResolutionHeight());
+  cairo_fill(cairo);
+  cairo_set_source_rgba(cairo, 0.8, 0.3, 0.3, 0.3); 
+  cairo_rectangle(cairo, x, y + 58 + 30 * this->controlContext->controlState->index, 200, 30);
+  cairo_fill(cairo);
+  cairo_set_source_rgba(cairo, 1, 1, 1, 1); 
+  cairo_set_font_size(cairo, 22);
+  cairo_select_font_face(cairo, "sans-serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+  cairo_move_to(cairo, x + 20, y + 50);
+  cairo_show_text(cairo, "Mode");
+  cairo_move_to(cairo, x + 30, y + 80);
+  cairo_show_text(cairo, "Load");
+  cairo_move_to(cairo, x + 30, y + 110);
+  cairo_show_text(cairo, "Camera");
+  cairo_move_to(cairo, x + 30, y + 140);
+  cairo_show_text(cairo, "Act");
+  cairo_move_to(cairo, x + 30, y + 170);
+  cairo_show_text(cairo, "Cancel");
+}
 
 // TODO: whole of this looks totally disaster. Try gtkmm.
 void StageViewer::UpdateSurfaceViaCairo(cairo_t* cairo)
@@ -33,32 +81,15 @@ void StageViewer::UpdateSurfaceViaCairo(cairo_t* cairo)
   // Draw controls.
   UserControlState::State state = context->controlState->GetState();
   if (state == UserControlState::State::Global) {
-    cairo_set_source_rgba(cairo, 0.1, 0.1, 0.1, 0.5); 
-    cairo_rectangle(cairo, 0, 0, 200, this->thestage->GetResolutionHeight());
-    cairo_fill(cairo);
-    cairo_set_source_rgba(cairo, 0.8, 0.3, 0.3, 0.3); 
-    cairo_rectangle(cairo, 0, 58 + 30 * context->controlState->index, 200, 30);
-    cairo_fill(cairo);
-    cairo_set_source_rgba(cairo, 1, 1, 1, 1); 
-    cairo_set_font_size(cairo, 22);
-    cairo_select_font_face(cairo, "sans-serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
-    cairo_move_to(cairo, 20, 50);
-    cairo_show_text(cairo, "Mode");
-    cairo_move_to(cairo, 30, 80);
-    cairo_show_text(cairo, "Load");
-    cairo_move_to(cairo, 30, 110);
-    cairo_show_text(cairo, "Camera");
-    cairo_move_to(cairo, 30, 140);
-    cairo_show_text(cairo, "Act");
-    cairo_move_to(cairo, 30, 170);
-    cairo_show_text(cairo, "Cancel");
+    this->DrawGlobalMenu(cairo, 0, 0);
   }
-    // UserControlState::StateToString(context->controlState->GetState()).c_str()
+  this->DrawMetaInfo(cairo, 400, 0);
 }
 
 StageViewer::StageViewer(TheStage* stage)
 {
   this->thestage = stage;
+  this->averageFps = 0;
 }
 
 void StageViewer::Run()
@@ -95,19 +126,20 @@ void StageViewer::Run()
 
     int correctFrame = floor(timePassed / frameInterval);
     int currentFrame = this->thestage->GetCurrentFrame();
-    if (currentFrame != correctFrame) { // Too fast.
-      if (currentFrame > correctFrame) {
+    if (currentFrame != correctFrame) {
+      if (currentFrame > correctFrame) { // Too fast.
+	// TODO: Do something.
       } else { // currentFrame < correctFrame; Too late.
 	for (int i = 0; i < (currentFrame - correctFrame); ++i) {
 	  this->thestage->Skip();
 	}
-	this->UpdateSurfaceViaCairo(cairo);	
-	previousTick = tick;
-	// SDL_Delay(tick - previousTick);
+	this->UpdateSurfaceViaCairo(cairo);
+ 	previousTick = tick;
+ 	// SDL_Delay(tick - previousTick);
       }
       SDL_UpdateWindowSurface(win);
     }
-      
+    this->averageFps = currentFrame / (timePassed / 1000.0);
   }
   SDL_Quit();
 }
