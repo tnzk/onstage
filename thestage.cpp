@@ -44,11 +44,17 @@ int TheStage::GetDuration() { return this->duration; }
 
 bool TheStage::Execute(IStageCommand& command) 
 {
+  /* TODO: Do these logging with some utility.
+  std::string serializedCommand = command.Serialize();
+  std::cout << serializedCommand << std::endl;
+  // */
+
   command.Execute(*this);
+
   // TODO: This is clearly abusing of dynamic cast.
   //       http://stackoverflow.com/questions/307765/what-is-a-good-way-to-check-if-an-objects-type-is-a-particular-subclass
   if (dynamic_cast<SyncStageCommand*>(&command) == NULL) {    
-    this->recordedCommands.push_back(command.Serialize()); // TODO: Do this via pravite method.
+    this->recordedCommands.push_back(serializedCommand); // TODO: Do this via pravite method.
   }
   return true;
 }

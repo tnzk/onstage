@@ -9,8 +9,9 @@ class StageViewer
 public:
   StageViewer(TheStage* const);
   void Run();
-  UserControlContext* controlContext; // TODO: Be private.
 private:
+  void UpdateSurfaceViaCairo(cairo_t* cairo);
+  UserControlContext* controlContext;
   TheStage* thestage;
 };
 

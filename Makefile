@@ -1,4 +1,5 @@
-CPPFLAGS = -std=c++0x `pkg-config --cflags cairo librsvg-2.0 gtk+-3.0` -I./headers
+PACKAGES = cairo librsvg-2.0 sdl2
+CPPFLAGS = -std=c++0x `pkg-config --cflags $(PACKAGES)` -I./headers
 OBJS =	onstage.o \
 	thestage.o \
 	camera.o \
@@ -40,7 +41,7 @@ OBJS =	onstage.o \
 GCC48 = g++
 
 onstage: $(OBJS)
-	$(GCC48) -o onstage $(OBJS) `pkg-config --libs cairo librsvg-2.0 gtk+-3.0`
+	$(GCC48) -o onstage $(OBJS) `pkg-config --libs $(PACKAGES)`
 
 onstage.o: onstage.cpp
 	$(GCC48) onstage.cpp -c $(CPPFLAGS)

@@ -1,5 +1,6 @@
 #include "stage_viewer.hpp"
-#include <gtk/gtk.h>
+#include <math.h>
+#include <SDL.h>
 #include <cairo.h>
 #include "stage_command.hpp"
 #include "stage_command_shut.hpp"
@@ -10,24 +11,30 @@
 #include <math.h>
 
 // TODO: whole of this looks totally disaster. Try gtkmm.
-StageViewer* globalViewer;
-TheStage* globalStage;
-
-static gboolean OnDrawing(GtkWidget* widget, cairo_t* cairo, gpointer userData)
+void StageViewer::UpdateSurfaceViaCairo(cairo_t* cairo)
 {
+
+  UserControlContext* context = this->controlContext;
+  auto commands = context->ProcessInput();
+  if (commands.size() > 0) {
+    this->thestage->SyncForRecording(this->thestage->GetCurrentFrame());
+    for (auto command : commands) {
+      this->thestage->Execute(*command);
+    }
+  }
+
   // Draw the rendered image.
-  globalStage->ExecuteCommandsUntilCurrentFrame();
-  cairo_surface_t* surface = globalStage->Render();
+  this->thestage->ExecuteCommandsUntilCurrentFrame();
+  cairo_surface_t* surface = this->thestage->Render();
   cairo_set_source_surface(cairo, surface, 0, 0);
   cairo_paint(cairo);
   cairo_surface_destroy(surface);
 
   // Draw controls.
-  UserControlContext* context = globalViewer->controlContext;
   UserControlState::State state = context->controlState->GetState();
   if (state == UserControlState::State::Global) {
     cairo_set_source_rgba(cairo, 0.1, 0.1, 0.1, 0.5); 
-    cairo_rectangle(cairo, 0, 0, 200, globalStage->GetResolutionHeight());
+    cairo_rectangle(cairo, 0, 0, 200, this->thestage->GetResolutionHeight());
     cairo_fill(cairo);
     cairo_set_source_rgba(cairo, 0.8, 0.3, 0.3, 0.3); 
     cairo_rectangle(cairo, 0, 58 + 30 * context->controlState->index, 200, 30);
@@ -47,24 +54,6 @@ static gboolean OnDrawing(GtkWidget* widget, cairo_t* cairo, gpointer userData)
     cairo_show_text(cairo, "Cancel");
   }
     // UserControlState::StateToString(context->controlState->GetState()).c_str()
-  return TRUE;
-}
-
-static gboolean UpdateFrame(GtkWidget* widget)
-{
-  UserControlContext* context = globalViewer->controlContext;
-  auto commands = context->ProcessInput();
-  if (commands.size() > 0) {
-    globalStage->SyncForRecording(globalStage->GetCurrentFrame());
-    for (auto command : commands) {
-      globalStage->Execute(*command);
-    }
-  }
-
-  gtk_widget_queue_draw(widget);
-
-  g_timeout_add(33.333, (GSourceFunc)UpdateFrame, (gpointer)widget);
-  return FALSE;
 }
 
 StageViewer::StageViewer(TheStage* stage)
@@ -75,18 +64,50 @@ StageViewer::StageViewer(TheStage* stage)
 void StageViewer::Run()
 {
   this->controlContext = new UserControlContext("/dev/input/js0", this->thestage); // TODO: device name?
-  globalViewer = this;
-  globalStage = this->thestage;
-  gtk_init(0, NULL);
-  GtkWidget* window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  GtkWidget* drawingArea = gtk_drawing_area_new();
-  gtk_container_add(GTK_CONTAINER(window), drawingArea);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-  gtk_window_set_default_size(GTK_WINDOW(window), this->thestage->GetResolutionWidth(), this->thestage->GetResolutionHeight()); 
-  g_signal_connect(G_OBJECT(drawingArea), "draw", G_CALLBACK(OnDrawing), NULL);
-  g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-  g_timeout_add(33.333, (GSourceFunc)UpdateFrame, (gpointer)drawingArea);
-  gtk_widget_set_events(drawingArea, gtk_widget_get_events(drawingArea) | GDK_BUTTON_PRESS_MASK);
-  gtk_widget_show_all(window);
-  gtk_main();
+
+  SDL_Init(SDL_INIT_VIDEO);
+  SDL_Surface* sdlsurf;
+  SDL_Window* win = SDL_CreateWindow("eveyrthing", 100, 100,
+				     this->thestage->GetResolutionWidth(),
+				     this->thestage->GetResolutionHeight(), SDL_WINDOW_SHOWN);
+  sdlsurf = SDL_GetWindowSurface(win);
+  cairo_surface_t *cairosurf = cairo_image_surface_create_for_data ( reinterpret_cast<unsigned char*>(sdlsurf->pixels),
+								     CAIRO_FORMAT_RGB24,
+								     sdlsurf->w, sdlsurf->h, sdlsurf->pitch);
+  cairo_t* cairo = cairo_create(cairosurf);
+  SDL_Event event;
+  bool quit = false;
+  const double frameInterval = 1000.0 / 30.0;
+  Uint32 previousTick = SDL_GetTicks() - frameInterval;
+  Uint32 tick = SDL_GetTicks();
+  Uint32 startedAt = tick;
+  
+  while (!quit) {
+    tick = SDL_GetTicks();
+    Uint32 timePassed = tick - startedAt;
+
+    // Process SDL events.
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
+	quit = true;
+      }
+    }
+
+    int correctFrame = floor(timePassed / frameInterval);
+    int currentFrame = this->thestage->GetCurrentFrame();
+    if (currentFrame != correctFrame) { // Too fast.
+      if (currentFrame > correctFrame) {
+      } else { // currentFrame < correctFrame; Too late.
+	for (int i = 0; i < (currentFrame - correctFrame); ++i) {
+	  this->thestage->Skip();
+	}
+	this->UpdateSurfaceViaCairo(cairo);	
+	previousTick = tick;
+	// SDL_Delay(tick - previousTick);
+      }
+      SDL_UpdateWindowSurface(win);
+    }
+      
+  }
+  SDL_Quit();
 }

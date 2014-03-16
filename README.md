@@ -3,7 +3,7 @@
 * GCC 4.8 or later
 * Cairo 2 or later
 * Librsvg 2 or later
-+ GTK+ 3.8 or later
+* SDL 2.0.1 or later
 
 ## TODO ##
 
@@ -18,7 +18,7 @@
 * It may seem to be better to say 'render' command rather 'sync'
 * Rotations in degree
 * Introduce logging utility and json configurator
-* Use librsvgmm and libgtkmm
+* Use librsvgmm
 * Use pango for rendering text
 * Impove the performance at close shot
 
