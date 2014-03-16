@@ -1,0 +1,11 @@
+{
+  "video": {
+    "fps": 30,
+    "duration": 150,
+    "width": 1280,
+    "height": 720,
+    "resources": "",
+    "output": "/home/tnzk/www/playground/onstage/"
+  },
+  "commands": []
+}
