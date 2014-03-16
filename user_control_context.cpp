@@ -6,6 +6,7 @@
 #include "stage_command_right_hand.hpp"
 #include "stage_command_camera_zoom.hpp"
 #include "stage_command_camera_move.hpp"
+#include "stage_command_facial.hpp"
 #include <iostream>
 
 UserControlContext::UserControlContext(std::string deviceName, TheStage* stage)
@@ -23,8 +24,30 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
   auto events = this->joystick->ProcessEvent();
   for (auto ev : events) {
     this->controlState->Input(*this->joystick, ev);
+    
+    switch (this->controlState->GetState()) {
+    case UserControlState::State::Facial:
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::Y, true)) {
+	IStageCommand* command = new FacialStageCommand("momo.json", "anger");
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::A, true)) {
+	IStageCommand* command = new FacialStageCommand("momo.json", "sad");
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::X, true)) {
+	IStageCommand* command = new FacialStageCommand("momo.json", "smile");
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::Y, true)) {
+	IStageCommand* command = new FacialStageCommand("momo.json", "offensive");
+	commands.push_back(command);
+      }
+      break;
+    }
   }
-  
+
+  // Axis matter.
   // TODO: Do this by lambdas.
   switch (this->controlState->GetState()) {
   case UserControlState::State::Behaviour:
@@ -51,6 +74,10 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	commands.push_back(command);
       }
 
+    }
+    break;
+  case UserControlState::State::Facial:
+    {
     }
     break;
   case UserControlState::State::Camera:

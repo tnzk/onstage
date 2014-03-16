@@ -60,6 +60,16 @@ void UserControlState::Input(JoystickState& state, JoystickEvent& event)
       this->ChangeStateTo(UserControlState::State::Global);
     }
     break;
+  case UserControlState::State::Behaviour:
+    if (state.Prove(event, JoystickState::ButtonSymbol::L1, true)) {
+      this->ChangeStateTo(UserControlState::State::Facial);
+    }
+    break;
+  case UserControlState::State::Facial:
+    if (state.Prove(event, JoystickState::ButtonSymbol::L1, true)) {
+      this->ChangeStateTo(UserControlState::State::Behaviour);
+    }
+    break;
   }
 }
 
