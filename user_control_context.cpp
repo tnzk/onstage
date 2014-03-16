@@ -1,6 +1,7 @@
 #include "user_control_context.hpp"
 #include <sstream>
 #include "stage_command.hpp"
+#include "stage_command_speak.hpp"
 #include "stage_command_shut.hpp"
 #include "stage_command_left_hand.hpp"
 #include "stage_command_right_hand.hpp"
@@ -42,6 +43,24 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::Y, true)) {
 	IStageCommand* command = new FacialStageCommand("momo.json", "offensive");
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, true)) {
+	IStageCommand* command = new SpeakStageCommand("momo.json");
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, false)) {
+	IStageCommand* command = new ShutStageCommand("momo.json");
+	commands.push_back(command);
+      }
+      break;
+    case UserControlState::State::Behaviour:
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, true)) {
+	IStageCommand* command = new SpeakStageCommand("momo.json");
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, false)) {
+	IStageCommand* command = new ShutStageCommand("momo.json");
 	commands.push_back(command);
       }
       break;
