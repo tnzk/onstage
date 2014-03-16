@@ -7,6 +7,7 @@
 #include "stage_command_camera_zoom.hpp"
 #include "stage_command_camera_move.hpp"
 #include "stage_command_facial.hpp"
+#include "stage_command_lookat.hpp"
 #include <iostream>
 
 UserControlContext::UserControlContext(std::string deviceName, TheStage* stage)
@@ -48,13 +49,13 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
   }
 
   // Axis matter.
-  // TODO: Do this by lambdas.
   switch (this->controlState->GetState()) {
   case UserControlState::State::Behaviour:
     {
       auto leftAxis = this->joystick->GetAxis(JoystickState::AxisSymbol::LX, 
 					      JoystickState::AxisSymbol::LY);
       if (leftAxis.first != 0 || leftAxis.second != 0) {
+	// TODO: Utilize this.
 	double dx = leftAxis.first / 32767.0;
 	double dy = leftAxis.second / -32767.0;
 	double theta = atan2(dy, dx);
@@ -66,6 +67,7 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
       auto rightAxis = this->joystick->GetAxis(JoystickState::AxisSymbol::RX, 
 					       JoystickState::AxisSymbol::RY);
       if (rightAxis.first != 0 || rightAxis.second != 0) {
+	// TODO: Utilize this.
 	double dx = rightAxis.first / 32767.0;
 	double dy = rightAxis.second / -32767.0;
 	double theta = atan2(dy, dx);
@@ -73,11 +75,21 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	IStageCommand* command = new RightHandStageCommand("momo.json", theta, r);
 	commands.push_back(command);
       }
-
     }
     break;
   case UserControlState::State::Facial:
     {
+      auto rightAxis = this->joystick->GetAxis(JoystickState::AxisSymbol::RX, 
+					       JoystickState::AxisSymbol::RY);
+      if (rightAxis.first != 0 || rightAxis.second != 0) {
+	// TODO: Utilize this.
+	double dx = rightAxis.first / 32767.0;
+	double dy = rightAxis.second / -32767.0;
+	double theta = atan2(dy, dx);
+	double r = sqrt(dx * dx + dy * dy) * 150;
+	IStageCommand* command = new LookatStageCommand("momo.json", theta, r);
+	commands.push_back(command);
+      }
     }
     break;
   case UserControlState::State::Camera:
