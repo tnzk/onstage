@@ -21,6 +21,7 @@
 * Use librsvgmm
 * Use pango for rendering text
 * Impove the performance at close shot
+* Refactor UserControlContext that is totally aweful
 
 ## Memo ##
 

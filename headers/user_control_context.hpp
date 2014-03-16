@@ -3,7 +3,8 @@
 
 #include <string>
 #include <vector>
-#include <thestage.hpp>
+#include "actor.hpp"
+#include "thestage.hpp"
 #include "stage_command.hpp"
 #include "user_control_state.hpp"
 #include "joystick_state.hpp"
@@ -15,10 +16,13 @@ public:
   ~UserControlContext();
   std::vector<IStageCommand*> ProcessInput();
   std::string ToString();
+  void ChangeTargetActor(std::string); // TODO: should be public? who cares?
+  std::string GetTargetActor();
   UserControlState* controlState;
 private:
   JoystickState* joystick;
   TheStage* stage;
+  std::string targetId;
 };
 
 

@@ -16,6 +16,7 @@ UserControlContext::UserControlContext(std::string deviceName, TheStage* stage)
   this->joystick = new JoystickState(deviceName);
   this->controlState = new UserControlState();
   this->stage = stage;
+  this->ChangeTargetActor("momo.json");
 }
 
 UserControlContext::~UserControlContext() {}
@@ -30,37 +31,37 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
     switch (this->controlState->GetState()) {
     case UserControlState::State::Facial:
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::Y, true)) {
-	IStageCommand* command = new FacialStageCommand("momo.json", "anger");
+	IStageCommand* command = new FacialStageCommand(this->targetId, "anger");
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::A, true)) {
-	IStageCommand* command = new FacialStageCommand("momo.json", "sad");
+	IStageCommand* command = new FacialStageCommand(this->targetId, "sad");
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::X, true)) {
-	IStageCommand* command = new FacialStageCommand("momo.json", "smile");
+	IStageCommand* command = new FacialStageCommand(this->targetId, "smile");
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::Y, true)) {
-	IStageCommand* command = new FacialStageCommand("momo.json", "offensive");
+	IStageCommand* command = new FacialStageCommand(this->targetId, "offensive");
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, true)) {
-	IStageCommand* command = new SpeakStageCommand("momo.json");
+	IStageCommand* command = new SpeakStageCommand(this->targetId);
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, false)) {
-	IStageCommand* command = new ShutStageCommand("momo.json");
+	IStageCommand* command = new ShutStageCommand(this->targetId);
 	commands.push_back(command);
       }
       break;
     case UserControlState::State::Behaviour:
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, true)) {
-	IStageCommand* command = new SpeakStageCommand("momo.json");
+	IStageCommand* command = new SpeakStageCommand(this->targetId);
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, false)) {
-	IStageCommand* command = new ShutStageCommand("momo.json");
+	IStageCommand* command = new ShutStageCommand(this->targetId);
 	commands.push_back(command);
       }
       break;
@@ -79,7 +80,7 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	double dy = leftAxis.second / -32767.0;
 	double theta = atan2(dy, dx);
 	double r = sqrt(dx * dx + dy * dy) * 150;
-	IStageCommand* command = new LeftHandStageCommand("momo.json", theta, r);
+	IStageCommand* command = new LeftHandStageCommand(this->targetId, theta, r);
 	commands.push_back(command);
       }
 
@@ -91,7 +92,7 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	double dy = rightAxis.second / -32767.0;
 	double theta = atan2(dy, dx);
 	double r = sqrt(dx * dx + dy * dy) * 150;
-	IStageCommand* command = new RightHandStageCommand("momo.json", theta, r);
+	IStageCommand* command = new RightHandStageCommand(this->targetId, theta, r);
 	commands.push_back(command);
       }
     }
@@ -106,7 +107,7 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	double dy = rightAxis.second / -32767.0;
 	double theta = atan2(dy, dx);
 	double r = sqrt(dx * dx + dy * dy) * 150;
-	IStageCommand* command = new LookatStageCommand("momo.json", theta, r);
+	IStageCommand* command = new LookatStageCommand(this->targetId, theta, r);
 	commands.push_back(command);
       }
     }
@@ -146,4 +147,14 @@ std::string UserControlContext::ToString()
   std::stringstream ss;
   ss << "State: " << stateString;
   return ss.str();
+}
+
+void UserControlContext::ChangeTargetActor(std::string actorId)
+{
+  this->targetId = actorId;
+}
+
+std::string UserControlContext::GetTargetActor()
+{
+  return this->targetId;
 }
