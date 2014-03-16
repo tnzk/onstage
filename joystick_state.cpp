@@ -84,7 +84,7 @@ std::pair<int, int> JoystickState::GetAxis(AxisSymbol xSymbol, AxisSymbol ySymbo
 
 bool JoystickState::Prove(JoystickEvent& event, JoystickState::ButtonSymbol symbol, bool isPressed)
 {
-  return event.IsButton() && event.number == this->buttonMap[symbol] && event.value == 1;
+  return event.IsButton() && event.number == this->buttonMap[symbol] && (event.value == 1) == isPressed;
 }
 
 bool JoystickState::Prove(JoystickEvent& event, JoystickState::AxisSymbol symbol)
