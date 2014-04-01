@@ -40,6 +40,7 @@ public:
   void RegisterSymbol(std::string, ISymbol*);
   ISymbol* GetSymbol(std::string name);
   Actor* GetActor(std::string name);
+  std::list<ISymbol*> GetAllSymbols();
   Camera* GetPrimaryCamera();
   int AddCamera(double x, double y, double zoom);
   void ExecuteCommandsUntilCurrentFrame();

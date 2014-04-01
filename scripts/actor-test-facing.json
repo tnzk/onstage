@@ -10,7 +10,7 @@
   "actors": ["momo"],
   "commands": [
     ["sync", 0],
-    ["load_actor", "momo.json"],
+    ["load_actor", "momo.json", "momo.json"],
     ["scale", "momo.json", 1],
     ["move", "momo.json", 640, 700],
     ["move", "momo.json", -50, 0],

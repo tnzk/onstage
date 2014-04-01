@@ -9,6 +9,14 @@
 #include "stage_command_right_hand.hpp"
 #include "stage_command_sync.hpp"
 
+void StageViewer::DrawLoadMenu(cairo_t* cairo, double x, double y)
+{
+  std::list<ISymbol*> symbols = this->thestage->GetAllSymbols();
+  for (auto sym : symbols) {
+
+  }
+}
+
 void StageViewer::DrawMetaInfo(cairo_t* cairo, double x, double y)
 {
   std::stringstream ss;
@@ -58,7 +66,6 @@ void StageViewer::DrawGlobalMenu(cairo_t* cairo, double x, double y)
   cairo_show_text(cairo, "Cancel");
 }
 
-// TODO: whole of this looks totally disaster. Try gtkmm.
 void StageViewer::UpdateSurfaceViaCairo(cairo_t* cairo)
 {
 

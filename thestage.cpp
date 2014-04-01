@@ -114,6 +114,11 @@ void TheStage::RegisterActor(std::string name, Actor* actor)
   this->RegisterSymbol(name, actor);
 }
 
+std::list<ISymbol*> TheStage::GetAllSymbols()
+{
+  return this->symbols;
+}
+
 ISymbol* TheStage::GetSymbol(std::string name)
 {
   std::list<ISymbol*>::iterator it;

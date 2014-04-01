@@ -4,9 +4,10 @@
 class LoadActorStageCommand : public IStageCommand
 {
 private:
-  std::string actorName;
+  std::string instanceId;
+  std::string symbolPath;
 public:
-  LoadActorStageCommand(std::string);
+  LoadActorStageCommand(std::string id, std::string path);
   ~LoadActorStageCommand();
   virtual bool Execute(TheStage&);
   virtual std::string Serialize();

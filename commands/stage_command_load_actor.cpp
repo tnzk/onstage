@@ -1,9 +1,10 @@
 #include "stage_command_load_actor.hpp"
 #include <sstream>
 
-LoadActorStageCommand::LoadActorStageCommand(std::string name)
-{
-  this->actorName = name;
+LoadActorStageCommand::LoadActorStageCommand(std::string id, std::string path){
+
+  this->instanceId = id;
+  this->symbolPath = path;
 }
 
 LoadActorStageCommand::~LoadActorStageCommand()
@@ -12,14 +13,14 @@ LoadActorStageCommand::~LoadActorStageCommand()
 
 bool LoadActorStageCommand::Execute(TheStage& stage)
 {
-  std::cout << this->actorName << " enters." << std::endl;
-  Actor* actor = new Actor(this->actorName);
-  stage.RegisterActor(this->actorName, actor);
+  Actor* actor = new Actor(this->symbolPath);
+  stage.RegisterActor(this->instanceId, actor);
+  std::cout << this->instanceId << "(" << this->symbolPath <<") enters." << std::endl;
 }
 
 std::string LoadActorStageCommand::Serialize()
 {
   std::stringstream ss;
-  ss << "[\"load_actor\", \"" << this->actorName << "\"]";
+  ss << "[\"load_actor\", \"" << this->instanceId << "\", \"" << this->symbolPath << "\"]";
   return ss.str();
 }
