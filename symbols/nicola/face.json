@@ -1,0 +1,41 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "path": "nicola/face.svg",
+      "x": 0, "y": 0,
+      "visibility": true,
+      "debug": true
+    },
+    { "type": "symbol",
+      "id": "mouth",
+      "path": "phenomena-mouth.json",
+      "x": 95, "y": 177,
+      "visibility": true
+    },
+    { "type": "svg",
+      "id": "eyeblow-left",
+      "path": "phenomena-eyeblow.svg",
+      "x": 70, "y": 60,
+      "angle": 0.4,
+      "center-x": 40,
+      "center-y": 5.7, 
+      "visibility": true
+    },
+    { "type": "svg",
+      "id": "eyeblow-right",
+      "path": "phenomena-eyeblow.svg",
+      "x": 160, "y": 60,
+      "angle": -0.4,
+      "center-x": 40,
+      "center-y": 5.7, 
+      "visibility": true
+    },
+    { "type": "symbol",
+      "id": "eyes",
+      "path": "phenomena-eyes.json",
+      "x": 31, "y": 80,
+      "visibility": true
+    }
+  ]    
+}

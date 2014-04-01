@@ -10,7 +10,7 @@
 class Symbol : public ISymbol
 {
 public:
-  Symbol(std::string name);
+  Symbol(std::string id, std::string path);
   ~Symbol();
   virtual std::string GetName();
   virtual cairo_surface_t* Render(double scale);

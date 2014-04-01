@@ -4,10 +4,11 @@
 class LoadSymbolStageCommand : public IStageCommand
 {
 public:
-  LoadSymbolStageCommand(std::string);
+  LoadSymbolStageCommand(std::string, std::string);
   ~LoadSymbolStageCommand();
   virtual bool Execute(TheStage&);
   virtual std::string Serialize();
 private:
-  std::string symbolName;
+  std::string instanceId;
+  std::string symbolPath;
 };

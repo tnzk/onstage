@@ -9,11 +9,11 @@
 #include <fstream>
 #include <algorithm>
 
-Symbol::Symbol(std::string name)
+Symbol::Symbol(std::string id, std::string path)
 {
-  this->name = name;
-  this->className = name; // the class name decided here will be overwritten by symbol-specifier if this is nested symbol.
-  this->instanceId = this->className; // be likely overwritten
+  this->name = id;
+  this->className = path; // the class name decided here will be overwritten by symbol-specifier if this is nested symbol.
+  this->instanceId = id; // be likely overwritten
   this->x = 0;
   this->y = 0;
   this->width = 0;
@@ -25,10 +25,10 @@ Symbol::Symbol(std::string name)
   this->isVisible = true;
 
   std::stringstream ss;
-  ss << "symbols/" << this->name; // TODO: Do not assume the directory always exists
-  std::string path = ss.str();
+  ss << "symbols/" << path; // TODO: Do not assume the directory always exists
+  std::string accessiblePath = ss.str(); // TODO: Make sure the path is accessible
 
-  std::ifstream symbolFile(path);
+  std::ifstream symbolFile(accessiblePath);
   if (!symbolFile.is_open()) {
     std::cout << "No such file: " <<  path << std::endl;
     exit(1);
@@ -76,7 +76,7 @@ Symbol::Symbol(std::string name)
     }
     if (primitiveType == "symbol") {
       std::string path = primitive["path"].get<std::string>();
-      Symbol* symbol = new Symbol(path);
+      Symbol* symbol = new Symbol(path, path);
       renderable = symbol;
       renderable->className = path;
     }

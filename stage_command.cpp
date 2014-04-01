@@ -22,7 +22,7 @@ IStageCommand* StageCommandFactory::Create(picojson::value& jsonCommand)
       return cmd;
     }));
     stageCommandFactoryMap.insert(std::make_pair("load_symbol", [](picojson::array& command) -> IStageCommand* {
-      IStageCommand* cmd = new LoadSymbolStageCommand(command[1].get<std::string>());
+	  IStageCommand* cmd = new LoadSymbolStageCommand(command[1].get<std::string>(), command[2].get<std::string>());
       return cmd;
     }));
     stageCommandFactoryMap.insert(std::make_pair("scale", [](picojson::array& command) -> IStageCommand* {

@@ -13,7 +13,7 @@ LoadActorStageCommand::~LoadActorStageCommand()
 
 bool LoadActorStageCommand::Execute(TheStage& stage)
 {
-  Actor* actor = new Actor(this->symbolPath);
+  Actor* actor = new Actor(this->instanceId, this->symbolPath);
   stage.RegisterActor(this->instanceId, actor);
   std::cout << this->instanceId << "(" << this->symbolPath <<") enters." << std::endl;
 }

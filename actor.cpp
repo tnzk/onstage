@@ -3,7 +3,7 @@
 #include <tuple>
 #include <math.h>
 
-Actor::Actor(std::string name) : Symbol(name)
+Actor::Actor(std::string id, std::string path) : Symbol(id, path)
 {
   IRenderable* head = this->GetRenderableById("head");
   if (head == NULL) {

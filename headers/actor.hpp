@@ -17,8 +17,7 @@ enum ActorFace
 class Actor : public Symbol
 {
 public:
-  Actor(std::string name);
-  
+  Actor(std::string id, std::string path);  
   void Walk(double dx, double dy);
   void Stop();
   bool LookAt(double rad, double distance);
