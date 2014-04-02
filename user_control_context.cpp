@@ -16,7 +16,7 @@ UserControlContext::UserControlContext(std::string deviceName, TheStage* stage)
   this->joystick = new JoystickState(deviceName);
   this->controlState = new UserControlState();
   this->stage = stage;
-  this->ChangeTargetActor("momo.json");
+  this->ChangeTargetActor("test-target");
 }
 
 UserControlContext::~UserControlContext() {}

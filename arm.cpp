@@ -25,13 +25,11 @@ bool Arm::SetPosition(double angle, double distance)
   double upperArmLength = 60;
   double theta = atan2(this->hand->y - shoulder->y, this->hand->x - shoulder->x) - (this->direction == "left" ? 0.3 : -0.3);
 
-  // For the left arm.
+  // Normalize the reaching point.
   if (this->direction == "left") {
     if (theta >= 0 && theta < M_PI /  1.9) theta = M_PI /  1.9;
     if (theta <  0 && theta > M_PI / -1.1) theta = M_PI / -1.1;
   }
-  
-  // For right arm.
   if (this->direction == "right") {
     if (theta < M_PI / -2.9) theta = M_PI / -2.9;
     if (theta > M_PI /  2.3) theta = M_PI /  2.3; 
@@ -40,7 +38,6 @@ bool Arm::SetPosition(double angle, double distance)
   ShapePath* elbow = this->symbol->GetElementById<ShapePath*>("elbow");
   elbow->x = upperArmLength * cos(theta) + shoulder->x;
   elbow->y = upperArmLength * sin(theta) + shoulder->y;
-  // std::cout << "elbow = {" << elbow->x << ", " << elbow->y << "}" << std::endl;
 
   double dx = this->hand->x - elbow->x;
   double dy = this->hand->y - elbow->y;
@@ -72,10 +69,10 @@ std::string Arm::GetShoulderPathString(double x, double y, double dx, double dy)
   double qy = y + dy + r * 1.5 * sin(theta);
   double c1x = px + 2 * r * cos(theta + M_PI / 2);
   double c1y = py + 2 * r * sin(theta + M_PI / 2);
-  double c2x = qx + 4 * r * cos(theta + M_PI / 2);
-  double c2y = qy + 4 * r * sin(theta + M_PI / 2);
-  double d1x = qx + 4 * r * cos(theta - M_PI / 2);
-  double d1y = qy + 4 * r * sin(theta - M_PI / 2);
+  double c2x = qx + 2.5 * r * cos(theta + M_PI / 2);
+  double c2y = qy + 2.5 * r * sin(theta + M_PI / 2);
+  double d1x = qx + 2.5 * r * cos(theta - M_PI / 2);
+  double d1y = qy + 2.5 * r * sin(theta - M_PI / 2);
   double d2x = px + 2 * r * cos(theta - M_PI / 2);
   double d2y = py + 2 * r * sin(theta - M_PI / 2);
 
@@ -92,12 +89,12 @@ std::string Arm::GetElbowPathString(double x, double y, double dx, double dy)
   std::stringstream ss;
   double theta = atan2(dy, dx);
   double l = sqrt(dx * dx + dy * dy);
-  double volume = 100 - l;
+  double volume = 80 - l;
   double r = 20;
-  double px = x - r * cos(theta);
-  double py = y - r * sin(theta);
-  double qx = x + dx + r * 0.7 * cos(theta);
-  double qy = y + dy + r * 0.7 * sin(theta);
+  double px = x - 0.1 * cos(theta);
+  double py = y - 0.1 * sin(theta);
+  double qx = x + dx + 0.1 * cos(theta);
+  double qy = y + dy + 0.1 * sin(theta);
   double c1x = px + 0.5 * volume * cos(theta + M_PI / 2);
   double c1y = py + 0.5 * volume * sin(theta + M_PI / 2);
   double c2x = qx + 0.3 * volume * cos(theta + M_PI / 2);
