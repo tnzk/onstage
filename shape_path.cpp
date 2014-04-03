@@ -10,6 +10,7 @@ ShapePath::ShapePath(std::string command)
   this->ParseCommandString(command);
   this->width = 200;
   this->height = 200;
+  this->fillColor = std::make_tuple(1.0, 0, 0);
 }
 
 cairo_surface_t* ShapePath::Render(double scale)
@@ -32,7 +33,7 @@ cairo_surface_t* ShapePath::Render(double scale)
   }
 
   cairo_move_to(cairo, this->centerX, this->centerY);
-  cairo_set_source_rgb(cairo, 0, 0, 0);
+
   for (auto command : this->commands) {
     switch (std::get<0>(command)) {
     case ShapePath::Command::MOVE:
@@ -56,13 +57,26 @@ cairo_surface_t* ShapePath::Render(double scale)
       break;
     case ShapePath::Command::CURVE_RELATIVE:
       cairo_rel_curve_to(cairo, std::get<1>(command), std::get<2>(command), std::get<3>(command), std::get<4>(command),
-		            std::get<5>(command), std::get<6>(command));
+		                std::get<5>(command), std::get<6>(command));
       break;
     case ShapePath::Command::STROKE:
-      cairo_stroke(cairo); 
+      {
+	double r = std::get<0>(this->strokeColor);
+	double g = std::get<1>(this->strokeColor);
+	double b = std::get<2>(this->strokeColor);
+	cairo_set_source_rgb(cairo, r, g, b);
+	cairo_set_line_width(cairo, 1.0);
+	cairo_stroke_preserve(cairo); 
+      }
       break;
     case ShapePath::Command::FILL:
-      cairo_fill(cairo); 
+      {
+	double r = std::get<0>(this->fillColor);
+	double g = std::get<1>(this->fillColor);
+	double b = std::get<2>(this->fillColor);
+	cairo_set_source_rgb(cairo, r, g, b);
+	cairo_fill_preserve(cairo);
+      }
       break;
     case ShapePath::Command::CLOSE:
       cairo_close_path(cairo); 
@@ -72,6 +86,16 @@ cairo_surface_t* ShapePath::Render(double scale)
 
   cairo_destroy(cairo);
   return surface;
+}
+
+void ShapePath::SetFillColor(double r, double g, double b)
+{
+  this->fillColor = std::make_tuple(r, g, b);  
+}
+
+void ShapePath::SetStrokeColor(double r, double g, double b)
+{
+  this->strokeColor = std::make_tuple(r, g, b);  
 }
 
 void ShapePath::SetCommand(std::string commandString)

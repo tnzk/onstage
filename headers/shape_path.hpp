@@ -15,6 +15,8 @@ public:
   virtual void Sync(int) {};
   virtual int GetCurrentFrame() {};
   void SetCommand(std::string);
+  void SetFillColor(double, double, double);
+  void SetStrokeColor(double, double, double);
 private:
   void ParseCommandString(std::string);
   enum class Command { MOVE, LINE, CURVE, ARC, ARC_NEGATIVE,
@@ -22,5 +24,7 @@ private:
                        FILL, STROKE, CLOSE,
                        FILL_COLOR, STROKE_COLOR, STROKE_WIDTH};
   std::vector<std::tuple<ShapePath::Command, double, double, double, double, double, double>> commands;
+  std::tuple<double, double, double> fillColor;
+  std::tuple<double, double, double> strokeColor;
 };
 #endif

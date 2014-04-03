@@ -79,7 +79,7 @@ std::string Arm::GetShoulderPathString(double x, double y, double dx, double dy)
   ss << " M " << px << ", " << py  
      << " CURVE " << c1x << ", " << c1y << ", " << c2x << ", " << c2y <<", " << qx << ", " << qy
      << " CURVE " << d1x << ", " << d1y << ", " << d2x << ", " << d2y <<", " << px << ", " << py
-     << " Z F";
+     << " Z S";
   std::string result = ss.str();
   return result;
 }

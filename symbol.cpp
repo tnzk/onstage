@@ -67,6 +67,20 @@ Symbol::Symbol(std::string id, std::string path)
       ShapePath* shape = new ShapePath(command);
       renderable = shape;
       renderable->className = "foobar"; // TODO: classify somehow
+      if (primitive["fill"].is<picojson::array>()) {
+	 picojson::array& color = primitive["fill"].get<picojson::array>();
+	 double r = color[0].is<double>() ? color[0].get<double>() : 0.0;
+	 double g = color[1].is<double>() ? color[1].get<double>() : 0.0;
+	 double b = color[2].is<double>() ? color[2].get<double>() : 0.0;
+	 shape->SetFillColor(r, g, b);
+      }
+      if (primitive["stroke"].is<picojson::array>()) {
+	 picojson::array& color = primitive["stroke"].get<picojson::array>();
+	 double r = color[0].is<double>() ? color[0].get<double>() : 0.0;
+	 double g = color[1].is<double>() ? color[1].get<double>() : 0.0;
+	 double b = color[2].is<double>() ? color[2].get<double>() : 0.0;
+	 shape->SetStrokeColor(r, g, b);
+      }
     }
     if (primitiveType == "svg") {
       std::string path = primitive["path"].get<std::string>();
