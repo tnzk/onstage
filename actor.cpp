@@ -64,11 +64,19 @@ void Actor::Sync(int frame)
 
   // TODO: must be done by something more general.
   IRenderable* head = this->GetRenderableById("head");
-  IRenderable* backHair = this->GetRenderableById("back-hair");
-  if (head != NULL && backHair != NULL) {
-    backHair->x = head->x;
-    backHair->y = head->y;
-    backHair->angle = head->angle;
+  if (head) {
+    IRenderable* backHair = this->GetRenderableById("back-hair");
+    if (backHair) {
+      backHair->x = head->x;
+      backHair->y = head->y;
+      backHair->angle = head->angle;
+    }
+    IRenderable* foreHair = this->GetRenderableById("fore-hair");
+    if (foreHair) {
+      foreHair->x = head->x;
+      foreHair->y = head->y;
+      foreHair->angle = head->angle;
+    }
   }  
 
 
