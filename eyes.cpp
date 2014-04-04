@@ -1,10 +1,17 @@
 #include "eyes.hpp"
 #include <math.h>
 #include <iostream>
+#include <sstream>
 
 Eyes::Eyes(Symbol* symbol)
 {
   this->symbol = symbol;
+  if (this->symbol->meta.find("distance") != this->symbol->meta.end()) {
+    std::istringstream(symbol->meta["distance"]) >> this->distance;
+  } else {
+    this->distance = 15;
+  }
+
   this->pupils.first = symbol->GetRenderableById("left-pupil");
   this->pupils.second = symbol->GetRenderableById("right-pupil");
   this->leftBasePosition.first = this->pupils.first->x;
@@ -25,10 +32,10 @@ bool Eyes::LookAt(double rad, double distance)
   double rightCenterY = this->rightBasePosition.second + this->pupils.second->height / 2.0;
   double leftRad  = atan2(focusY - leftCenterY,  focusX - leftCenterX);
   double rightRad = atan2(focusY - rightCenterY, focusX - rightCenterX);
-  this->pupils.first->x = this->leftBasePosition.first  + 15 * cos(leftRad);
-  this->pupils.first->y = this->leftBasePosition.second + 15 * sin(leftRad) * -1;
-  this->pupils.second->x = this->rightBasePosition.first  + 15 * cos(rightRad);
-  this->pupils.second->y = this->rightBasePosition.second + 15 * sin(rightRad) * -1;
+  this->pupils.first->x = this->leftBasePosition.first  + this->distance * cos(leftRad);
+  this->pupils.first->y = this->leftBasePosition.second + this->distance * sin(leftRad) * -1;
+  this->pupils.second->x = this->rightBasePosition.first  + this->distance * cos(rightRad);
+  this->pupils.second->y = this->rightBasePosition.second + this->distance * sin(rightRad) * -1;
 
   return true;
 }

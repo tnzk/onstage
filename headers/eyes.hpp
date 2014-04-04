@@ -14,6 +14,7 @@ public:
 private:
   bool isBlinking;
   Symbol* symbol;
+  double distance;
   std::pair<IRenderable*, IRenderable*> pupils;
   std::pair<double, double> leftBasePosition;
   std::pair<double, double> rightBasePosition;
