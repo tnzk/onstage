@@ -7,6 +7,7 @@
 Arm::Arm(Symbol* symbol, std::string direction)
 {
   this->symbol = symbol;
+  // TODO: Support the actor that doesnt have hand or sleeve.
   this->hand = this->symbol->GetRenderableById("hand");
   this->sleeve = this->symbol->GetRenderableById("sleeve");
   this->baseHandPosition.first = this->hand->x;

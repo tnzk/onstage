@@ -59,9 +59,19 @@ bool Actor::Eyeblows(double left, double right)
 
 void Actor::Sync(int frame)
 {
-  // std::cout << "Actor::Sync" << std::endl;
   Symbol::Sync(frame);
   this->head->Sync(frame);
+
+  // TODO: must be done by something more general.
+  IRenderable* head = this->GetRenderableById("head");
+  IRenderable* backHair = this->GetRenderableById("back-hair");
+  if (head != NULL && backHair != NULL) {
+    backHair->x = head->x;
+    backHair->y = head->y;
+    backHair->angle = head->angle;
+  }  
+
+
   if (this->isWalking) {
     this->walkingOrigin = std::make_tuple(std::get<0>(this->walkingOrigin) + this->dx,
 					  std::get<1>(this->walkingOrigin) + this->dy,
