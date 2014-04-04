@@ -5,37 +5,40 @@
       "path": "nicola/face.svg",
       "x": 0, "y": 0,
       "visibility": true,
-      "debug": true
+      "debug": false
     },
     { "type": "symbol",
       "id": "mouth",
-      "path": "phenomena-mouth.json",
-      "x": 95, "y": 177,
+      "path": "nicola/mouth.json",
+      "x": 37, "y": 105,
       "visibility": true
     },
     { "type": "svg",
       "id": "eyeblow-left",
-      "path": "phenomena-eyeblow.svg",
-      "x": 70, "y": 60,
+      "path": "nicola/eyeblow-left.svg",
+      "x": 32, "y": 55,
       "angle": 0.4,
-      "center-x": 40,
+      "center-x": 17,
       "center-y": 5.7, 
-      "visibility": true
+      "visibility": true,
+      "debug": false
     },
     { "type": "svg",
       "id": "eyeblow-right",
-      "path": "phenomena-eyeblow.svg",
-      "x": 160, "y": 60,
+      "path": "nicola/eyeblow-right.svg",
+      "x": 70, "y": 55,
       "angle": -0.4,
-      "center-x": 40,
+      "center-x": 17,
       "center-y": 5.7, 
-      "visibility": true
+      "visibility": true,
+      "debug": false
     },
     { "type": "symbol",
       "id": "eyes",
-      "path": "phenomena-eyes.json",
-      "x": 31, "y": 80,
-      "visibility": true
+      "path": "nicola/eyes.json",
+      "x": 10, "y": 64,
+      "visibility": true,
+      "meta": {"distance": "4"}
     }
   ]    
 }

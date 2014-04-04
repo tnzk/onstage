@@ -7,11 +7,6 @@
       "path": "nicola/face.json",
       "x": 10, "y": 20,
       "visibility": true
-    },
-    { "type": "svg",
-      "path": "nicola/fore-hair.svg",
-      "x": 0, "y": 0,
-      "visibility": true
     }
   ]    
 }

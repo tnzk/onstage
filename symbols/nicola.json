@@ -2,22 +2,29 @@
   "type": "actor",
   "center-x": 249, "center-y": 455,
   "width": 500, "height": 0,
-  "debug": true,
+  "debug": false,
   "angle": 0,
   "primitives": [
+    { "type": "svg",
+      "id": "back-hair",
+      "path": "nicola/back-hair.svg",
+      "x": 200, "y": 200,
+      "center-x": 132, "center-y": 140,
+      "visibility": true, "debug": false
+    },
     { "type": "svg",
       "id": "leg-left",
       "path": "nicola/leg-left.svg",
       "x": 197, "y": 310,
       "visibility": true,
-      "debug": true
+      "debug": false
     },
     { "type": "svg",
       "id": "leg-right",
       "path": "nicola/leg-right.svg",
       "x": 246, "y": 310,
       "visibility": true,
-      "debug": true
+      "debug": false
     },
     { "type": "svg",
       "path": "nicola/body.svg",
@@ -31,7 +38,7 @@
       "x": 240, "y": 150,
       "center-x": 60, "center-y": 140,
       "visibility": true,
-      "debug": true
+      "debug": false
     },
     { "type": "symbol",
       "id": "arm-left",
@@ -52,6 +59,14 @@
       "visibility": true,
       "debug": false,
       "meta": { "direction": "right"}
+    },
+    { "type": "svg",
+      "id": "fore-hair",
+      "path": "nicola/fore-hair.svg",
+      "x": 0, "y": 0,
+      "center-x": 58, "center-y": 129,
+      "visibility": true,
+      "debug": false
     }
   ]
 }
