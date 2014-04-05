@@ -20,9 +20,10 @@ Head::Head(Symbol* symbol)
   if (eyes == NULL) {
     std::cout << "Error: No symbol whose name is eyes not found for " 
               << face->instanceId << ":"  << face->className << std::endl;
-    // TODO: Abort
+    this->eyes = NULL;
+  } else {
+    this->eyes = new Eyes(dynamic_cast<Symbol*>(eyes));
   }
-  this->eyes = new Eyes(dynamic_cast<Symbol*>(eyes));
 
   IRenderable* leftEyeblow = face->GetRenderableById("eyeblow-left");
   IRenderable* rightEyeblow =  face->GetRenderableById("eyeblow-right");
@@ -47,7 +48,7 @@ bool Head::IsSpeaking() { return this->mouth->IsSpeaking(); }
 
 bool Head::LookAt(double rad, double distance)
 {
-  this->eyes->LookAt(rad, distance);
+  if (this->eyes) this->eyes->LookAt(rad, distance);
   return true;
 }
 

@@ -9,7 +9,6 @@ Actor::Actor(std::string id, std::string path) : Symbol(id, path)
   if (head == NULL) {
     std::cout << "Error: No symbol whose name is head not found for " 
               << this->instanceId << ":"  << this->className << std::endl;
-    // TODO: Abort
   }  
   this->head = new Head(dynamic_cast<Symbol*>(head));
 
@@ -17,17 +16,20 @@ Actor::Actor(std::string id, std::string path) : Symbol(id, path)
   if (armLeft == NULL) {
     std::cout << "Error: No symbol whose name is arm-left not found for " 
               << this->instanceId << ":"  << this->className << std::endl;
-    // TODO: Abort
+    this->arms.first = NULL;
+  } else {
+    this->arms.first = new Arm(dynamic_cast<Symbol*>(armLeft), "left");
   }
-  this->arms.first = new Arm(dynamic_cast<Symbol*>(armLeft), "left");
 
   IRenderable* armRight = this->GetRenderableById("arm-right");
   if (armRight == NULL) {
     std::cout << "Error: No symbol whose name is arm-right not found for " 
               << this->instanceId << ":"  << this->className << std::endl;
-    // TODO: Abort
+    this->arms.second = NULL;
+  } else {
+    this->arms.second = new Arm(dynamic_cast<Symbol*>(armRight), "right");
   }
-  this->arms.second = new Arm(dynamic_cast<Symbol*>(armRight), "right");
+
   this->dx = 0;
   this->dy = 0;
   this->isWalking = false;
@@ -93,12 +95,12 @@ void Actor::Sync(int frame)
 
 void Actor::LeftHand(double rad, double distance)
 {
-  this->arms.first->SetPosition(rad, distance);
+  if (this->arms.first) this->arms.first->SetPosition(rad, distance);
 }
 
 void Actor::RightHand(double rad, double distance)
 {
-  this->arms.second->SetPosition(rad, distance);
+  if (this->arms.second) this->arms.second->SetPosition(rad, distance);
 }
 
 bool Actor::IsSpeaking()
