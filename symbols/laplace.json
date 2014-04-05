@@ -1,0 +1,78 @@
+{
+  "type": "actor",
+  "center-x": 249, "center-y": 455,
+  "width": 500, "height": 0,
+  "debug": false,
+  "angle": 0,
+  "primitives": [
+    { "type": "svg",
+      "id": "back-hair",
+      "path": "laplace/back-hair.svg",
+      "x": 200, "y": 200,
+      "center-x": 132, "center-y": 140,
+      "visibility": true, "debug": false
+    },
+    { "type": "svg",
+      "id": "leg-left",
+      "path": "laplace/leg-left.svg",
+      "x": 197, "y": 290,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "leg-right",
+      "path": "laplace/leg-right.svg",
+      "x": 246, "y": 290,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "path": "laplace/body.svg",
+      "x": 165, "y": 140,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "head",
+      "path": "laplace/head.json",
+      "x": 240, "y": 150,
+      "center-x": 60, "center-y": 140,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "arm-left",
+      "path": "laplace/arm-left.json",
+      "x": 210, "y": 170,
+      "width": 200, "height": 200,
+      "center-x": 190, "center-y": 100,
+      "visibility": true,
+      "debug": false,
+      "meta": { "direction": "left"}
+    },
+    { "type": "symbol",
+      "id": "arm-right",
+      "path": "laplace/arm-right.json",
+      "x": 280, "y": 170,
+      "width": 200, "height": 200,
+      "center-x": 100, "center-y": 100,
+      "visibility": true,
+      "debug": false,
+      "meta": { "direction": "right"}
+    },
+    { "type": "svg",
+      "path": "laplace/body-bag.svg",
+      "x": 165, "y": 140,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "fore-hair",
+      "path": "laplace/fore-hair.svg",
+      "x": 0, "y": 0,
+      "center-x": 58, "center-y": 129,
+      "visibility": true,
+      "debug": false
+    }
+  ]
+}
