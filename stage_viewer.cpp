@@ -11,9 +11,13 @@
 
 void StageViewer::DrawLoadMenu(cairo_t* cairo, double x, double y)
 {
+  cairo_set_source_rgba(cairo, 0.2, 0.5, 0.8, 0.6);
+  cairo_rectangle(cairo, x, y, 300, this->thestage->GetResolutionHeight());
+  cairo_fill(cairo);
+
   std::list<ISymbol*> symbols = this->thestage->GetAllSymbols();
   for (auto sym : symbols) {
-
+    std::cout << sym->instanceId << std::endl;
   }
 }
 
@@ -89,6 +93,10 @@ void StageViewer::UpdateSurfaceViaCairo(cairo_t* cairo)
   UserControlState::State state = context->controlState->GetState();
   if (state == UserControlState::State::Global) {
     this->DrawGlobalMenu(cairo, 0, 0);
+  }
+
+  if (state == UserControlState::State::Loader) {
+    this->DrawLoadMenu(cairo, 0, 0);
   }
   this->DrawMetaInfo(cairo, 400, 0);
 }
