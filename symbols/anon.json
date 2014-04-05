@@ -1,0 +1,23 @@
+{
+  "type": "actor",
+  "center-x": 118, "center-y": 183,
+  "width": 500, "height": 0,
+  "debug": false,
+  "angle": 0,
+  "primitives": [
+    { "type": "svg",
+      "path": "anon/body.svg",
+      "x": 50, "y": 20,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "head",
+      "path": "anon/head.json",
+      "x": 118, "y": 138,
+      "center-x": 120, "center-y": 153,
+      "visibility": true,
+      "debug": false
+    }
+  ]
+}

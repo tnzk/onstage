@@ -1,0 +1,18 @@
+{
+  "type": "symbol",
+  "width": 300, "height": 300,
+  "primitives": [
+    { "type": "svg",
+      "path": "anon/hair.svg",
+      "x": 50, "y": 80,
+      "center-x": 0, "center-y": 10,
+      "visibility": true
+    },
+    { "type": "symbol",
+      "id": "face",
+      "path": "anon/face.json",
+      "x": 80, "y": 80,
+      "visibility": true
+    }
+  ]    
+}

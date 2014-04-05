@@ -1,0 +1,65 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "id": "mouth-01",
+      "path": "anon/mouth-01.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": true,
+      "meta": {
+        "facial-type": "smile",
+        "mouth-style": "close"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-02",
+      "path": "anon/mouth-02.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": false,
+      "meta": { 
+        "facial-type": "sad",
+        "mouth-style": "close"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-03",
+      "path": "anon/mouth-03.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": false,
+      "meta": {
+        "facial-type": "sad",
+        "mouth-style": "open"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-04",
+      "path": "anon/mouth-04.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": false,
+      "meta": {
+        "facial-type": "smile",
+        "mouth-style": "open"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-05",
+      "path": "anon/mouth-05.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": false,
+      "meta": { "facial-type": "intermediate" }
+    },
+    { "type": "svg",
+      "id": "mouth-06",
+      "path": "anon/mouth-06.svg",
+      "x": 15, "y": 3.5,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": false,
+      "meta": { "facial-type": "intermediate" }
+    }
+  ]    
+}

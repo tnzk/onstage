@@ -1,0 +1,29 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+       "path": "laplace/eyes-back.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "svg",
+      "path": "laplace/pupil.svg",
+      "id": "left-pupil",
+      "x": 12, "y": 3,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "path": "laplace/pupil.svg",
+      "id": "right-pupil",
+      "x": 53,  "y": 3,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+       "path": "laplace/eyes-edge.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    }
+  ]
+}
