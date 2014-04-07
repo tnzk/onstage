@@ -82,6 +82,9 @@ void StageViewer::UpdateSurfaceViaCairo(cairo_t* cairo)
     }
   }
 
+  cairo_set_source_rgb(cairo, 1, 1, 1);
+  cairo_paint(cairo);
+
   // Draw the rendered image.
   this->thestage->ExecuteCommandsUntilCurrentFrame();
   cairo_surface_t* surface = this->thestage->Render();
