@@ -69,8 +69,8 @@ cairo_surface_t* TheStage::Render()
   cairo_t* cairo = cairo_create(surface);
 
   // Clear the surface
-  cairo_set_source_rgb(cairo, 1.0, 1.0, 1.0);
-  cairo_paint(cairo);
+  // cairo_set_source_rgb(cairo, 1.0, 1.0, 1.0);
+  //  cairo_paint(cairo);
 
   for(std::list<ISymbol*>::iterator it = this->symbols.begin(); it != this->symbols.end(); ++it) {
     ISymbol* symbol = *it;
