@@ -25,6 +25,7 @@ int main(int argc, char** argv)
   opt.add("quiet", 'q', "Quiet mode; does not emit recorded script.");
   opt.add<std::string>("directory", 'd', "Recording directory.", false, ".");
   opt.add("list-commands", 'l', "List all the avaiable commands.");
+  opt.add<int>("start", 's', "Start at.", false, 0);
   opt.parse_check(argc, argv);
 
   if (opt.exist("list-commands")) {
@@ -70,18 +71,25 @@ int main(int argc, char** argv)
 
   stage.Start();
 
+  int startAt = opt.get<int>("start");
+
   if (isInteractive) {
     StageViewer viewer(&stage);
     viewer.Run();
   } else {
     for(int i = 0; i < stage.GetDuration(); i++) {
       stage.ExecuteCommandsUntilCurrentFrame();
-      cairo_surface_t* surface = stage.Render();
-      std::stringstream filename;
-      filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
-      cairo_surface_write_to_png(surface, filename.str().c_str());
-      cairo_surface_destroy(surface);
-      std::cout << stage.GetCurrentFrame() << "th frame rendered." << std::endl;
+      if (i < startAt) {
+	stage.Skip();
+	std::cout << stage.GetCurrentFrame() << "th frame skipped." << std::endl;
+      } else {
+	cairo_surface_t* surface = stage.Render();
+	std::stringstream filename;
+	filename << outputDirectory << "f" << std::setw(3) << std::setfill('0') << i + 1 << ".png";
+	cairo_surface_write_to_png(surface, filename.str().c_str());
+	cairo_surface_destroy(surface);
+	std::cout << stage.GetCurrentFrame() << "th frame rendered." << std::endl;
+      }
     }
   }
 
