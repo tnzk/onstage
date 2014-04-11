@@ -9,6 +9,7 @@
 #include "stage_command_camera_move.hpp"
 #include "stage_command_facial.hpp"
 #include "stage_command_lookat.hpp"
+#include "stage_command_move.hpp"
 #include <iostream>
 
 UserControlContext::UserControlContext(std::string deviceName, TheStage* stage)
@@ -35,6 +36,7 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	this->controlState->max = this->stage->GetAllSymbols().size() - 1;
 
 	// Ahm...aweful.
+	// This should be done by UserControlState somehow.
 	if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::A, true)) {
 	  auto symbols = this->stage->GetAllSymbols();
 	  int count = 0;
@@ -44,8 +46,8 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	    }
 	    count++;
 	  }
-	  //this->controlState->ChangeStateTo(UserControlState::State::Global);
-	  //this->controlState->index = 0;
+	  // this->controlState->ChangeStateTo(UserControlState::State::Global);
+	  // this->controlState->index = 0;
 	}
       }
       break;
@@ -115,6 +117,17 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	IStageCommand* command = new RightHandStageCommand(this->targetId, theta, r);
 	commands.push_back(command);
       }
+
+      auto cAxis = this->joystick->GetAxis(JoystickState::AxisSymbol::CX, 
+                                           JoystickState::AxisSymbol::CY);
+      if (cAxis.first != 0 || cAxis.second != 0) {
+	// TODO: Utilize this.
+	double dx = (cAxis.first / 32767.0) * 10.0;
+	double dy = (cAxis.second / -32767.0) * -10.0;
+	IStageCommand* command = new MoveStageCommand(this->targetId, dx, dy);
+	commands.push_back(command);
+      }
+
     }
     break;
   case UserControlState::State::Facial:
