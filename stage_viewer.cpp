@@ -31,6 +31,10 @@ void StageViewer::DrawMetaInfo(cairo_t* cairo, double x, double y)
   ss << "Mode: " << UserControlState::StateToString(this->controlContext->controlState->GetState());
   std::string globalMode = ss.str();
 
+  ss.str("");
+  ss << "Current: " << this->thestage->GetCurrentFrame();
+  std::string currentFrame = ss.str();
+
   cairo_set_source_rgba(cairo, 0.8, 0.5, 0.5, 0.6);
   cairo_rectangle(cairo, x, y, 200, 200);
   cairo_fill(cairo);
@@ -45,6 +49,8 @@ void StageViewer::DrawMetaInfo(cairo_t* cairo, double x, double y)
   cairo_show_text(cairo, fps.c_str());
   cairo_move_to(cairo, x + 20, y + 80);
   cairo_show_text(cairo, globalMode.c_str());
+  cairo_move_to(cairo, x + 20, y + 110);
+  cairo_show_text(cairo, currentFrame.c_str());
 }
 
 void StageViewer::DrawGlobalMenu(cairo_t* cairo, double x, double y)
