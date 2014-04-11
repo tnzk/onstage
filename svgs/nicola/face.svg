@@ -16,7 +16,20 @@
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="face.svg">
   <defs
-     id="defs3071" />
+     id="defs3071">
+    <filter
+       inkscape:collect="always"
+       id="filter3792"
+       x="-0.27819399"
+       width="1.556388"
+       y="-0.67809786"
+       height="2.3561957">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.2290375"
+         id="feGaussianBlur3794" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -24,9 +37,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="9.4011696"
-     inkscape:cy="36.672232"
+     inkscape:zoom="5.6"
+     inkscape:cx="15.463899"
+     inkscape:cy="47.713773"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -79,6 +92,26 @@
        inkscape:connector-curvature="0"
        id="path3017"
        d="m 191.31705,218.80626 c 0,0 -0.19928,2.72453 -1.13436,6.35822 0,0 0.98783,-0.44128 1.98672,-0.17164 0,0 0.71297,-1.52026 -0.13803,-5.47229 z"
-       style="fill:#bdb3a5;stroke:none" />
+       style="fill:#eed9bb;stroke:none;fill-opacity:1" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ffc9bc;fill-opacity:1;stroke:none;filter:url(#filter3792)"
+       id="path3770"
+       sodipodi:cx="32.142857"
+       sodipodi:cy="99.945694"
+       sodipodi:rx="13.928572"
+       sodipodi:ry="5.7142859"
+       d="m 46.071428,99.945694 a 13.928572,5.7142859 0 1 1 -27.857143,0 13.928572,5.7142859 0 1 1 27.857143,0 z"
+       transform="matrix(0.73076924,0,0,0.921875,141.83939,137.87993)" />
+    <path
+       transform="matrix(0.73076924,0,0,0.921875,194.51796,137.87993)"
+       d="m 46.071428,99.945694 a 13.928572,5.7142859 0 1 1 -27.857143,0 13.928572,5.7142859 0 1 1 27.857143,0 z"
+       sodipodi:ry="5.7142859"
+       sodipodi:rx="13.928572"
+       sodipodi:cy="99.945694"
+       sodipodi:cx="32.142857"
+       id="path3796"
+       style="opacity:1;fill:#ffc9bc;fill-opacity:1;stroke:none;filter:url(#filter3792)"
+       sodipodi:type="arc" />
   </g>
 </svg>

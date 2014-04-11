@@ -50,6 +50,12 @@
       "debug": false,
       "meta": { "direction": "left"}
     },
+    { "type": "svg",
+      "path": "laplace/body-bag.svg",
+      "x": 165, "y": 140,
+      "visibility": true,
+      "debug": false
+    },
     { "type": "symbol",
       "id": "arm-right",
       "path": "laplace/arm-right.json",
@@ -59,12 +65,6 @@
       "visibility": true,
       "debug": false,
       "meta": { "direction": "right"}
-    },
-    { "type": "svg",
-      "path": "laplace/body-bag.svg",
-      "x": 165, "y": 140,
-      "visibility": true,
-      "debug": false
     },
     { "type": "svg",
       "id": "fore-hair",
