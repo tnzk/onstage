@@ -37,7 +37,7 @@ Mouth::Mouth(Symbol* symbol)
 
   // TODO: Determine the default facial by configuration
   this->ChangeFacial("smile");
-
+  this->Shut();
 }
 
 bool Mouth::ChangeFacial(std::string facial)
