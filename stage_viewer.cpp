@@ -9,16 +9,29 @@
 #include "stage_command_right_hand.hpp"
 #include "stage_command_sync.hpp"
 
-void StageViewer::DrawLoadMenu(cairo_t* cairo, double x, double y)
-{
+void StageViewer::DrawSelectMenu(cairo_t* cairo, double x, double y) {
   cairo_set_source_rgba(cairo, 0.2, 0.5, 0.8, 0.6);
   cairo_rectangle(cairo, x, y, 300, this->thestage->GetResolutionHeight());
   cairo_fill(cairo);
 
+  cairo_set_source_rgba(cairo, 0.2, 0.5, 0.8, 0.9); 
+  cairo_rectangle(cairo, x, y + 60 + this->controlContext->controlState->index * 30, 300, 30);
+  cairo_fill(cairo);
+
+  cairo_set_source_rgb(cairo, 1, 1, 1);
+  cairo_set_font_size(cairo, 22);
+  cairo_select_font_face(cairo, "sans-serif", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
   std::list<ISymbol*> symbols = this->thestage->GetAllSymbols();
+  int count = 0;
   for (auto sym : symbols) {
-    std::cout << sym->instanceId << std::endl;
+    cairo_move_to(cairo, x + 20, y + 60 + count * 30);
+    cairo_show_text(cairo, sym->instanceId.c_str());
+    count++;
   }
+}
+
+void StageViewer::DrawLoadMenu(cairo_t* cairo, double x, double y)
+{
 }
 
 void StageViewer::DrawMetaInfo(cairo_t* cairo, double x, double y)
@@ -67,12 +80,14 @@ void StageViewer::DrawGlobalMenu(cairo_t* cairo, double x, double y)
   cairo_move_to(cairo, x + 20, y + 50);
   cairo_show_text(cairo, "Mode");
   cairo_move_to(cairo, x + 30, y + 80);
-  cairo_show_text(cairo, "Load");
+  cairo_show_text(cairo, "Selector");
   cairo_move_to(cairo, x + 30, y + 110);
-  cairo_show_text(cairo, "Camera");
+  cairo_show_text(cairo, "Load");
   cairo_move_to(cairo, x + 30, y + 140);
-  cairo_show_text(cairo, "Act");
+  cairo_show_text(cairo, "Camera");
   cairo_move_to(cairo, x + 30, y + 170);
+  cairo_show_text(cairo, "Act");
+  cairo_move_to(cairo, x + 30, y + 200);
   cairo_show_text(cairo, "Cancel");
 }
 
@@ -104,8 +119,8 @@ void StageViewer::UpdateSurfaceViaCairo(cairo_t* cairo)
     this->DrawGlobalMenu(cairo, 0, 0);
   }
 
-  if (state == UserControlState::State::Loader) {
-    this->DrawLoadMenu(cairo, 0, 0);
+  if (state == UserControlState::State::Selector) {
+    this->DrawSelectMenu(cairo, 0, 0);
   }
   this->DrawMetaInfo(cairo, 400, 0);
 }

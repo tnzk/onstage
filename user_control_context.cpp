@@ -29,6 +29,26 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
     this->controlState->Input(*this->joystick, ev);
     
     switch (this->controlState->GetState()) {
+    case UserControlState::State::Selector:
+      {
+	this->controlState->min = 0;
+	this->controlState->max = this->stage->GetAllSymbols().size() - 1;
+
+	// Ahm...aweful.
+	if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::A, true)) {
+	  auto symbols = this->stage->GetAllSymbols();
+	  int count = 0;
+	  for (auto sym : symbols) {
+	    if (count == this->controlState->index) {
+	      this->ChangeTargetActor(sym->instanceId);
+	    }
+	    count++;
+	  }
+	  //this->controlState->ChangeStateTo(UserControlState::State::Global);
+	  //this->controlState->index = 0;
+	}
+      }
+      break;
     case UserControlState::State::Facial:
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::Y, true)) {
 	IStageCommand* command = new FacialStageCommand(this->targetId, "anger");

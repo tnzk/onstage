@@ -15,6 +15,8 @@ public:
   State GetState();
   static std::string StateToString(State state);
   int index;
+  int min;
+  int max;
 private:
   bool Prove(JoystickEvent&, JoystickEvent::Type, unsigned int, int);
   void BackState();

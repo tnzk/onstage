@@ -48,7 +48,32 @@ void UserControlState::Input(JoystickState& state, JoystickEvent& event)
 	this->BackState();
       } else {
 	this->ChangeStateTo(menuItems[this->index]);
+	this->index = 0;
       }
+    }
+    break;
+  case UserControlState::State::Selector:
+    if (state.Prove(event, JoystickState::AxisSymbol::CY)) {
+      int cyValue = event.value;
+      // TODO: The value of a joystick event would always be from SHORT_MIN to SHORT_MAX.
+      if (cyValue >  100) this->index++; 
+      if (cyValue < -100) this->index--;
+      
+      if (this->index > this->max) this->index = this->min;
+      if (this->index < this->min) this->index = this->max;
+
+      if (state.Prove(event, JoystickState::ButtonSymbol::A, true)) {
+      }
+    }
+    if (state.Prove(event, JoystickState::ButtonSymbol::A, true)) {
+      /*
+      if (this->index == menuItems.size()) {
+	this->BackState();
+      } else {
+	this->ChangeStateTo(menuItems[this->index]);
+	this->index = 0;
+      }
+      */
     }
     break;
   case UserControlState::State::Camera:
