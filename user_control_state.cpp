@@ -30,23 +30,24 @@ void UserControlState::Input(JoystickState& state, JoystickEvent& event)
 
   switch (this->state) {
   case UserControlState::State::Global:
+    static std::vector<UserControlState::State> menuItems { UserControlState::State::Selector,
+                                                            UserControlState::State::Loader,
+                                                            UserControlState::State::Camera,
+                                                            UserControlState::State::Behaviour};
     if (state.Prove(event, JoystickState::AxisSymbol::CY)) {
       int cyValue = event.value;
       // TODO: The value of a joystick event would always be from SHORT_MIN to SHORT_MAX.
       if (cyValue >  100) this->index++; 
       if (cyValue < -100) this->index--;
       
-      if (this->index > 3) this->index = 0;
-      if (this->index < 0) this->index = 3;
+      if (this->index > menuItems.size()) this->index = 0;
+      if (this->index < 0) this->index = menuItems.size();
     }
     if (state.Prove(event, JoystickState::ButtonSymbol::A, true)) {
-      UserControlState::State arr[] = { UserControlState::State::Loader,
-					UserControlState::State::Camera,
-					UserControlState::State::Behaviour};
-      if (this->index == 3) {
+      if (this->index == menuItems.size()) {
 	this->BackState();
       } else {
-	this->ChangeStateTo(arr[this->index]);
+	this->ChangeStateTo(menuItems[this->index]);
       }
     }
     break;
