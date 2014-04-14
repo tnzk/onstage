@@ -77,7 +77,7 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	IStageCommand* command = new ShutStageCommand(this->targetId);
 	commands.push_back(command);
       }
-      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R2, false)) {
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::RHAT, false)) {
 	IStageCommand* command = new LookResetStageCommand(this->targetId);
 	commands.push_back(command);
       }
