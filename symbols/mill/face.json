@@ -1,0 +1,44 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "path": "mill/face.svg",
+      "x": 0, "y": 0,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "mouth",
+      "path": "mill/mouth.json",
+      "x": 34.5, "y": 100,
+      "visibility": true
+    },
+    { "type": "svg",
+      "id": "eyeblow-left",
+      "path": "mill/eyeblow-left.svg",
+      "x": 30, "y": 51,
+      "angle": 0.4,
+      "center-x": 17,
+      "center-y": 5.7, 
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "eyeblow-right",
+      "path": "mill/eyeblow-right.svg",
+      "x": 72, "y": 51,
+      "angle": -0.4,
+      "center-x": 17,
+      "center-y": 5.7, 
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "eyes",
+      "path": "mill/eyes.json",
+      "x": 12, "y": 55,
+      "visibility": true,
+      "meta": {"distance": "3"}
+    }
+  ]    
+}

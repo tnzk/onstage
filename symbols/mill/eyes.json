@@ -1,0 +1,29 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+       "path": "mill/eyes-back.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "svg",
+      "path": "mill/pupil.svg",
+      "id": "left-pupil",
+      "x": 6.8, "y": 3,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "path": "mill/pupil.svg",
+      "id": "right-pupil",
+      "x": 42,  "y": 3,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+       "path": "mill/eyes-edge.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "symbol",
+  "primitives": [
+
+    { "type": "symbol",
+      "id": "face",
+      "path": "mill/face.json",
+      "x": 10, "y": 20,
+      "visibility": true
+    }
+  ]    
+}
