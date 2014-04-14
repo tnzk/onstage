@@ -10,6 +10,7 @@ public:
   Eyes(Symbol*);
   ~Eyes();
   bool LookAt(double rad, double distance);
+  void Reset();
   void Sync(int);
 private:
   bool isBlinking;

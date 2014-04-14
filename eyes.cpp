@@ -37,5 +37,13 @@ bool Eyes::LookAt(double rad, double distance)
   this->pupils.second->x = this->rightBasePosition.first  + this->distance * cos(rightRad);
   this->pupils.second->y = this->rightBasePosition.second + this->distance * sin(rightRad) * -1;
 
-  return true;
+  return true;  
+}
+
+void Eyes::Reset()
+{
+  this->pupils.first->x = this->leftBasePosition.first;
+  this->pupils.first->y = this->leftBasePosition.second;
+  this->pupils.second->x = this->rightBasePosition.first;
+  this->pupils.second->y = this->rightBasePosition.second;
 }

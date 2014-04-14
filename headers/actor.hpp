@@ -21,6 +21,7 @@ public:
   void Walk(double dx, double dy);
   void Stop();
   bool LookAt(double rad, double distance);
+  void LookReset();
   bool Eyeblows(double r);
   bool Eyeblows(double left, double right);
   void LeftHand(double rad, double distance);

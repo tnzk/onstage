@@ -51,6 +51,10 @@ bool Head::LookAt(double rad, double distance)
   if (this->eyes) this->eyes->LookAt(rad, distance);
   return true;
 }
+void Head::LookReset()
+{
+  if (this->eyes) this->eyes->Reset();
+}
 
 bool Head::Eyeblows(double left, double right)
 {

@@ -26,6 +26,7 @@ OBJS =	onstage.o \
 	stage_command_right_hand.o \
 	stage_command_walk.o \
 	stage_command_stop.o \
+	stage_command_look_reset.o \
 	symbol.o \
 	shape.o \
 	image_svg.o \

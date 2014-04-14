@@ -15,3 +15,4 @@
 #include "stage_command_right_hand.hpp"
 #include "stage_command_walk.hpp"
 #include "stage_command_stop.hpp"
+#include "stage_command_look_reset.hpp"

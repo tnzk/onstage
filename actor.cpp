@@ -52,6 +52,10 @@ bool Actor::LookAt(double rad, double distance)
   this->head->LookAt(rad, distance);
   return true;
 }
+void Actor::LookReset()
+{
+  this->head->LookReset();
+}
 
 bool Actor::Eyeblows(double r) { return this->Eyeblows(r, r); }
 bool Actor::Eyeblows(double left, double right)

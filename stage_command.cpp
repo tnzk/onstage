@@ -82,6 +82,10 @@ IStageCommand* StageCommandFactory::Create(picojson::value& jsonCommand)
       );
       return cmd;
     }));
+    stageCommandFactoryMap.insert(std::make_pair("look_reset", [](picojson::array& command) -> IStageCommand* {
+      IStageCommand* cmd = new LookResetStageCommand(command[1].get<std::string>());
+      return cmd;
+    }));
   }
     
   picojson::array& command = jsonCommand.get<picojson::array>();

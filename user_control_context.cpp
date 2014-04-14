@@ -9,6 +9,7 @@
 #include "stage_command_camera_move.hpp"
 #include "stage_command_facial.hpp"
 #include "stage_command_lookat.hpp"
+#include "stage_command_look_reset.hpp"
 #include "stage_command_move.hpp"
 #include <iostream>
 
@@ -74,6 +75,10 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, false)) {
 	IStageCommand* command = new ShutStageCommand(this->targetId);
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R2, false)) {
+	IStageCommand* command = new LookResetStageCommand(this->targetId);
 	commands.push_back(command);
       }
       break;
