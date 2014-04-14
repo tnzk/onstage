@@ -30,7 +30,7 @@
       "path": "mill/body.svg",
       "x": 0, "y": 10,
       "visibility": true,
-      "debug": true
+      "debug": false
     },
     { "type": "symbol",
       "id": "head",
