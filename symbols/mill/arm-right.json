@@ -18,7 +18,7 @@
       "x": 0, "y": 0,
       "center-x": 20, "center-y": 20,
       "visibility": true,
-      "debug": true
+      "debug": false
     },
     { "type": "path",
       "id": "elbow",
