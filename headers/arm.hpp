@@ -12,6 +12,7 @@ private:
   Symbol* symbol;
   IRenderable* hand;
   IRenderable* sleeve;
+  int length = 60;
   std::string direction;
   std::string GetShoulderPathString(double x, double y, double dx, double dy);
   std::string GetElbowPathString(double x, double y, double dx, double dy);

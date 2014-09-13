@@ -13,6 +13,11 @@ Arm::Arm(Symbol* symbol, std::string direction)
   this->baseHandPosition.first = this->hand->x;
   this->baseHandPosition.second = this->hand->y;
   this->direction = direction;
+  if (symbol->meta.find("length") == symbol->meta.end()) {
+    this->length = 60;
+  } else {
+    this->length = std::stoi(symbol->meta["length"]);
+  }
 }
 
 bool Arm::SetPosition(double angle, double distance)
@@ -25,7 +30,7 @@ bool Arm::SetPosition(double angle, double distance)
 
   ShapePath* shoulder = this->symbol->GetElementById<ShapePath*>("shoulder"); 
 
-  double upperArmLength = 60;
+  double upperArmLength = this->length;
   double theta = atan2(this->hand->y - shoulder->y, this->hand->x - shoulder->x) - (isLeft ? 0.3 : -0.3);
 
   // Normalize the reaching point.
@@ -58,11 +63,12 @@ bool Arm::SetPosition(double angle, double distance)
   elbow->SetCommand(this->GetElbowPathString(elbow->centerX, elbow->centerY,
 					     hand->x - elbow->x, hand->y - elbow->y));
 
-  sleeve->x = shoulder->x;
-  sleeve->y = shoulder->y;
-  sleeve->angle = theta + (isLeft ? 0.1 : -0.1);
+  if (sleeve) {
+    sleeve->x = shoulder->x;
+    sleeve->y = shoulder->y;
+    sleeve->angle = theta + (isLeft ? 0.1 : -0.1);
+  }
 
-  
   return true;
 }
 
@@ -97,7 +103,7 @@ std::string Arm::GetElbowPathString(double x, double y, double dx, double dy)
   std::stringstream ss;
   double theta = atan2(dy, dx);
   double l = sqrt(dx * dx + dy * dy);
-  double volume = 80 - l;
+  double volume = 70 - l;
   double r = 20;
   double px = x - 0.1 * cos(theta);
   double py = y - 0.1 * sin(theta);
