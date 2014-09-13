@@ -1,0 +1,19 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "id": "leg-left",
+      "path": "momo/leg-left.svg",
+      "x": 0, "y": 0,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "leg-right",
+      "path": "momo/leg-right.svg",
+      "x": 53, "y": 0,
+      "visibility": true,
+      "debug": false
+    }
+  ]
+}

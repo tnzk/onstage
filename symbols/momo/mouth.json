@@ -1,0 +1,65 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "id": "mouth-01",
+      "path": "momo/mouth-01.svg",
+      "x": 33, "y": 8,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": true,
+      "meta": {
+        "facial-type": "smile",
+        "mouth-style": "close"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-02",
+      "path": "momo/mouth-02.svg",
+      "x": 33, "y": 11,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": true,
+      "meta": { 
+        "facial-type": "sad",
+        "mouth-style": "close"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-03",
+      "path": "momo/mouth-03.svg",
+      "x": 33, "y": 8,
+      "center-x": 20, "center-y": 3.5,
+      "visibility": false,
+      "meta": {
+        "facial-type": "sad",
+        "mouth-style": "open"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-04",
+      "path": "momo/mouth-04.svg",
+      "x": 33, "y": 8,
+      "center-x": 20, "center-y": 3.5,
+      "visibility": false,
+      "meta": {
+        "facial-type": "smile",
+        "mouth-style": "open"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-05",
+      "path": "momo/mouth-05.svg",
+      "x": 33, "y": 8,
+      "center-x": 20, "center-y": 3.5,
+      "visibility": false,
+      "meta": { "facial-type": "intermediate" }
+    },
+    { "type": "svg",
+      "id": "mouth-06",
+      "path": "momo/mouth-06.svg",
+      "x": 33, "y": 8,
+      "center-x": 20, "center-y": 3.5,
+      "visibility": false,
+      "meta": { "facial-type": "intermediate" }
+    }
+  ]
+}

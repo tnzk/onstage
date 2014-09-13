@@ -1,0 +1,24 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+       "path": "momo/eyes-back.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "svg",
+      "path": "momo/pupil.svg",
+      "id": "left-pupil",
+      "x": 22, "y": 23,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "path": "momo/pupil.svg",
+      "id": "right-pupil",
+      "x": 108,  "y": 23,
+      "visibility": true,
+      "debug": false
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "path",
+      "id": "shoulder",
+      "command": "MR 10, 10 LR 50, 50, S",
+      "x": 190, "y": 100,
+      "center-x": 100, "center-y": 100,
+      "width": 200, "height": 200,
+      "visibility": true,
+      "debug": false,
+      "fill": [1, 0.89, 0.78]
+    },
+    { "type": "svg",
+      "id": "sleeve",
+      "path": "momo/shoulder-left.svg",
+      "x": 0, "y": 0,
+      "center-x": 20, "center-y": 30,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "path",
+      "id": "elbow",
+      "radius": 3,
+      "x": 90, "y": 90,
+      "center-x": 100, "center-y": 100,
+      "width": 200, "height": 200,
+      "command": "MR 10, 10 LR 50, 50, S",
+      "visibility": true,
+      "debug": false,
+      "fill": [1, 0.89, 0.78]
+    },
+    { "type": "svg",
+      "id": "hand",
+      "path": "momo/hand-left.svg",
+      "x": 170, "y": 100,
+      "center-x": 10, "center-y": 20,
+      "visibility": true,
+      "debug": false
+    }
+  ]    
+}

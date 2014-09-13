@@ -6,53 +6,61 @@
   "debug": true,
   "angle": 0,
   "primitives": [
+    { "type": "svg",
+      "id": "back-hair",
+      "path": "momo/backhair.svg",
+      "x": 0, "y": 0,
+      "center-x": 260, "center-y": 310,
+      "visibility": true, "debug": false
+    },
     { "type": "symbol",
-      "id": "head",
-      "path": "phenomena-head.json",
-      "x": 250, "y": 355,
-      "center-x": 120, "center-y": 260,
+      "id": "legs",
+      "path": "momo/legs.json",
+      "x": 220, "y": 440,
+      "center-x": 0, "center-y": 0,
       "visibility": true,
       "debug": false
     },
     { "type": "svg",
-      "path": "phenomena-body.svg",
-      "x": 138, "y": 320,
+      "path": "momo/body.svg",
+      "x": 228, "y": 320,
       "visibility": true,
       "debug": false
     },
     { "type": "symbol",
       "id": "arm-left",
-      "path": "phenomena-arm-left.json",
-      "x": 210, "y": 365,
+      "path": "momo/arm-left.json",
+      "x": 235, "y": 340,
       "width": 200, "height": 200,
       "center-x": 190, "center-y": 100,
       "visibility": true,
       "debug": false,
-      "meta": { "direction": "left"}
+      "meta": { "direction": "left", "length": 40}
     },
     { "type": "symbol",
       "id": "arm-right",
-      "path": "phenomena-arm-right.json",
-      "x": 300, "y": 365,
+      "path": "momo/arm-right.json",
+      "x": 317, "y": 340,
       "width": 200, "height": 200,
       "center-x": 100, "center-y": 100,
       "visibility": true,
       "debug": false,
-      "meta": { "direction": "right"}
+      "meta": { "direction": "right", "length": 40}
     },
     { "type": "symbol",
-      "id": "leg-left",
-      "path": "phenomena-leg-left.json",
-      "x": 215, "y": 500,
+      "id": "head",
+      "path": "momo/head.json",
+      "x": 280, "y": 355,
+      "center-x": 120, "center-y": 260,
       "visibility": true,
-      "debug": true
+      "debug": false
     },
-    { "type": "symbol",
-      "id": "leg-right",
-      "path": "phenomena-leg-right.json",
-      "x": 285, "y": 500,
-      "visibility": true,
-      "debug": true
+    { "type": "svg",
+      "id": "fore-hair",
+      "path": "momo/forehair.svg",
+      "x": 0, "y": 0,
+      "center-x": 123, "center-y": 300,
+      "visibility": true, "debug": false
     }
   ]
 }

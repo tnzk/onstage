@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="43.268002"
+   height="43.268002"
+   id="svg3145"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="eyes-back.svg">
+  <defs
+     id="defs3147" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2164894"
+     inkscape:cx="-190.06953"
+     inkscape:cy="27.146223"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="714"
+     inkscape:window-x="0"
+     inkscape:window-y="159"
+     inkscape:window-maximized="1"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <metadata
+     id="metadata3150">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-733.16754,-735.42396)">
+    <g
+       transform="translate(173.68057,346.92396)"
+       id="eye_left">
+      <circle
+         cx="581.12097"
+         cy="410.134"
+         r="16.634001"
+         id="circle3358"
+         style="fill:#fbb03b"
+         d="m 597.75497,410.134 c 0,9.18671 -7.44729,16.634 -16.634,16.634 -9.1867,0 -16.634,-7.44729 -16.634,-16.634 0,-9.1867 7.4473,-16.634 16.634,-16.634 9.18671,0 16.634,7.4473 16.634,16.634 z"
+         sodipodi:cx="581.12097"
+         sodipodi:cy="410.134"
+         sodipodi:rx="16.634001"
+         sodipodi:ry="16.634001" />
+      <circle
+         cx="581"
+         cy="411.026"
+         r="2.5220001"
+         id="circle3360"
+         style="fill:#42210b"
+         d="m 583.522,411.026 c 0,1.39286 -1.12914,2.522 -2.522,2.522 -1.39286,0 -2.522,-1.12914 -2.522,-2.522 0,-1.39286 1.12914,-2.522 2.522,-2.522 1.39286,0 2.522,1.12914 2.522,2.522 z"
+         sodipodi:cx="581"
+         sodipodi:cy="411.026"
+         sodipodi:rx="2.5220001"
+         sodipodi:ry="2.5220001"
+         transform="matrix(2.9825535,0,0,2.9825535,-1151.8636,-814.88103)" />
+      <circle
+         transform="matrix(1.2302072,0,0,1.2302072,-138.16983,-99.040568)"
+         sodipodi:ry="2.5220001"
+         sodipodi:rx="2.5220001"
+         sodipodi:cy="411.026"
+         sodipodi:cx="581"
+         d="m 583.522,411.026 c 0,1.39286 -1.12914,2.522 -2.522,2.522 -1.39286,0 -2.522,-1.12914 -2.522,-2.522 0,-1.39286 1.12914,-2.522 2.522,-2.522 1.39286,0 2.522,1.12914 2.522,2.522 z"
+         style="fill:#ffffff"
+         id="circle3122"
+         r="2.5220001"
+         cy="411.026"
+         cx="581" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "path": "momo/face.svg",
+      "x": 0, "y": 0,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "eyeblow-left",
+      "path": "momo/eyeblow-left.svg",
+      "x": 90, "y": 60,
+      "angle": 0.4,
+      "center-x": 22.5,
+      "center-y": 5.7, 
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "eyeblow-right",
+      "path": "momo/eyeblow-right.svg",
+      "x": 128, "y": 60,
+      "angle": -0.4,
+      "center-x": 22.5,
+      "center-y": 5.7, 
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "eyes",
+      "path": "momo/eyes.json",
+      "x": 25, "y": 82,
+      "visibility": true,
+      "meta": {"distance": "16"}
+    },
+    { "type": "symbol",
+      "id": "mouth",
+      "path": "momo/mouth.json",
+      "x": 110, "y": 188,
+      "center-x": 40,
+      "center-y": 15, 
+      "visibility": true
+    }
+  ]    
+}
