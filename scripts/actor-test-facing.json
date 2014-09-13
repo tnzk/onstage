@@ -9,7 +9,7 @@
   },
   "commands": [
     ["sync", 0],
-    ["load_actor", "test-target", "mill.json"],
+    ["load_actor", "test-target", "momo.json"],
     ["scale", "test-target", 1],
     ["move", "test-target", 640, 700],
     ["move", "test-target", -50, 0],
