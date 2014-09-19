@@ -24,6 +24,28 @@
       }
     },
     { "type": "svg",
+      "id": "mouth-11",
+      "path": "momo/mouth-11.svg",
+      "x": 33, "y": 11,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": true,
+      "meta": { 
+        "facial-type": "normal",
+        "mouth-style": "close"
+      }
+    },
+    { "type": "svg",
+      "id": "mouth-05",
+      "path": "momo/mouth-05.svg",
+      "x": 33, "y": 11,
+      "center-x": 15, "center-y": 3.5,
+      "visibility": true,
+      "meta": { 
+        "facial-type": "normal",
+        "mouth-style": "open"
+      }
+    },
+    { "type": "svg",
       "id": "mouth-03",
       "path": "momo/mouth-03.svg",
       "x": 33, "y": 8,

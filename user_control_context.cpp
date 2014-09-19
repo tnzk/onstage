@@ -62,11 +62,11 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::X, true)) {
-	IStageCommand* command = new FacialStageCommand(this->targetId, "smile");
+	IStageCommand* command = new FacialStageCommand(this->targetId, "normal");
 	commands.push_back(command);
       }
-      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::Y, true)) {
-	IStageCommand* command = new FacialStageCommand(this->targetId, "offensive");
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::B, true)) {
+	IStageCommand* command = new FacialStageCommand(this->targetId, "smile");
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::R1, true)) {
@@ -78,6 +78,10 @@ std::vector<IStageCommand*> UserControlContext::ProcessInput()
 	commands.push_back(command);
       }
       if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::RHAT, false)) {
+	IStageCommand* command = new LookatStageCommand(this->targetId, 0, 0);
+	commands.push_back(command);
+      }
+      if (this->joystick->Prove(ev, JoystickState::ButtonSymbol::LHAT, false)) {
 	IStageCommand* command = new LookResetStageCommand(this->targetId);
 	commands.push_back(command);
       }
