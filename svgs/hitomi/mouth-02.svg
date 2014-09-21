@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="39.53125"
+   height="16.56801"
+   id="svg3170"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="mouth-01.svg">
+  <defs
+     id="defs3172" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="22.586244"
+     inkscape:cx="30.878054"
+     inkscape:cy="8.7169678"
+     inkscape:document-units="px"
+     inkscape:current-layer="mouth"
+     showgrid="false"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     inkscape:window-width="1036"
+     inkscape:window-height="591"
+     inkscape:window-x="1624"
+     inkscape:window-y="255"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3175">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-769.60011,-399.46209)">
+    <g
+       transform="translate(246.94386,-58.032404)"
+       id="mouth">
+      <path
+         id="mouth-transi"
+         class="mouth"
+         display="none"
+         style="fill:#fe6e6e;fill-rule:evenodd;stroke:none;display:none"
+         d="m 570.93251,465.93626 c 4.69664,4.61558 -9.27847,4.88701 -20.60354,4.6799 -11.3258,-0.20714 -19.2573,-0.0616 -19.24868,-4.24432 0.006,-2.78295 5.84749,-5.11157 20.60355,-4.6799 13.01806,0.38083 14.35489,-0.565 19.24867,4.24432 z"
+         inkscape:connector-curvature="0" />
+      <polygon
+         id="mouth-delta"
+         points="565,454.139 552.379,474.696 535.147,456.93 "
+         style="fill:#ff6e6e;display:none"
+         class="mouth"
+         display="none" />
+      <line
+         id="mouth-horizon"
+         stroke-miterlimit="10"
+         x1="535.776"
+         y1="464.823"
+         x2="564.62201"
+         y2="464.90799"
+         style="fill:none;stroke:#302c28;stroke-miterlimit:10;display:none"
+         class="mouth"
+         display="none" />
+      <path
+         id="mouth-downturned"
+         stroke-miterlimit="10"
+         d="m 534.776,467.536 c 0,0 12.512,-12.801 28.846,-0.085"
+         class="mouth"
+         display="none"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#302c28;stroke-miterlimit:10;display:none" />
+      <path
+         id="mouth-kamaboko"
+         d="m 534.302,457 c 0.85,8 7.828,15.729 16.311,15.729 8.483,0 15.459,-7.729 16.309,-15.729 h -32.62 z"
+         class="mouth"
+         inkscape:connector-curvature="0"
+         style="fill:#ff6e6e;display:none"
+         display="none" />
+      <path
+         style="fill:#ff6e6e;display:none"
+         d="m 559.75197,464.487 c 0.66142,6.13699 -2.82288,11.112 -7.7824,11.112 -4.95951,0 -9.51618,-4.97501 -10.1776,-11.112 -0.66142,-6.13699 2.82289,-11.112 7.7824,-11.112 4.95952,0 9.51618,4.97501 10.1776,11.112 z"
+         id="mouth-0"
+         display="none"
+         class="mouth"
+         inkscape:connector-curvature="0" />
+      <path
+         id="mouth-O"
+         display="none"
+         class="mouth"
+         d="m 567.909,471.925 c -2.857,9.563 -7.907,9.802 -17.61,9.774 -9.702,-0.022 -17.546,-0.653 -17.521,-9.863 0.024,-9.215 0.466,-24.945 17.608,-23.5 15.884,1.339 20.174,14.713 17.523,23.589 z"
+         inkscape:connector-curvature="0"
+         style="fill:#ff6e6e;display:none" />
+      <path
+         style="fill:none;stroke:#302c28;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:none"
+         d="m 537.19833,461.38071 12.7051,6.75416 13.39783,-7.23959"
+         id="mouth-needle"
+         class="mouth"
+         display="none"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccc" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         display="none"
+         id="mouth-rneedle"
+         class="mouth"
+         d="m 537.19833,467.64944 12.7051,-6.75416 13.39783,7.23959"
+         style="fill:none;stroke:#302c28;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:none" />
+      <path
+         style="fill:#ff6e6e;display:none"
+         inkscape:connector-curvature="0"
+         class="mouth"
+         d="m 527.302,469.229 c 11.256,-11.30886 25.10461,-16.64965 28.85174,-16.60768 2.48322,0.0278 10.41826,5.63281 15.26826,15.85768 -6.61531,1.61052 -35.63669,2.06348 -44.12,0.75 z"
+         id="mouth-mountain"
+         sodipodi:nodetypes="cscc"
+         display="none" />
+      <path
+         id="mouth-downturned-5"
+         stroke-miterlimit="10"
+         d="m 528.02115,468.71261 c 0,0 12.512,-12.801 28.846,-0.085"
+         class="mouth"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#302c28;stroke-miterlimit:10" />
+    </g>
+  </g>
+</svg>

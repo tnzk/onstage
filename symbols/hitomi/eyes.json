@@ -1,0 +1,24 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+       "path": "hitomi/eyes-back.svg",
+      "x": 0, "y": 0,
+      "visibility": true
+    },
+    { "type": "svg",
+      "path": "hitomi/pupil.svg",
+      "id": "left-pupil",
+      "x": 17, "y": 18,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "path": "hitomi/pupil.svg",
+      "id": "right-pupil",
+      "x": 102,  "y": 18,
+      "visibility": true,
+      "debug": false
+    }
+  ]
+}

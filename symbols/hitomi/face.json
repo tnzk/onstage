@@ -1,0 +1,46 @@
+{
+  "type": "symbol",
+  "primitives": [
+    { "type": "svg",
+      "path": "hitomi/face.svg",
+      "x": 0, "y": 0,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "eyeblow-left",
+      "path": "hitomi/eyeblow-left.svg",
+      "x": 85, "y": 78,
+      "angle": 0.4,
+      "center-x": 22.5,
+      "center-y": 5.7, 
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "eyeblow-right",
+      "path": "hitomi/eyeblow-right.svg",
+      "x": 133, "y": 78,
+      "angle": -0.4,
+      "center-x": 22.5,
+      "center-y": 5.7, 
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "eyes",
+      "path": "hitomi/eyes.json",
+      "x": 25, "y": 82,
+      "visibility": true,
+      "meta": {"distance": "13"}
+    },
+    { "type": "symbol",
+      "id": "mouth",
+      "path": "hitomi/mouth.json",
+      "x": 110, "y": 188,
+      "center-x": 40,
+      "center-y": 15, 
+      "visibility": true
+    }
+  ]    
+}

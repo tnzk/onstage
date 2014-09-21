@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="50.006001"
+   height="53.166"
+   id="svg3145"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="pupil.svg">
+  <defs
+     id="defs3147" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2164894"
+     inkscape:cx="-218.49897"
+     inkscape:cy="55.373298"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="714"
+     inkscape:window-x="0"
+     inkscape:window-y="159"
+     inkscape:window-maximized="1"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <metadata
+     id="metadata3150">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-761.59698,-687.99003)">
+    <g
+       transform="translate(262.10999,306.49103)"
+       id="eye_right">
+      <path
+         style="fill:#d8a091"
+         d="m 544.49299,408.082 c 0,11.91996 -8.95565,21.583 -20.003,21.583 -11.04735,0 -20.003,-9.66304 -20.003,-21.583 0,-11.91996 8.95565,-21.583 20.003,-21.583 11.04735,0 20.003,9.66304 20.003,21.583 z"
+         id="ellipse3807"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#ffffff"
+         d="m 519.74797,403.242 c 0,3.24578 -2.63122,5.877 -5.877,5.877 -3.24578,0 -5.877,-2.63122 -5.877,-5.877 0,-3.24577 2.63122,-5.877 5.877,-5.877 3.24578,0 5.877,2.63123 5.877,5.877 z"
+         id="circle3811"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

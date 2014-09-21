@@ -1,19 +1,72 @@
 {
   "type": "actor",
+  "center-x": 250,
+  "center-y": 570,
+  "width": 500, "height": 0,
+  "debug": true,
+  "angle": 0,
   "primitives": [
     { "type": "svg",
-      "path": "green-circle.svg",
-      "x": 0, "y": 0,
-      "visibility": true
-    },
-    { "type": "svg",
-      "path": "yellow-plane.svg",
-      "x": 0, "y": 320,
-      "visibility": true
+      "id": "back-hair",
+      "path": "hitomi/backhair.svg",
+      "x": 100, "y": 300,
+      "center-x": 110, "center-y": 80,
+      "visibility": true, "debug": false
     },
     { "type": "symbol",
-      "path": "example-object02.json",
-      "x": 54, "y": 23
+      "id": "legs",
+      "path": "hitomi/legs.json",
+      "x": 220, "y": 440,
+      "center-x": 0, "center-y": 0,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "path": "hitomi/body.svg",
+      "x": 231, "y": 320,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "arm-left",
+      "path": "hitomi/arm-left.json",
+      "x": 238, "y": 345,
+      "width": 200, "height": 200,
+      "center-x": 190, "center-y": 100,
+      "visibility": true,
+      "debug": false,
+      "meta": { "direction": "left", "length": 40}
+    },
+    { "type": "symbol",
+      "id": "arm-right",
+      "path": "hitomi/arm-right.json",
+      "x": 317, "y": 345,
+      "width": 200, "height": 200,
+      "center-x": 100, "center-y": 100,
+      "visibility": true,
+      "debug": false,
+      "meta": { "direction": "right", "length": 40}
+    },
+    { "type": "svg",
+      "path": "hitomi/kolor.svg",
+      "x": 252, "y": 320,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "symbol",
+      "id": "head",
+      "path": "hitomi/head.json",
+      "x": 280, "y": 360,
+      "center-x": 120, "center-y": 260,
+      "visibility": true,
+      "debug": false
+    },
+    { "type": "svg",
+      "id": "fore-hair",
+      "path": "hitomi/forehair.svg",
+      "x": 0, "y": 0,
+      "center-x": 143, "center-y": 310,
+      "visibility": true, "debug": false
     }
-  ]    
+  ]
 }
